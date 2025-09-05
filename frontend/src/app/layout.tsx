@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Arimo } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 // Primary font: Arimo (sans)
 const arimo = Arimo({
@@ -11,7 +13,7 @@ const arimo = Arimo({
 
 export const metadata: Metadata = {
   title: "Galleria Mall — Coming Soon",
-  description: "Galleria Mall is coming soon. White, gold, and black CTA theme.",
+  description: "Galleria Mall in Hyderabad is coming soon. White, gold, and black CTA theme.",
 };
 
 export default function RootLayout({
@@ -22,7 +24,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       {/* Add Google Fonts link for Libertinus Serif Display in app/head.tsx */}
-      <body className={`${arimo.variable} font-sans antialiased`}>{children}</body>
+      <body className={`${arimo.variable} font-sans antialiased`}>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
