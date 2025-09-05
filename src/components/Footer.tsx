@@ -4,6 +4,13 @@ export default function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-4 px-6 py-10 sm:flex-row sm:justify-between">
         <p className="text-foreground/60 text-sm">© {new Date().getFullYear()} Galleria Mall</p>
         <div className="flex items-center gap-4">
+          <a
+            href="mailto:ramakanth.reddy@thegalleriamall.in"
+            aria-label="Email: ramakanth.reddy@thegalleriamall.in"
+            className="text-foreground/60 hover:text-foreground text-sm underline"
+          >
+            ramakanth.reddy@thegalleriamall.in
+          </a>
           <a aria-label="Instagram" className="text-foreground/60 hover:text-foreground" href="#">
             <svg
               width="20"
