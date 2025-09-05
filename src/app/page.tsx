@@ -11,7 +11,7 @@ export default function Home() {
           </span>
         </div>
 
-        <h1 className="font-serif text-5xl tracking-tight sm:text-7xl">Galleria Mall</h1>
+        <h1 className="font-serif text-5xl tracking-tight sm:text-7xl">The Galleria Mall</h1>
         <div className="via-brand-gold mx-auto my-2 h-px w-24 bg-gradient-to-r from-transparent to-transparent" />
         <p className="text-foreground/75 mx-auto max-w-2xl font-sans text-base sm:text-lg">
           An elevated retail and lifestyle destination in Hyderabad.
