@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /* Brand palette */
+  --brand-white: #ffffff;
+  /* Golden yellow (adjustable). Alternatives: #ffd700 (gold), #ffcc00 (amber) */
+  --brand-gold: #d4af37;
+  --brand-black: #000000;
+}
+
+/* Tailwind v4 theme tokens */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Primary and secondary font families */
+  --font-sans: var(--font-arimo);
+  --font-serif: "Libertinus Serif Display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+  /* Brand colors */
+  --color-brand-white: var(--brand-white);
+  --color-brand-gold: var(--brand-gold);
+  --color-cta: var(--brand-black);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* Base styles; font family applied via Tailwind classes on <body> */
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
