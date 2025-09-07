@@ -77,7 +77,7 @@ export default function ScrollPullGallery() {
       top: "8%",
       left: "12%",
       width: "clamp(96px, 32vw, 220px)",
-      tx: "-30vw",
+      tx: "-80vw",
       ty: "-25vh",
     },
     {
@@ -86,7 +86,7 @@ export default function ScrollPullGallery() {
       top: "4%",
       left: "50%",
       width: "clamp(92px, 30vw, 210px)",
-      tx: "-10vw",
+      tx: "-60vw",
       ty: "-30vh",
     },
     {
@@ -95,7 +95,7 @@ export default function ScrollPullGallery() {
       top: "14%",
       right: "8%",
       width: "clamp(96px, 34vw, 240px)",
-      tx: "30vw",
+      tx: "80vw",
       ty: "-20vh",
     },
     {
@@ -104,7 +104,7 @@ export default function ScrollPullGallery() {
       top: "38%",
       right: "6%",
       width: "clamp(96px, 34vw, 240px)",
-      tx: "28vw",
+      tx: "70vw",
       ty: "0vh",
     },
     {
@@ -114,7 +114,7 @@ export default function ScrollPullGallery() {
       left: "10%",
       width: "clamp(96px, 34vw, 240px)",
       hideOnMobile: true,
-      tx: "-28vw",
+      tx: "-70vw",
       ty: "5vh",
     },
     {
@@ -123,7 +123,7 @@ export default function ScrollPullGallery() {
       bottom: "10%",
       left: "40%",
       width: "clamp(92px, 32vw, 220px)",
-      tx: "-8vw",
+      tx: "-50vw",
       ty: "22vh",
     },
     {
@@ -133,7 +133,7 @@ export default function ScrollPullGallery() {
       right: "18%",
       width: "clamp(96px, 34vw, 240px)",
       hideOnMobile: true,
-      tx: "22vw",
+      tx: "60vw",
       ty: "20vh",
     },
     {
@@ -142,7 +142,7 @@ export default function ScrollPullGallery() {
       top: "52%",
       left: "0%",
       width: "clamp(92px, 28vw, 200px)",
-      tx: "-28vw",
+      tx: "-70vw",
       ty: "2vh",
     },
   ];
@@ -151,7 +151,7 @@ export default function ScrollPullGallery() {
     <section
       ref={hostRef}
       aria-label="Global experience"
-      className="pull-stage relative isolate my-28 h-[220vh] overflow-visible sm:h-[260vh]"
+      className="pull-stage relative isolate my-28 h-[120vh] overflow-visible sm:h-[140vh]"
       data-active={active ? "true" : "false"}
       style={{ ["--p" as any]: String(progress) }}
     >
