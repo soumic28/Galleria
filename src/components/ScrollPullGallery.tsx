@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type React from "react";
 
 type ImgSpec = {
   src: string;
@@ -25,7 +26,7 @@ function clamp01(n: number) {
 /**
  * Returns a 0..1 progress value as the user scrolls through the section.
  */
-function useScrollProgress(ref: React.RefObject<HTMLElement>) {
+function useScrollProgress(ref: React.RefObject<HTMLElement | null>) {
   const [p, setP] = useState(0);
   const [active, setActive] = useState(false);
 
@@ -60,7 +61,7 @@ function useScrollProgress(ref: React.RefObject<HTMLElement>) {
       window.removeEventListener("resize", onScroll);
       cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [ref]);
 
   return { p, active };
 }
@@ -147,13 +148,16 @@ export default function ScrollPullGallery() {
     },
   ];
 
+  // Allow CSS custom properties on style objects without using `any`.
+  type CSSVars = React.CSSProperties & Record<`--${string}`, string | number>;
+
   return (
     <section
       ref={hostRef}
       aria-label="Global experience"
       className="pull-stage relative isolate my-28 h-[120vh] overflow-visible sm:h-[140vh]"
       data-active={active ? "true" : "false"}
-      style={{ ["--p" as any]: String(progress) }}
+      style={{ "--p": String(progress) } as CSSVars}
     >
       {/* Sticky center content */}
       <div className="pointer-events-none sticky top-1/2 z-10 -translate-y-1/2">
@@ -171,14 +175,16 @@ export default function ScrollPullGallery() {
           <div
             key={i}
             data-pull
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              width: img.width ?? "clamp(110px, 26vw, 240px)",
-              ["--tx" as any]: img.tx,
-              ["--ty" as any]: img.ty,
-            }}
+            style={
+              {
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                width: img.width ?? "clamp(110px, 26vw, 240px)",
+                "--tx": img.tx,
+                "--ty": img.ty,
+              } as CSSVars
+            }
             className={
               (img.hideOnMobile ? "hidden sm:block " : "") + "overflow-hidden rounded-md shadow-xl"
             }
