@@ -154,7 +154,7 @@ export default function ScrollPullGallery() {
   return (
     <section
       ref={hostRef}
-      aria-label="Global experience"
+      aria-label="Location advantages"
       className="pull-stage relative isolate my-28 h-[120vh] overflow-visible sm:h-[140vh]"
       data-active={active ? "true" : "false"}
       style={{ "--p": String(progress) } as CSSVars}
@@ -162,10 +162,10 @@ export default function ScrollPullGallery() {
       {/* Sticky center content */}
       <div className="pointer-events-none sticky top-1/2 z-10 -translate-y-1/2">
         <h2 className="pull-heading text-brand-gold mx-auto max-w-4xl text-center font-serif text-5xl leading-[1.05] font-extrabold tracking-tight uppercase sm:text-7xl md:text-8xl">
-          900M Visitors,
-          <br /> 71 Shopping Centres,
-          <br /> 11 Countries,
-          <br /> 1 Unforgettable Experience
+          Location Advantage,
+          <br /> 8 mins Hanamkonda,
+          <br /> 10 mins Warangal,
+          <br /> 25 mins Kazipet
         </h2>
       </div>
 
