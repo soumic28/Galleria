@@ -1,4 +1,6 @@
 /* eslint-disable prettier/prettier */
+import ScrollPullGallery from "../components/ScrollPullGallery";
+
 export default function Home() {
   return (
     <main className="relative isolate flex min-h-[calc(100vh-5rem)] items-center justify-center overflow-hidden p-8 sm:p-16">
@@ -61,6 +63,9 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* Pull-in gallery section (Westfield-like) */}
+        <ScrollPullGallery />
 
         {/* Location Advantage */}
         <div className="mx-auto max-w-5xl text-left">
