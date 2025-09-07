@@ -12,9 +12,15 @@ export default function Footer() {
           </a>
         </div>
         <div className="mt-4 flex flex-col items-center gap-4">
-          <p className="text-foreground/60 text-sm">© {new Date().getFullYear()} Galleria Mall</p>
+          <p className="text-foreground/60 text-sm">
+            © {new Date().getFullYear()} The Galleria Mall
+          </p>
           <div className="flex items-center gap-4">
-            <a aria-label="Instagram" className="text-foreground/60 hover:text-foreground" href="#">
+            <a
+              aria-label="Instagram"
+              className="text-foreground/60 hover:text-foreground"
+              href="https://www.instagram.com/thegalleriamall.wgl?utm_source=qr&igsh=bTM4NXhpYjI3dDJp"
+            >
               <svg
                 width="20"
                 height="20"
@@ -31,7 +37,11 @@ export default function Footer() {
                 <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
               </svg>
             </a>
-            <a aria-label="Facebook" className="text-foreground/60 hover:text-foreground" href="#">
+            <a
+              aria-label="Facebook"
+              className="text-foreground/60 hover:text-foreground"
+              href="https://www.facebook.com/share/19f8RC5Knq/"
+            >
               <svg
                 width="20"
                 height="20"
@@ -45,7 +55,11 @@ export default function Footer() {
                 />
               </svg>
             </a>
-            <a aria-label="X" className="text-foreground/60 hover:text-foreground" href="#">
+            <a
+              aria-label="X"
+              className="text-foreground/60 hover:text-foreground"
+              href="https://x.com/thegalleriawgl?t=pk7gw1flap_jrn-iuUmy5w&s=09"
+            >
               <svg
                 width="20"
                 height="20"
