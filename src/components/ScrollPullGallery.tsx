@@ -76,7 +76,7 @@ export default function ScrollPullGallery() {
       alt: "People at a mall 1",
       top: "8%",
       left: "12%",
-      width: "clamp(120px, 28vw, 240px)",
+      width: "clamp(96px, 32vw, 220px)",
       tx: "-30vw",
       ty: "-25vh",
     },
@@ -85,7 +85,7 @@ export default function ScrollPullGallery() {
       alt: "Cafe",
       top: "4%",
       left: "50%",
-      width: "clamp(110px, 26vw, 220px)",
+      width: "clamp(92px, 30vw, 210px)",
       tx: "-10vw",
       ty: "-30vh",
     },
@@ -94,7 +94,7 @@ export default function ScrollPullGallery() {
       alt: "Makeup",
       top: "14%",
       right: "8%",
-      width: "clamp(120px, 30vw, 260px)",
+      width: "clamp(96px, 34vw, 240px)",
       tx: "30vw",
       ty: "-20vh",
     },
@@ -103,7 +103,7 @@ export default function ScrollPullGallery() {
       alt: "Friends",
       top: "38%",
       right: "6%",
-      width: "clamp(120px, 30vw, 260px)",
+      width: "clamp(96px, 34vw, 240px)",
       tx: "28vw",
       ty: "0vh",
     },
@@ -112,7 +112,7 @@ export default function ScrollPullGallery() {
       alt: "Kids play",
       bottom: "28%",
       left: "10%",
-      width: "clamp(120px, 30vw, 260px)",
+      width: "clamp(96px, 34vw, 240px)",
       hideOnMobile: true,
       tx: "-28vw",
       ty: "5vh",
@@ -122,7 +122,7 @@ export default function ScrollPullGallery() {
       alt: "Store",
       bottom: "10%",
       left: "40%",
-      width: "clamp(110px, 28vw, 240px)",
+      width: "clamp(92px, 32vw, 220px)",
       tx: "-8vw",
       ty: "22vh",
     },
@@ -131,7 +131,7 @@ export default function ScrollPullGallery() {
       alt: "Skate",
       bottom: "12%",
       right: "18%",
-      width: "clamp(120px, 30vw, 260px)",
+      width: "clamp(96px, 34vw, 240px)",
       hideOnMobile: true,
       tx: "22vw",
       ty: "20vh",
@@ -141,7 +141,7 @@ export default function ScrollPullGallery() {
       alt: "Coffee",
       top: "52%",
       left: "0%",
-      width: "clamp(110px, 24vw, 200px)",
+      width: "clamp(92px, 28vw, 200px)",
       tx: "-28vw",
       ty: "2vh",
     },
@@ -157,7 +157,7 @@ export default function ScrollPullGallery() {
     >
       {/* Sticky center content */}
       <div className="pointer-events-none sticky top-1/2 z-10 -translate-y-1/2">
-        <h2 className="pull-heading mx-auto max-w-4xl text-center font-serif text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-7xl md:text-8xl uppercase">
+        <h2 className="pull-heading text-brand-gold mx-auto max-w-4xl text-center font-serif text-5xl leading-[1.05] font-extrabold tracking-tight uppercase sm:text-7xl md:text-8xl">
           900M Visitors,
           <br /> 71 Shopping Centres,
           <br /> 11 Countries,
@@ -166,7 +166,7 @@ export default function ScrollPullGallery() {
       </div>
 
       {/* Floating images pulled towards the center as you scroll */}
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0 z-20">
         {images.map((img, i) => (
           <div
             key={i}
