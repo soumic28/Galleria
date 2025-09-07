@@ -98,7 +98,7 @@ body {
 }
 
 /* Scroll pull gallery helpers */
-.pull-stage { --amp: 1; --headShrink: 0.35; }
+.pull-stage { --amp: 1.3; --headShrink: 0.35; }
 .pull-stage [data-pull] {
   /* Start hidden. When active it'll fade in and animate. */
   opacity: 0;
@@ -124,7 +124,7 @@ body {
 /* Mobile tuning: less outward travel and gentler heading shrink */
 @media (max-width: 640px) {
   /* On phones let images travel more and the heading shrink a bit more */
-  .pull-stage { --amp: 0.9; --headShrink: 0.34; }
+  .pull-stage { --amp: 1.1; --headShrink: 0.34; }
 }
 
 /* Floating label utility for inputs */

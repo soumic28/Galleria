@@ -79,7 +79,7 @@ export default function ScrollPullGallery() {
       left: "12%",
       width: "clamp(96px, 32vw, 220px)",
       tx: "-80vw",
-      ty: "-25vh",
+      ty: "-30vh",
     },
     {
       src: "https://images.unsplash.com/photo-1520975693416-35a3cb9a2c33?q=80&w=900&auto=format&fit=crop",
@@ -88,7 +88,7 @@ export default function ScrollPullGallery() {
       left: "50%",
       width: "clamp(92px, 30vw, 210px)",
       tx: "-60vw",
-      ty: "-30vh",
+      ty: "-35vh",
     },
     {
       src: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=900&auto=format&fit=crop",
@@ -97,7 +97,7 @@ export default function ScrollPullGallery() {
       right: "8%",
       width: "clamp(96px, 34vw, 240px)",
       tx: "80vw",
-      ty: "-20vh",
+      ty: "-25vh",
     },
     {
       src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=900&auto=format&fit=crop",
@@ -125,7 +125,7 @@ export default function ScrollPullGallery() {
       left: "40%",
       width: "clamp(92px, 32vw, 220px)",
       tx: "-50vw",
-      ty: "22vh",
+      ty: "25vh",
     },
     {
       src: "https://images.unsplash.com/photo-1514512364185-4c2b3b65d98e?q=80&w=900&auto=format&fit=crop",
@@ -135,7 +135,7 @@ export default function ScrollPullGallery() {
       width: "clamp(96px, 34vw, 240px)",
       hideOnMobile: true,
       tx: "60vw",
-      ty: "20vh",
+      ty: "22vh",
     },
     {
       src: "https://images.unsplash.com/photo-1556745753-b2904692b3cd?q=80&w=900&auto=format&fit=crop",
@@ -183,6 +183,7 @@ export default function ScrollPullGallery() {
                 width: img.width ?? "clamp(110px, 26vw, 240px)",
                 "--tx": img.tx,
                 "--ty": img.ty,
+                transform: `translate(calc(-50% + var(--tx) * (1 - var(--p) * 0.8)), calc(-50% + var(--ty) * (1 - var(--p) * 0.8)))`,
               } as CSSVars
             }
             className={
