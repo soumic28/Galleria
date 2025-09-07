@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -161,7 +162,7 @@ export default function ScrollPullGallery() {
     >
       {/* Sticky center content */}
       <div className="pointer-events-none sticky top-1/2 z-10 -translate-y-1/2">
-        <h2 className="pull-heading text-brand-gold mx-auto max-w-4xl text-center font-serif text-5xl leading-[1.05] font-extrabold tracking-tight uppercase sm:text-7xl md:text-8xl">
+        <h2 className="pull-heading bg-gradient-to-b from-brand-gold to-white bg-clip-text text-transparent mx-auto max-w-4xl text-center font-serif text-5xl leading-[1.05] font-extrabold tracking-tight uppercase sm:text-7xl md:text-8xl">
           Location Advantage,
           <br /> 8 mins Hanamkonda,
           <br /> 10 mins Warangal,
