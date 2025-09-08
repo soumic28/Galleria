@@ -74,7 +74,7 @@ export default function ScrollPullGallery() {
   // A small set of photos (use any URLs or replace with local assets)
   const images: ImgSpec[] = [
     {
-      src: "https://images.unsplash.com/photo-1543357480-c60d40007a4e?q=80&w=800&auto=format&fit=crop",
+      src: "./pic-1.png",
       alt: "People at a mall 1",
       top: "8%",
       left: "12%",
@@ -83,7 +83,7 @@ export default function ScrollPullGallery() {
       ty: "-30vh",
     },
     {
-      src: "https://images.unsplash.com/photo-1520975693416-35a3cb9a2c33?q=80&w=900&auto=format&fit=crop",
+      src: "./pic-2.png",
       alt: "Cafe",
       top: "4%",
       left: "50%",
@@ -92,7 +92,7 @@ export default function ScrollPullGallery() {
       ty: "-35vh",
     },
     {
-      src: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=900&auto=format&fit=crop",
+      src: "./pic-3.png",
       alt: "Makeup",
       top: "14%",
       right: "8%",
@@ -101,7 +101,7 @@ export default function ScrollPullGallery() {
       ty: "-25vh",
     },
     {
-      src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=900&auto=format&fit=crop",
+      src: "./pic-4.png",
       alt: "Friends",
       top: "38%",
       right: "6%",
@@ -110,7 +110,7 @@ export default function ScrollPullGallery() {
       ty: "0vh",
     },
     {
-      src: "https://images.unsplash.com/photo-1519750783826-e2420f4d687f?q=80&w=900&auto=format&fit=crop",
+      src: "./pic-5.png",
       alt: "Kids play",
       bottom: "28%",
       left: "10%",
@@ -120,7 +120,7 @@ export default function ScrollPullGallery() {
       ty: "5vh",
     },
     {
-      src: "https://images.unsplash.com/photo-1533139502658-0198f920d8ae?q=80&w=900&auto=format&fit=crop",
+      src: "./pic-6.png",
       alt: "Store",
       bottom: "10%",
       left: "40%",
@@ -128,25 +128,25 @@ export default function ScrollPullGallery() {
       tx: "-50vw",
       ty: "25vh",
     },
-    {
-      src: "https://images.unsplash.com/photo-1514512364185-4c2b3b65d98e?q=80&w=900&auto=format&fit=crop",
-      alt: "Skate",
-      bottom: "12%",
-      right: "18%",
-      width: "clamp(96px, 34vw, 240px)",
-      hideOnMobile: true,
-      tx: "60vw",
-      ty: "22vh",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1556745753-b2904692b3cd?q=80&w=900&auto=format&fit=crop",
-      alt: "Coffee",
-      top: "52%",
-      left: "0%",
-      width: "clamp(92px, 28vw, 200px)",
-      tx: "-70vw",
-      ty: "2vh",
-    },
+    // {
+    //   src: "https://images.unsplash.com/photo-1514512364185-4c2b3b65d98e?q=80&w=900&auto=format&fit=crop",
+    //   alt: "Skate",
+    //   bottom: "12%",
+    //   right: "18%",
+    //   width: "clamp(96px, 34vw, 240px)",
+    //   hideOnMobile: true,
+    //   tx: "60vw",
+    //   ty: "22vh",
+    // },
+    // {
+    //   src: "https://images.unsplash.com/photo-1556745753-b2904692b3cd?q=80&w=900&auto=format&fit=crop",
+    //   alt: "Coffee",
+    //   top: "52%",
+    //   left: "0%",
+    //   width: "clamp(92px, 28vw, 200px)",
+    //   tx: "-70vw",
+    //   ty: "2vh",
+    // },
   ];
 
   // Allow CSS custom properties on style objects without using `any`.
