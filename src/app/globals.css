@@ -97,6 +97,36 @@ body {
   animation: marquee 18s linear infinite;
 }
 
+/* Scroll pull gallery helpers */
+.pull-stage { --amp: 1.3; --headShrink: 0.35; }
+.pull-stage [data-pull] {
+  /* Start hidden. When active it'll fade in and animate. */
+  opacity: 0;
+  /* Anchor at center and push outward by tx/ty; as p→1 offsets vanish */
+  transform:
+    translate(-50%, -50%)
+    translate(
+      calc((var(--tx)) * (1 - var(--p)) * var(--amp)),
+      calc((var(--ty)) * (1 - var(--p)) * var(--amp))
+    )
+    scale(calc(1 - 0.08 * var(--p)));
+  transition: transform 0.06s linear, opacity 0.2s ease-out;
+  will-change: transform, opacity;
+}
+.pull-stage[data-active="true"] [data-pull] { opacity: 1; }
+
+.pull-stage .pull-heading {
+  transform: scale(calc(1 - var(--headShrink) * var(--p)));
+  transition: transform 0.08s linear;
+  will-change: transform;
+}
+
+/* Mobile tuning: less outward travel and gentler heading shrink */
+@media (max-width: 640px) {
+  /* On phones let images travel more and the heading shrink a bit more */
+  .pull-stage { --amp: 1.1; --headShrink: 0.34; }
+}
+
 /* Floating label utility for inputs */
 .float-label { position: relative; }
 .float-label label {
