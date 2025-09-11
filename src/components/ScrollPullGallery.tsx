@@ -150,7 +150,7 @@ export default function ScrollPullGallery() {
       alt: "Store",
       bottom: "10%",
       left: "40%",
-      width: "clamp(92px, 32vw, 220px)",
+      width: "clamp(92px, 30vw, 220px)",
       tx: isMobile ? "-0vw" : "-90vw",
       ty: isMobile ? "85vh" : "35vh",
     },
