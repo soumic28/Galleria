@@ -1,5 +1,7 @@
 /* eslint-disable prettier/prettier */
 import ScrollPullGallery from "../components/ScrollPullGallery";
+import FeaturesScrollStack from "../components/FeaturesScrollStack";
+import ScrollStcaking from "../components/ScrollStcaking";
 
 export default function Home() {
   return (
@@ -66,6 +68,10 @@ export default function Home() {
 
         {/* Pull-in gallery section (Westfield-like) */}
         <ScrollPullGallery />
+
+        {/* Features Scroll-Stack section (React Bits style) */}
+        <FeaturesScrollStack />
+        <ScrollStcaking />
 
         {/* Location Advantage */}
         <div className="mx-auto max-w-5xl text-left">
@@ -308,7 +314,7 @@ export default function Home() {
                         name="Message"
                         rows={3}
                         placeholder=" "
-                        // eslint-disable-next-line prettier/prettier
+                         
                         className="focus:border-brand-gold w-full rounded-md border border-brand-gold/30 bg-transparent px-3 py-3 text-sm outline-none"
                       />
                       <label className="text-foreground/60 pointer-events-none absolute top-2 left-3 text-xs transition-all">
