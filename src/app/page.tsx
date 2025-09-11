@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import ScrollPullGallery from "../components/ScrollPullGallery";
+import FadedScrollGallery from "../components/FadedScrollGallery";
 
 export default function Home() {
   return (
@@ -65,7 +66,10 @@ export default function Home() {
         </div>
 
         {/* Pull-in gallery section (Westfield-like) */}
-        <ScrollPullGallery />
+        {/* <ScrollPullGallery /> */}
+
+        {/* New faded scrolling gallery using 6 images */}
+        <FadedScrollGallery />
 
         {/* Location Advantage */}
         <div className="mx-auto max-w-5xl text-left">
