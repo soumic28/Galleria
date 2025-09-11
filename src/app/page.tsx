@@ -1,5 +1,7 @@
 /* eslint-disable prettier/prettier */
 import ScrollPullGallery from "../components/ScrollPullGallery";
+import FeaturesScrollStack from "../components/FeaturesScrollStack";
+import ScrollStcaking from "../components/ScrollStcaking";
 
 export default function Home() {
   return (
@@ -66,6 +68,10 @@ export default function Home() {
 
         {/* Pull-in gallery section (Westfield-like) */}
         <ScrollPullGallery />
+
+        {/* Features Scroll-Stack section (React Bits style) */}
+        <FeaturesScrollStack />
+        <ScrollStcaking />
 
         {/* Location Advantage */}
         <div className="mx-auto max-w-5xl text-left">
