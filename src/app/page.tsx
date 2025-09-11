@@ -53,13 +53,13 @@ export default function Home() {
               <p className="text-foreground/50 font-sans text-xs tracking-[0.2em] uppercase">
                 Location
               </p>
-              <p className="font-serif text-xl">Warangal</p>
+              <p className="font-serif text-xl">Soon..</p>
             </div>
             <div className="space-y-1">
               <p className="text-foreground/50 font-sans text-xs tracking-[0.2em] uppercase">
                 Follow
               </p>
-              <p className="font-serif text-xl">@galleriamall</p>
+              <p className="font-serif text-xl">@thegalleriamall.wgl</p>
             </div>
           </div>
         </div>
