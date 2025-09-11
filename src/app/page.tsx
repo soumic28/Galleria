@@ -69,7 +69,7 @@ export default function Home() {
         {/* <ScrollPullGallery /> */}
 
         {/* New faded scrolling gallery using 6 images */}
-        <FadedScrollGallery />
+        <FadedScrollGallery speed={0.03} />
 
         {/* Location Advantage */}
         <div className="mx-auto max-w-5xl text-left">

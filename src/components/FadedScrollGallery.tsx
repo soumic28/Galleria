@@ -39,7 +39,12 @@ function useSectionProgress(ref: React.RefObject<HTMLElement>) {
   return p; // 0..1
 }
 
-export default function FadedScrollGallery() {
+type Props = {
+  /** 0..1 – smaller is slower. Default 0.035 */
+  speed?: number;
+};
+
+export default function FadedScrollGallery({ speed = 0.035 }: Props) {
   const hostRef = useRef<HTMLDivElement>(null);
   const p = useSectionProgress(hostRef as React.RefObject<HTMLElement>);
 
@@ -47,7 +52,7 @@ export default function FadedScrollGallery() {
   const [animP, setAnimP] = useState(0);
   useEffect(() => {
     let raf: number;
-    const SPEED = 0.035; // smaller => slower movement
+    const SPEED = Math.max(0.001, Math.min(1, speed)); // clamp
     const tick = () => {
       setAnimP((prev) => {
         const next = prev + (p - prev) * SPEED;
@@ -57,7 +62,7 @@ export default function FadedScrollGallery() {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [p]);
+  }, [p, speed]);
 
   const items: Item[] = [
     { src: "./mall_pic_1.png", alt: "Gallery 1", x: -1.1, y: -0.6, size: "clamp(120px, 24vw, 300px)", rotate: -2 },
