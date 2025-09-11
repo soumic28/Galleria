@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prettier/prettier */
 "use client";
 
@@ -57,6 +59,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   const animationFrameRef = useRef<number | null>(null);
   const lenisRef = useRef<Lenis | null>(null);
   const cardsRef = useRef<HTMLElement[]>([]);
+   
   const lastTransformsRef = useRef(new Map<number, any>());
   const isUpdatingRef = useRef(false);
   const cardOffsetsRef = useRef<number[]>([]);
@@ -371,21 +374,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       window.removeEventListener('resize', onResize as any);
       ro && ro.disconnect && ro.disconnect();
     };
-  }, [
-    itemDistance,
-    itemScale,
-    itemStackDistance,
-    stackPosition,
-    scaleEndPosition,
-    baseScale,
-    scaleDuration,
-    rotationAmount,
-    blurAmount,
-    useWindowScroll,
-    onStackComplete,
-    setupLenis,
-    updateCardTransforms
-  ]);
+  }, [itemDistance, itemScale, itemStackDistance, stackPosition, scaleEndPosition, baseScale, scaleDuration, rotationAmount, blurAmount, useWindowScroll, onStackComplete, setupLenis, updateCardTransforms, getElementOffset]);
 
   return (
     <div
