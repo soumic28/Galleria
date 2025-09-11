@@ -86,74 +86,78 @@ export default function ScrollPullGallery() {
   const hostRef = useRef<HTMLDivElement>(null);
   const { p: progress, active } = useScrollProgress(hostRef);
   const [isMobile, setIsMobile] = useState(false);
+  const [isXL, setIsXL] = useState(false);
 
   // Detect mobile device
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window);
+    const updateBreakpoints = () => {
+      const w = window.innerWidth;
+      setIsMobile(w < 768 || 'ontouchstart' in window);
+      setIsXL(w >= 1280); // desktop and bigger screens
     };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    updateBreakpoints();
+    window.addEventListener('resize', updateBreakpoints);
+    return () => window.removeEventListener('resize', updateBreakpoints);
   }, []);
 
   // Optimized image specifications with all images starting from outside the screen
   const images: ImgSpec[] = [
     {
-      src: "./pic-1.png",
+      src: "./mall_pic_3.png",
       alt: "People at a mall 1",
       top: "8%",
       left: "12%",
       width: "clamp(96px, 30vw, 220px)",
-      tx: isMobile ? "-100vw" : "-120vw", // Even further for mobile
-      ty: isMobile ? "10vh" : "-40vh",
+      // Push further out on larger desktops
+      tx: isMobile ? "-100vw" : isXL ? "-180vw" : "-120vw",
+      ty: isMobile ? "10vh" : isXL ? "-27vh" : "-40vh",
     },
     {
-      src: "./pic-2.png",
+      src: "./mall_pic_2.png",
       alt: "Cafe",
       top: "4%",
       left: "50%",
       width: "clamp(92px, 30vw, 210px)",
-      tx: isMobile ? "-105vw" : "-100vw",
-      ty: isMobile ? "-35vh" : "-45vh",
+      tx: isMobile ? "-105vw" : isXL ? "-120vw" : "-100vw",
+      ty: isMobile ? "-35vh" : isXL ? "155vh" : "-45vh",
     },
     {
-      src: "./pic-3.png",
+      src: "./mall_pic_1.png",
       alt: "Makeup",
       top: "14%",
       right: "8%",
       width: "clamp(96px, 30vw, 240px)",
-      tx: isMobile ? "80vw" : "120vw",
-      ty: isMobile ? "-35vh" : "-35vh",
+      tx: isMobile ? "80vw" : isXL ? "180vw" : "120vw",
+      ty: isMobile ? "-35vh" :  isXL ? "95vh" : "-35vh",
     },
     {
-      src: "./pic-4.png",
+      src: "./mall_pic_4.png",
       alt: "Friends",
       top: "38%",
       right: "6%",
       width: "clamp(96px, 30vw, 240px)",
-      tx: isMobile ? "100vw" : "110vw",
-      ty: isMobile ? "60vh" : "-10vh",
+      tx: isMobile ? "100vw" : isXL ? "10vw" : "110vw",
+      ty: isMobile ? "60vh" : isXL ? "160vh" : "-10vh",
     },
-    {
-      src: "./pic-5.png",
-      alt: "Kids play",
-      bottom: "28%",
-      left: "10%",
-      width: "clamp(96px, 30vw, 240px)",
-      hideOnMobile: false, // Show on mobile too for better effect
-      tx: isMobile ? "-85vw" : "-110vw",
-      ty: isMobile ? "50vh" : "15vh",
-    },
-    {
-      src: "./pic-6.png",
-      alt: "Store",
-      bottom: "10%",
-      left: "40%",
-      width: "clamp(92px, 30vw, 220px)",
-      tx: isMobile ? "-0vw" : "-90vw",
-      ty: isMobile ? "85vh" : "35vh",
-    },
+    // {
+    //   src: "./pic-5.png",
+    //   alt: "Kids play",
+    //   bottom: "28%",
+    //   left: "10%",
+    //   width: "clamp(96px, 30vw, 240px)",
+    //   hideOnMobile: false, // Show on mobile too for better effect
+    //   tx: isMobile ? "-85vw" : "-110vw",
+    //   ty: isMobile ? "50vh" : "15vh",
+    // },
+    // {
+    //   src: "./pic-6.png",
+    //   alt: "Store",
+    //   bottom: "10%",
+    //   left: "40%",
+    //   width: "clamp(92px, 30vw, 220px)",
+    //   tx: isMobile ? "-0vw" : "-90vw",
+    //   ty: isMobile ? "85vh" : "35vh",
+    // },
   ];
 
   // Allow CSS custom properties on style objects without using `any`.
