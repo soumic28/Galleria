@@ -43,6 +43,22 @@ export default function FadedScrollGallery() {
   const hostRef = useRef<HTMLDivElement>(null);
   const p = useSectionProgress(hostRef as React.RefObject<HTMLElement>);
 
+  // Slow, time-smoothed animation independent of scroll speed
+  const [animP, setAnimP] = useState(0);
+  useEffect(() => {
+    let raf: number;
+    const SPEED = 0.035; // smaller => slower movement
+    const tick = () => {
+      setAnimP((prev) => {
+        const next = prev + (p - prev) * SPEED;
+        return Math.abs(next - prev) < 0.0005 ? p : next;
+      });
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [p]);
+
   const items: Item[] = [
     { src: "./mall_pic_1.png", alt: "Gallery 1", x: -1.1, y: -0.6, size: "clamp(120px, 24vw, 300px)", rotate: -2 },
     { src: "./mall_pic_2.png", alt: "Gallery 2", x: 1.2, y: -0.4, size: "clamp(110px, 22vw, 280px)", rotate: 3 },
@@ -58,7 +74,7 @@ export default function FadedScrollGallery() {
     <section
       ref={hostRef}
       className="relative isolate my-24 h-[160vh] overflow-hidden"
-      style={{ "--p": p } as CSSVars}
+      style={{ "--p": animP } as CSSVars}
       aria-label="Faded scrolling gallery"
     >
       {/* Heading */}
