@@ -75,6 +75,11 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
 
   type CSSVars = React.CSSProperties & Record<`--${string}` , string | number>;
 
+  // When all images have reached full opacity, fade the heading out
+  // This happens when p passes the last image's fadeEnd
+  const lastFadeEnd = 0.55 + (items.length - 1) * 0.06;
+  const headingOpacity = animP < lastFadeEnd ? 1 : 0;
+
   return (
     <section
       ref={hostRef}
@@ -83,7 +88,10 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
       aria-label="Faded scrolling gallery"
     >
       {/* Heading */}
-      <div className="pointer-events-none sticky top-1/2 -z-10 -translate-y-1/2 text-center">
+      <div
+        className="pointer-events-none sticky top-1/2 -z-10 -translate-y-1/2 text-center"
+        style={{ opacity: headingOpacity, transition: "opacity 300ms ease" } as React.CSSProperties}
+      >
         <h2 className="mx-auto max-w-4xl bg-gradient-to-b from-brand-gold to-foreground bg-clip-text font-serif text-4xl leading-tight tracking-tight text-transparent sm:text-6xl">
         ABOUT GALLERIA
         </h2>
