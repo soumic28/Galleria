@@ -79,6 +79,10 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
   // This happens when p passes the last image's fadeEnd
   const lastFadeEnd = 0.55 + (items.length - 1) * 0.06;
   const headingOpacity = animP < lastFadeEnd ? 1 : 0;
+  // Gradually dim images after all have fully appeared
+  const targetImageMax = 1; // final max opacity for images after reveal (full)
+  const dimProgress = Math.min(1, Math.max(0, (animP - lastFadeEnd) / 0.12));
+  const imageMaxOpacity = 1 - dimProgress * (1 - targetImageMax);
 
   return (
     <section
@@ -163,7 +167,7 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
           const fadeStart = 0.05 + i * 0.06;
           const fadeEnd = 0.55 + i * 0.06;
           const local = Math.min(1, Math.max(0, (p - fadeStart) / (fadeEnd - fadeStart)));
-          const opacity = Math.pow(local, 1.2);
+          const opacity = Math.pow(local, 1.2) * imageMaxOpacity;
           const translateX = `calc(${it.x} * (1 - var(--p)) * 55vw)`;
           const translateY = `calc(${it.y} * (1 - var(--p)) * 55vh)`;
 
