@@ -44,7 +44,7 @@ type Props = {
   speed?: number;
 };
 
-export default function FadedScrollGallery({ speed = 0.035 }: Props) {
+export default function FadedScrollGallery({ speed = 0.030 }: Props) {
   const hostRef = useRef<HTMLDivElement>(null);
   const p = useSectionProgress(hostRef as React.RefObject<HTMLElement>);
 
@@ -78,7 +78,7 @@ export default function FadedScrollGallery({ speed = 0.035 }: Props) {
   return (
     <section
       ref={hostRef}
-      className="relative isolate my-24 h-[160vh] overflow-hidden"
+      className="relative isolate -mt-24 h-[160vh] overflow-hidden"
       style={{ "--p": animP } as CSSVars}
       aria-label="Faded scrolling gallery"
     >
