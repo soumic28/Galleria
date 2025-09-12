@@ -85,13 +85,67 @@ export default function FadedScrollGallery({ speed = 0.035 }: Props) {
       {/* Heading */}
       <div className="pointer-events-none sticky top-1/2 -z-10 -translate-y-1/2 text-center">
         <h2 className="mx-auto max-w-4xl bg-gradient-to-b from-brand-gold to-foreground bg-clip-text font-serif text-4xl leading-tight tracking-tight text-transparent sm:text-6xl">
-        Location Advantage,
+        ABOUT GALLERIA
         </h2>
-        <p className="text-foreground/70 mx-auto mt-2 max-w-xl font-sans text-sm sm:text-base">
-        8 mins Hanamkonda,<br />
-        10 mins Warangal,<br />
-           25 mins Kazipet
-        </p>
+        
+        {/* Statistics Grid */}
+        <div className="mx-auto mt-8 max-w-5xl grid grid-cols-3 gap-8 text-center">
+          {/* Row 1 */}
+          <div className="space-y-1">
+            <div className="text-3xl font-bold text-white">71280</div>
+            <div className="text-sm text-yellow-400">SQ FT SITE AREA</div>
+          </div>
+          <div className="space-y-1">
+            <div className="text-3xl font-bold text-white">2 LAKH</div>
+            <div className="text-sm text-yellow-400">SQ FT BUA</div>
+          </div>
+          <div className="space-y-1">
+            <div className="text-3xl font-bold text-white">9</div>
+            <div className="text-sm text-yellow-400">FLOORS</div>
+          </div>
+          
+          {/* Row 2 */}
+          <div className="space-y-1">
+            <div className="text-3xl font-bold text-white">4500</div>
+            <div className="text-sm text-yellow-400">SQ FT ATRIUM</div>
+          </div>
+          <div className="space-y-1">
+            <div className="text-3xl font-bold text-white">50%</div>
+            <div className="text-sm text-yellow-400">OPEN SPACE</div>
+          </div>
+          <div className="space-y-1">
+            <div className="text-3xl font-bold text-white">15000</div>
+            <div className="text-sm text-yellow-400">SQ FT CINI SPACE</div>
+          </div>
+          
+          {/* Row 3 */}
+          <div className="space-y-1">
+            <div className="text-3xl font-bold text-white">20%</div>
+            <div className="text-sm text-yellow-400">LANDSCAPING</div>
+          </div>
+          <div className="space-y-1">
+            <div className="text-3xl font-bold text-white">300+</div>
+            <div className="text-sm text-yellow-400">CARS PARKING</div>
+          </div>
+          <div className="space-y-1">
+            <div className="text-3xl font-bold text-white">3</div>
+            <div className="text-sm text-yellow-400">BASEMENTS</div>
+          </div>
+          
+          {/* Row 4 */}
+          <div className="space-y-1">
+            <div className="text-3xl font-bold text-white">5</div>
+            <div className="text-sm text-yellow-400">SCREENS</div>
+          </div>
+          <div className="space-y-1">
+            <div className="text-3xl font-bold text-white">6</div>
+            <div className="text-sm text-yellow-400">LIFTS</div>
+          </div>
+          <div className="space-y-1">
+            <div className="text-3xl font-bold text-white">UNLTD</div>
+            <div className="text-sm text-yellow-400">JOY</div>
+          </div>
+        </div>
       </div>
 
       {/* Images */}
