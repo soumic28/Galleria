@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import ScrollPullGallery from "../components/ScrollPullGallery";
+// import ScrollPullGallery from "../components/ScrollPullGallery";
 import FadedScrollGallery from "../components/FadedScrollGallery";
 
 export default function Home() {
@@ -69,7 +69,7 @@ export default function Home() {
         {/* <ScrollPullGallery /> */}
 
         {/* New faded scrolling gallery using 6 images */}
-        <FadedScrollGallery speed={0.03} />
+        <FadedScrollGallery speed={0.01} />
 
         {/* Location Advantage */}
         <div className="mx-auto max-w-5xl text-left">
