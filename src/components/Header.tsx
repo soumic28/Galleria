@@ -8,7 +8,7 @@ export default function Header() {
             Mall
           </span>
         </div>
-        <nav className="flex items-center gap-6">
+        {/* <nav className="flex items-center gap-6">
           <a
             className="text-foreground/70 hover:text-foreground font-sans text-xs tracking-[0.2em] uppercase"
             href="#"
@@ -22,7 +22,7 @@ export default function Header() {
           >
             AR
           </a>
-        </nav>
+        </nav> */}
       </div>
     </header>
   );
