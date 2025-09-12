@@ -65,12 +65,12 @@ export default function FadedScrollGallery({ speed = 0.035 }: Props) {
   }, [p, speed]);
 
   const items: Item[] = [
-    { src: "./mall_pic_1.png", alt: "Gallery 1", x: -1.1, y: -0.6, size: "clamp(120px, 24vw, 300px)", rotate: -2 },
-    { src: "./mall_pic_2.png", alt: "Gallery 2", x: 1.2, y: -0.4, size: "clamp(110px, 22vw, 280px)", rotate: 3 },
-    { src: "./mall_pic_3.png", alt: "Gallery 3", x: -0.9, y: 0.4, size: "clamp(120px, 24vw, 300px)", rotate: 2 },
-    { src: "./mall_pic_4.png", alt: "Gallery 4", x: 0.9, y: 0.6, size: "clamp(120px, 24vw, 300px)", rotate: -3 },
-    { src: "./pic-5.png", alt: "Gallery 5", x: -0.2, y: -1.1, size: "clamp(110px, 22vw, 280px)", rotate: -1 },
-    { src: "./pic-6.png", alt: "Gallery 6", x: 0.2, y: 1.1, size: "clamp(110px, 22vw, 280px)", rotate: 1 },
+    { src: "./mall_pic_1.png", alt: "Gallery 1", x: -1.1, y: -0.6, size: "clamp(180px, 36vw, 450px)", rotate: -2 },
+    { src: "./mall_pic_2.png", alt: "Gallery 2", x: 1.2, y: -0.4, size: "clamp(165px, 33vw, 420px)", rotate: 3 },
+    { src: "./mall_pic_3.png", alt: "Gallery 3", x: -0.9, y: 0.4, size: "clamp(180px, 36vw, 450px)", rotate: 2 },
+    { src: "./mall_pic_4.png", alt: "Gallery 4", x: 0.9, y: 0.6, size: "clamp(180px, 36vw, 450px)", rotate: -3 },
+    { src: "./pic-5.png", alt: "Gallery 5", x: -0.2, y: -1.1, size: "clamp(165px, 33vw, 420px)", rotate: -1 },
+    { src: "./pic-6.png", alt: "Gallery 6", x: 0.2, y: 1.1, size: "clamp(165px, 33vw, 420px)", rotate: 1 },
   ];
 
   type CSSVars = React.CSSProperties & Record<`--${string}` , string | number>;
