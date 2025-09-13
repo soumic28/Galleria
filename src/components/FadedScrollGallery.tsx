@@ -50,12 +50,20 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
 
   // Slow, time-smoothed animation independent of scroll speed
   const [animP, setAnimP] = useState(0);
+  // Even slower smoothing for heading/description
+  const [descAnimP, setDescAnimP] = useState(0);
   useEffect(() => {
     let raf: number;
     const SPEED = Math.max(0.001, Math.min(1, speed)); // clamp
     const tick = () => {
       setAnimP((prev) => {
         const next = prev + (p - prev) * SPEED;
+        return Math.abs(next - prev) < 0.0005 ? p : next;
+      });
+      // Description progresses slower for a relaxed feel
+      const descSpeed = Math.max(0.001, Math.min(1, SPEED * 0.55));
+      setDescAnimP((prev) => {
+        const next = prev + (p - prev) * descSpeed;
         return Math.abs(next - prev) < 0.0005 ? p : next;
       });
       raf = requestAnimationFrame(tick);
@@ -74,6 +82,14 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
   ];
 
   type CSSVars = React.CSSProperties & Record<`--${string}` , string | number>;
+  // Heading/description slow fade + shrink mapping
+  const descStart = 0.05;
+  const descEnd = 0.8; // fully hidden by ~80% progress
+  const descLocal = Math.min(1, Math.max(0, (descAnimP - descStart) / (descEnd - descStart)));
+  const descScale = 1 - descLocal * 0.14; // up to ~14% smaller
+  const descOpacity = 1 - descLocal; // fade to 0 by descEnd
+  const descTranslateY = descLocal * -8; // slight lift
+  const descBlur = descLocal * 0.6; // subtle blur
 
   return (
     <section
@@ -83,7 +99,16 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
       aria-label="Faded scrolling gallery"
     >
       {/* Heading */}
-      <div className="pointer-events-none sticky top-1/2 -z-10 -translate-y-1/2 text-center">
+      <div
+        className="pointer-events-none sticky top-1/2 -z-10 -translate-y-1/2 text-center will-change-transform"
+        style={{
+          transform: `translateY(${descTranslateY}px) scale(${descScale})`,
+          opacity: descOpacity,
+          filter: `blur(${descBlur}px)`,
+          visibility: descLocal >= 1 ? "hidden" : "visible",
+          transition: "transform 80ms linear, opacity 120ms linear, filter 120ms linear",
+        }}
+      >
         <h2 className="mx-auto max-w-4xl bg-gradient-to-b from-brand-gold to-foreground bg-clip-text font-serif text-4xl leading-tight tracking-tight text-transparent sm:text-6xl">
         ABOUT GALLERIA
         </h2>
@@ -154,7 +179,7 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
           const depth = 0.35 + (i % 3) * 0.2; // different parallax depths
           const fadeStart = 0.05 + i * 0.06;
           const fadeEnd = 0.55 + i * 0.06;
-          const local = Math.min(1, Math.max(0, (p - fadeStart) / (fadeEnd - fadeStart)));
+          const local = Math.min(1, Math.max(0, (animP - fadeStart) / (fadeEnd - fadeStart)));
           const opacity = Math.pow(local, 1.2);
           const translateX = `calc(${it.x} * (1 - var(--p)) * 55vw)`;
           const translateY = `calc(${it.y} * (1 - var(--p)) * 55vh)`;
@@ -165,7 +190,7 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
               className="absolute left-1/2 top-1/2 will-change-transform"
               style={{
                 width: it.size,
-                transform: `translate(-50%, -50%) translate3d(${translateX}, ${translateY}, 0) scale(${0.98 + local * 0.06}) rotate(${(it.rotate || 0) * (1 - p)}deg)`,
+                transform: `translate(-50%, -50%) translate3d(${translateX}, ${translateY}, 0) scale(${0.98 + local * 0.06}) rotate(${(it.rotate || 0) * (1 - animP)}deg)`,
                 opacity,
                 transition: "transform 60ms linear, opacity 200ms ease-out",
                 filter: `drop-shadow(0 20px 40px rgba(0,0,0,${0.15 + depth * 0.25}))`,
@@ -196,5 +221,3 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
     </section>
   );
 }
-
-
