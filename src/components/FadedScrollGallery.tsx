@@ -97,12 +97,7 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
 
   // When all images have reached full opacity, fade the heading out
   // This happens when p passes the last image's fadeEnd
-  const lastFadeEnd = 0.55 + (items.length - 1) * 0.06;
-  const headingOpacity = animP < lastFadeEnd ? 1 : 0;
   // Gradually dim images after all have fully appeared
-  const targetImageMax = 1; // final max opacity for images after reveal (full)
-  const dimProgress = Math.min(1, Math.max(0, (animP - lastFadeEnd) / 0.12));
-  const imageMaxOpacity = 1 - dimProgress * (1 - targetImageMax);
 
   return (
     <section
@@ -188,7 +183,6 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
       {/* Images */}
       <div className="pointer-events-none absolute left-0 right-0 bottom-0 top-24 sm:top-28 gallery-stage">
         {items.map((it, i) => {
-          const depth = 0.35 + (i % 3) * 0.2; // different parallax depths
           const baseStart = descEnd + 0.03; // start images after slower shrink
           const fadeStart = baseStart + i * 0.08;
           const fadeEnd = fadeStart + 0.50; // give images longer to develop
@@ -204,7 +198,7 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
               className="absolute left-1/2 top-1/2 will-change-transform"
               style={{
                 width: it.size,
-                transform: `translate(-50%, -50%) translate3d(${translateX}, ${translateY}, 0) scale(${0.98 + local * 0.06}) rotate(${(it.rotate || 0) * (1 - animP)}deg)`,
+                transform: `translate(-50%, -50%) translate3d(${translateX}, ${translateY}, 0) scale(calc(${0.98 + local * 0.06} * var(--img-scale, 1))) rotate(${(it.rotate || 0) * (1 - animP)}deg)`,
                 opacity,
                 transition: "transform 60ms linear, opacity 200ms ease-out",
                 // Remove shadows entirely on images to avoid any overlay look
@@ -232,9 +226,13 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
                   mask-image: linear-gradient(to bottom, transparent 0, black 80px, black calc(100% - 72px), transparent 100%);
         }
         /* Control how far off-screen images begin */
-        section { --reach-vw: 65vw; --reach-vh: 65vh; }
+        section { --reach-vw: 65vw; --reach-vh: 65vh; --img-scale: 1; }
         @media (min-width: 1024px) {
           section { --reach-vw: 95vw; --reach-vh: 95vh; }
+        }
+        /* Mobile-only tuning: keep images more inside the viewport */
+        @media (max-width: 640px) {
+          section { --reach-vw: 70vw; --reach-vh: 50vh; --img-scale: 1.2; }
         }
         @media (max-width: 640px) {
           /* On phones, disable the vertical mask entirely to prevent edge banding */
