@@ -73,12 +73,13 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
   }, [p, speed]);
 
   const items: Item[] = [
-    { src: "./mall_pic_1.png", alt: "Gallery 1", x: -1.1, y: -0.6, size: "clamp(180px, 36vw, 450px)", rotate: -2 },
-    { src: "./mall_pic_2.png", alt: "Gallery 2", x: 1.2, y: -0.4, size: "clamp(165px, 33vw, 420px)", rotate: 3 },
-    { src: "./mall_pic_3.png", alt: "Gallery 3", x: -0.9, y: 0.4, size: "clamp(180px, 36vw, 450px)", rotate: 2 },
-    { src: "./mall_pic_4.png", alt: "Gallery 4", x: 0.9, y: 0.6, size: "clamp(180px, 36vw, 450px)", rotate: -3 },
-    { src: "./pic-5.png", alt: "Gallery 5", x: -0.2, y: -1.1, size: "clamp(165px, 33vw, 420px)", rotate: -1 },
-    { src: "./pic-6.png", alt: "Gallery 6", x: 0.2, y: 1.1, size: "clamp(165px, 33vw, 420px)", rotate: 1 },
+    // Slightly smaller sizes overall for a cleaner desktop layout
+    { src: "./mall_pic_1.png", alt: "Gallery 1", x: -1.1, y: -0.6, size: "clamp(150px, 28vw, 380px)", rotate: -2 },
+    { src: "./mall_pic_2.png", alt: "Gallery 2", x: 1.2, y: -0.4, size: "clamp(140px, 26vw, 350px)", rotate: 3 },
+    { src: "./mall_pic_3.png", alt: "Gallery 3", x: -0.9, y: 0.4, size: "clamp(150px, 28vw, 380px)", rotate: 2 },
+    { src: "./mall_pic_4.png", alt: "Gallery 4", x: 0.9, y: 0.6, size: "clamp(150px, 28vw, 380px)", rotate: -3 },
+    { src: "./pic-5.png", alt: "Gallery 5", x: -0.2, y: -1.1, size: "clamp(140px, 26vw, 350px)", rotate: -1 },
+    { src: "./pic-6.png", alt: "Gallery 6", x: 0.2, y: 1.1, size: "clamp(140px, 26vw, 350px)", rotate: 1 },
   ];
 
   type CSSVars = React.CSSProperties & Record<`--${string}` , string | number>;
@@ -182,9 +183,10 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
           const fadeStart = baseStart + i * 0.08;
           const fadeEnd = fadeStart + 0.50; // give images longer to develop
           const local = Math.min(1, Math.max(0, (animP - fadeStart) / (fadeEnd - fadeStart)));
-          const opacity = Math.pow(local, 1.2);
-          const translateX = `calc(${it.x} * (1 - var(--p)) * 55vw)`;
-          const translateY = `calc(${it.y} * (1 - var(--p)) * 55vh)`;
+          const opacity = 1; // Always fully opaque (no fade-in)
+          // Push images further off-screen initially so they slide in from edges
+          const translateX = `calc(${it.x} * (1 - var(--p)) * var(--reach-vw))`;
+          const translateY = `calc(${it.y} * (1 - var(--p)) * var(--reach-vh))`;
 
           return (
             <div
@@ -195,7 +197,8 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
                 transform: `translate(-50%, -50%) translate3d(${translateX}, ${translateY}, 0) scale(${0.98 + local * 0.06}) rotate(${(it.rotate || 0) * (1 - animP)}deg)`,
                 opacity,
                 transition: "transform 60ms linear, opacity 200ms ease-out",
-                filter: `drop-shadow(0 20px 40px rgba(0,0,0,${0.15 + depth * 0.25}))`,
+                // Softer, late-arriving shadow to avoid visible overlay on hero band
+                filter: `drop-shadow(0 10px 20px rgba(0,0,0,${(0.05 + depth * 0.08) * local}))`,
               } as React.CSSProperties}
             >
               <img
@@ -213,6 +216,11 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
       </div>
 
       <style jsx>{`
+        /* Control how far off-screen images begin */
+        section { --reach-vw: 65vw; --reach-vh: 65vh; }
+        @media (min-width: 1024px) {
+          section { --reach-vw: 95vw; --reach-vh: 95vh; }
+        }
         @media (max-width: 640px) {
           section { height: 170vh; }
         }
