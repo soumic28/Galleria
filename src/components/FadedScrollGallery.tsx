@@ -61,7 +61,7 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
         return Math.abs(next - prev) < 0.0005 ? p : next;
       });
       // Description progresses slower for a relaxed feel
-      const descSpeed = Math.max(0.001, Math.min(1, SPEED * 0.55));
+      const descSpeed = Math.max(0.001, Math.min(1, SPEED * 0.35));
       setDescAnimP((prev) => {
         const next = prev + (p - prev) * descSpeed;
         return Math.abs(next - prev) < 0.0005 ? p : next;
@@ -82,14 +82,16 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
   ];
 
   type CSSVars = React.CSSProperties & Record<`--${string}` , string | number>;
-  // Heading/description slow fade + shrink mapping
+  // Heading/description: shrink over a longer window, with easing, then pin
   const descStart = 0.05;
-  const descEnd = 0.8; // fully hidden by ~80% progress
+  const descEnd = 0.40; // slower, completes later
   const descLocal = Math.min(1, Math.max(0, (descAnimP - descStart) / (descEnd - descStart)));
-  const descScale = 1 - descLocal * 0.14; // up to ~14% smaller
-  const descOpacity = 1 - descLocal; // fade to 0 by descEnd
-  const descTranslateY = descLocal * -8; // slight lift
-  const descBlur = descLocal * 0.6; // subtle blur
+  const descEase = 1 - Math.pow(1 - descLocal, 3); // ease-out
+  const descMinScale = 0.22; // very small final size
+  const descScale = 1 - descEase * (1 - descMinScale);
+  const descOpacity = 1 - descEase * 0.10; // keep ~90% visible at rest
+  const descTranslateY = descEase * -16; // gentle upward shift
+  const descBlur = descEase * 0.15; // subtle blur only
 
   return (
     <section
@@ -105,7 +107,6 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
           transform: `translateY(${descTranslateY}px) scale(${descScale})`,
           opacity: descOpacity,
           filter: `blur(${descBlur}px)`,
-          visibility: descLocal >= 1 ? "hidden" : "visible",
           transition: "transform 80ms linear, opacity 120ms linear, filter 120ms linear",
         }}
       >
@@ -177,8 +178,9 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
       <div className="pointer-events-none absolute inset-0">
         {items.map((it, i) => {
           const depth = 0.35 + (i % 3) * 0.2; // different parallax depths
-          const fadeStart = 0.05 + i * 0.06;
-          const fadeEnd = 0.55 + i * 0.06;
+          const baseStart = descEnd + 0.03; // start images after slower shrink
+          const fadeStart = baseStart + i * 0.08;
+          const fadeEnd = fadeStart + 0.50; // give images longer to develop
           const local = Math.min(1, Math.max(0, (animP - fadeStart) / (fadeEnd - fadeStart)));
           const opacity = Math.pow(local, 1.2);
           const translateX = `calc(${it.x} * (1 - var(--p)) * 55vw)`;
