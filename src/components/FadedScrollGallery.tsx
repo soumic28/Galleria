@@ -89,9 +89,11 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
   const descEase = 1 - Math.pow(1 - descLocal, 3); // ease-out
   const descMinScale = 0.22; // very small final size
   const descScale = 1 - descEase * (1 - descMinScale);
-  const descOpacity = 1 - descEase * 0.10; // keep ~90% visible at rest
+  // Keep heading/description fully visible (no fading)
+  const descOpacity = 1;
   const descTranslateY = descEase * -16; // gentle upward shift
-  const descBlur = descEase * 0.15; // subtle blur only
+  // No blur for a crisp, positive look
+  const descBlur = 0;
 
   // When all images have reached full opacity, fade the heading out
   // This happens when p passes the last image's fadeEnd
@@ -105,7 +107,7 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
   return (
     <section
       ref={hostRef}
-      className="relative isolate -mt-24 h-[160vh] overflow-hidden"
+      className="relative isolate mt-6 h-[160vh] overflow-hidden"
       style={{ "--p": animP } as CSSVars}
       aria-label="Faded scrolling gallery"
     >
@@ -184,7 +186,7 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
       </div>
 
       {/* Images */}
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute left-0 right-0 bottom-0 top-24 sm:top-28 gallery-stage">
         {items.map((it, i) => {
           const depth = 0.35 + (i % 3) * 0.2; // different parallax depths
           const baseStart = descEnd + 0.03; // start images after slower shrink
@@ -205,8 +207,8 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
                 transform: `translate(-50%, -50%) translate3d(${translateX}, ${translateY}, 0) scale(${0.98 + local * 0.06}) rotate(${(it.rotate || 0) * (1 - animP)}deg)`,
                 opacity,
                 transition: "transform 60ms linear, opacity 200ms ease-out",
-                // Softer, late-arriving shadow to avoid visible overlay on hero band
-                filter: `drop-shadow(0 10px 20px rgba(0,0,0,${(0.05 + depth * 0.08) * local}))`,
+                // Remove shadows entirely on images to avoid any overlay look
+                filter: "none",
               } as React.CSSProperties}
             >
               <img
@@ -224,10 +226,19 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
       </div>
 
       <style jsx>{`
+        /* Hide stray edges at the very top/bottom so nothing peeks into the hero */
+        .gallery-stage {
+          -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 80px, black calc(100% - 72px), transparent 100%);
+                  mask-image: linear-gradient(to bottom, transparent 0, black 80px, black calc(100% - 72px), transparent 100%);
+        }
         /* Control how far off-screen images begin */
         section { --reach-vw: 65vw; --reach-vh: 65vh; }
         @media (min-width: 1024px) {
           section { --reach-vw: 95vw; --reach-vh: 95vh; }
+        }
+        @media (max-width: 640px) {
+          /* On phones, disable the vertical mask entirely to prevent edge banding */
+          .gallery-stage { -webkit-mask-image: none; mask-image: none; }
         }
         @media (max-width: 640px) {
           section { height: 170vh; }
