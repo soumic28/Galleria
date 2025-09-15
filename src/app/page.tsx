@@ -1,6 +1,10 @@
 /* eslint-disable prettier/prettier */
 // import ScrollPullGallery from "../components/ScrollPullGallery";
 import FadedScrollGallery from "../components/FadedScrollGallery";
+import Scroll3DShowcase from "../components/Scroll3DShowcase";
+import FlippingCard from "../components/FlippingCard";
+// import ScrollGlowHero from "@/components/ScrollGlowHero";
+import MallSection from "@/components/MallSection";
 
 export default function Home() {
   return (
@@ -21,7 +25,7 @@ export default function Home() {
           </span>
         </div>
 
-        <h1 className="font-serif text-5xl tracking-tight sm:text-7xl bg-gradient-to-b from-brand-gold to-foreground bg-clip-text text-transparent">The Galleria Mall</h1>
+        <h1 className="font-serif text-5xl tracking-tight sm:text-7xl bg-gradient-to-b from-brand-gold to-foreground bg-clip-text text-transparent animate-fade-in-up">The Galleria Mall</h1>
         <div className="via-brand-gold mx-auto my-2 h-px w-24 bg-gradient-to-r from-transparent to-transparent" />
         <p className="text-foreground/75 mx-auto max-w-3xl font-sans text-base sm:text-lg">
           Warangal’s biggest lifestyle and entertainment destination — opening soon.
@@ -42,7 +46,10 @@ export default function Home() {
           </a>
         </div>
 
-        <div className="border-brand-gold/30 bg-brand-white/50 mx-auto max-w-4xl rounded-xl border p-3">
+        {/* Flipping Card */}
+        <FlippingCard />
+
+        {/* <div className="border-brand-gold/30 bg-brand-white/50 mx-auto max-w-4xl rounded-xl border p-3">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <div className="space-y-1">
               <p className="text-foreground/50 font-sans text-xs tracking-[0.2em] uppercase">
@@ -63,13 +70,22 @@ export default function Home() {
               <p className="font-serif text-xl">@thegalleriamall.wgl</p>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Pull-in gallery section (Westfield-like) */}
         {/* <ScrollPullGallery /> */}
 
         {/* New faded scrolling gallery using 6 images */}
         <FadedScrollGallery speed={0.01} />
+
+        {/* 3D product showcase (scroll-driven) */}
+        <Scroll3DShowcase speed={0.02} />
+
+        {/* <ScrollGlowHero /> */}
+
+        <MallSection />
+
+       
 
         {/* Location Advantage */}
         <div className="mx-auto max-w-5xl text-left">
