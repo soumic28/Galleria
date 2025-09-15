@@ -50,12 +50,20 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
 
   // Slow, time-smoothed animation independent of scroll speed
   const [animP, setAnimP] = useState(0);
+  // Even slower smoothing for heading/description
+  const [descAnimP, setDescAnimP] = useState(0);
   useEffect(() => {
     let raf: number;
     const SPEED = Math.max(0.001, Math.min(1, speed)); // clamp
     const tick = () => {
       setAnimP((prev) => {
         const next = prev + (p - prev) * SPEED;
+        return Math.abs(next - prev) < 0.0005 ? p : next;
+      });
+      // Description progresses slower for a relaxed feel
+      const descSpeed = Math.max(0.001, Math.min(1, SPEED * 0.35));
+      setDescAnimP((prev) => {
+        const next = prev + (p - prev) * descSpeed;
         return Math.abs(next - prev) < 0.0005 ? p : next;
       });
       raf = requestAnimationFrame(tick);
@@ -74,27 +82,39 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
   ];
 
   type CSSVars = React.CSSProperties & Record<`--${string}` , string | number>;
+  // Heading/description: shrink over a longer window, with easing, then pin
+  const descStart = 0.05;
+  const descEnd = 0.40; // slower, completes later
+  const descLocal = Math.min(1, Math.max(0, (descAnimP - descStart) / (descEnd - descStart)));
+  const descEase = 1 - Math.pow(1 - descLocal, 3); // ease-out
+  const descMinScale = 0.22; // very small final size
+  const descScale = 1 - descEase * (1 - descMinScale);
+  // Keep heading/description fully visible (no fading)
+  const descOpacity = 1;
+  const descTranslateY = descEase * -16; // gentle upward shift
+  // No blur for a crisp, positive look
+  const descBlur = 0;
 
   // When all images have reached full opacity, fade the heading out
   // This happens when p passes the last image's fadeEnd
-  const lastFadeEnd = 0.55 + (items.length - 1) * 0.06;
-  const headingOpacity = animP < lastFadeEnd ? 1 : 0;
   // Gradually dim images after all have fully appeared
-  const targetImageMax = 1; // final max opacity for images after reveal (full)
-  const dimProgress = Math.min(1, Math.max(0, (animP - lastFadeEnd) / 0.12));
-  const imageMaxOpacity = 1 - dimProgress * (1 - targetImageMax);
 
   return (
     <section
       ref={hostRef}
-      className="relative isolate -mt-24 h-[160vh] overflow-hidden"
+      className="relative isolate mt-6 h-[160vh] overflow-hidden"
       style={{ "--p": animP } as CSSVars}
       aria-label="Faded scrolling gallery"
     >
       {/* Heading */}
       <div
-        className="pointer-events-none sticky top-1/2 -z-10 -translate-y-1/2 text-center"
-        style={{ opacity: headingOpacity, transition: "opacity 300ms ease" } as React.CSSProperties}
+        className="pointer-events-none sticky top-1/2 -z-10 -translate-y-1/2 text-center will-change-transform"
+        style={{
+          transform: `translateY(${descTranslateY}px) scale(${descScale})`,
+          opacity: descOpacity,
+          filter: `blur(${descBlur}px)`,
+          transition: "transform 80ms linear, opacity 120ms linear, filter 120ms linear",
+        }}
       >
         <h2 className="mx-auto max-w-4xl bg-gradient-to-b from-brand-gold to-foreground bg-clip-text font-serif text-4xl leading-tight tracking-tight text-transparent sm:text-6xl">
         ABOUT GALLERIA
@@ -161,15 +181,16 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
       </div>
 
       {/* Images */}
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute left-0 right-0 bottom-0 top-24 sm:top-28 gallery-stage">
         {items.map((it, i) => {
-          const depth = 0.35 + (i % 3) * 0.2; // different parallax depths
-          const fadeStart = 0.05 + i * 0.06;
-          const fadeEnd = 0.55 + i * 0.06;
-          const local = Math.min(1, Math.max(0, (p - fadeStart) / (fadeEnd - fadeStart)));
-          const opacity = Math.pow(local, 1.2) * imageMaxOpacity;
-          const translateX = `calc(${it.x} * (1 - var(--p)) * 55vw)`;
-          const translateY = `calc(${it.y} * (1 - var(--p)) * 55vh)`;
+          const baseStart = descEnd + 0.03; // start images after slower shrink
+          const fadeStart = baseStart + i * 0.08;
+          const fadeEnd = fadeStart + 0.50; // give images longer to develop
+          const local = Math.min(1, Math.max(0, (animP - fadeStart) / (fadeEnd - fadeStart)));
+          const opacity = 1; // Always fully opaque (no fade-in)
+          // Push images further off-screen initially so they slide in from edges
+          const translateX = `calc(${it.x} * (1 - var(--p)) * var(--reach-vw))`;
+          const translateY = `calc(${it.y} * (1 - var(--p)) * var(--reach-vh))`;
 
           return (
             <div
@@ -177,10 +198,11 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
               className="absolute left-1/2 top-1/2 will-change-transform"
               style={{
                 width: it.size,
-                transform: `translate(-50%, -50%) translate3d(${translateX}, ${translateY}, 0) scale(${0.98 + local * 0.06}) rotate(${(it.rotate || 0) * (1 - p)}deg)`,
+                transform: `translate(-50%, -50%) translate3d(${translateX}, ${translateY}, 0) scale(calc(${0.98 + local * 0.06} * var(--img-scale, 1))) rotate(${(it.rotate || 0) * (1 - animP)}deg)`,
                 opacity,
                 transition: "transform 60ms linear, opacity 200ms ease-out",
-                filter: `drop-shadow(0 20px 40px rgba(0,0,0,${0.15 + depth * 0.25}))`,
+                // Remove shadows entirely on images to avoid any overlay look
+                filter: "none",
               } as React.CSSProperties}
             >
               <img
@@ -198,6 +220,24 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
       </div>
 
       <style jsx>{`
+        /* Hide stray edges at the very top/bottom so nothing peeks into the hero */
+        .gallery-stage {
+          -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 80px, black calc(100% - 72px), transparent 100%);
+                  mask-image: linear-gradient(to bottom, transparent 0, black 80px, black calc(100% - 72px), transparent 100%);
+        }
+        /* Control how far off-screen images begin */
+        section { --reach-vw: 65vw; --reach-vh: 65vh; --img-scale: 1; }
+        @media (min-width: 1024px) {
+          section { --reach-vw: 95vw; --reach-vh: 95vh; }
+        }
+        /* Mobile-only tuning: keep images more inside the viewport */
+        @media (max-width: 640px) {
+          section { --reach-vw: 110vw; --reach-vh: 120vh; --img-scale: 1.2; }
+        }
+        @media (max-width: 640px) {
+          /* On phones, disable the vertical mask entirely to prevent edge banding */
+          .gallery-stage { -webkit-mask-image: none; mask-image: none; }
+        }
         @media (max-width: 640px) {
           section { height: 170vh; }
         }
@@ -208,5 +248,3 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
     </section>
   );
 }
-
-

@@ -62,6 +62,10 @@ body {
 .spotlight {
   background: radial-gradient(600px 200px at 50% -10%, color-mix(in oklab, var(--color-brand-gold) 30%, transparent), transparent 60%);
 }
+/* Remove decorative spotlight on small screens to avoid any overlay look */
+@media (max-width: 640px) {
+  .spotlight { display: none; }
+}
 
 @keyframes shimmer {
   0% { background-position: -200% 0; }
