@@ -232,7 +232,7 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
         }
         /* Mobile-only tuning: keep images more inside the viewport */
         @media (max-width: 640px) {
-          section { --reach-vw: 70vw; --reach-vh: 50vh; --img-scale: 1.2; }
+          section { --reach-vw: 110vw; --reach-vh: 120vh; --img-scale: 1.2; }
         }
         @media (max-width: 640px) {
           /* On phones, disable the vertical mask entirely to prevent edge banding */
