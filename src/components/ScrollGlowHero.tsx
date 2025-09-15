@@ -13,27 +13,27 @@ type Props = {
 
 export default function ScrollGlowHero({ big = 140, small = 60 }: Props) {
   const ref = useRef<HTMLElement>(null);
-  // 0..1 progress through this section
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  // 0..1 progress through this section - adjusted offset for better visibility
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start center", "end center"] });
   const smooth = useSpring(scrollYProgress, { stiffness: 120, damping: 26, mass: 0.6 });
 
-  // Map progress to XY offsets for a gentle diagonal parallax
-  const xBig = useTransform(smooth, [0, 1], [-big, big]);
-  const yBig = useTransform(smooth, [0, 1], [big * 0.6, -big * 0.6]);
-  const xSmall = useTransform(smooth, [0, 1], [small, -small]);
-  const ySmall = useTransform(smooth, [0, 1], [-small * 0.8, small * 0.8]);
+  // Map progress to XY offsets for a more dramatic diagonal parallax
+  const xBig = useTransform(smooth, [0, 1], [-big * 1.5, big * 1.5]);
+  const yBig = useTransform(smooth, [0, 1], [big, -big]);
+  const xSmall = useTransform(smooth, [0, 1], [small * 1.2, -small * 1.2]);
+  const ySmall = useTransform(smooth, [0, 1], [-small, small]);
 
   return (
-    <section ref={ref} className="relative grid min-h-[80svh] place-items-center overflow-hidden bg-neutral-950">
-      {/* back glow (scroll parallax) */}
+    <section ref={ref} className="relative grid min-h-screen place-items-center overflow-hidden bg-neutral-950">
+      {/* back glow (scroll parallax) - increased size and opacity */}
       <motion.div
-        className="absolute -z-10 h-[60vmin] w-[60vmin] rounded-full bg-fuchsia-500/30 blur-3xl"
+        className="absolute -z-10 h-[80vmin] w-[80vmin] rounded-full bg-fuchsia-500/50 blur-[120px]"
         style={{ x: xBig, y: yBig }}
         aria-hidden
       />
-      {/* foreground glow (scroll parallax) */}
+      {/* foreground glow (scroll parallax) - increased size and opacity */}
       <motion.div
-        className="absolute -z-10 h-[40vmin] w-[40vmin] rounded-full bg-cyan-400/30 blur-3xl"
+        className="absolute -z-10 h-[50vmin] w-[50vmin] rounded-full bg-cyan-400/60 blur-[80px]"
         style={{ x: xSmall, y: ySmall }}
         aria-hidden
       />

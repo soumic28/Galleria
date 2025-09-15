@@ -14,12 +14,15 @@ export default function Scroll3DShowcase({ speed = 0.6 }: Props) {
   const hostRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
 
-  // Scroll progress within this section (0..1)
-  const { scrollYProgress } = useScroll({ target: hostRef, offset: ["start end", "end start"] });
+  // Scroll progress within this section (0..1) - Fixed offsets for better scroll behavior
+  const { scrollYProgress } = useScroll({ 
+    target: hostRef, 
+    offset: ["start 0.3", "end 0.7"] 
+  });
   const smooth = useSpring(scrollYProgress, {
-    stiffness: 120 + speed * 80,
-    damping: 28,
-    mass: 0.6,
+    stiffness: 100 + speed * 50,
+    damping: 30,
+    mass: 0.8,
   });
   const rotateY = useTransform(smooth, [0, 1], [0, 360]);
 
@@ -53,11 +56,11 @@ export default function Scroll3DShowcase({ speed = 0.6 }: Props) {
   return (
     <section
       ref={hostRef}
-      className="relative isolate h-[280svh] sm:h-[260vh] overflow-visible"
+      className="relative isolate h-[200vh] overflow-visible"
       aria-label="Scroll 3D showcase"
     >
       {/* Sticky stage */}
-      <div className="pointer-events-none sticky top-0 z-10 mx-auto flex h-[100svh] sm:h-screen max-w-6xl items-center justify-center">
+      <div className="pointer-events-none sticky top-0 z-10 mx-auto flex h-[100vh] max-w-6xl items-center justify-center">
         <div className="absolute inset-0 bg-background" />
         <div className="pointer-events-none absolute inset-x-0 top-6 text-center">
           <h2 className="mx-auto max-w-4xl bg-gradient-to-b from-brand-gold to-foreground bg-clip-text font-serif text-3xl tracking-tight text-transparent sm:text-5xl">
@@ -120,7 +123,7 @@ export default function Scroll3DShowcase({ speed = 0.6 }: Props) {
 
       <style jsx>{`
         @media (max-width: 640px) {
-          section { height: 240vh; }
+          section { height: 180vh; }
         }
         @media (prefers-reduced-motion: reduce) {
           section * { transition: none !important; animation: none !important; }

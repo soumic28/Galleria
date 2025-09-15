@@ -3,7 +3,8 @@
 import FadedScrollGallery from "../components/FadedScrollGallery";
 import Scroll3DShowcase from "../components/Scroll3DShowcase";
 import FlippingCard from "../components/FlippingCard";
-import ScrollGlowHero from "@/components/ScrollGlowHero";
+// import ScrollGlowHero from "@/components/ScrollGlowHero";
+import MallSection from "@/components/MallSection";
 
 export default function Home() {
   return (
@@ -80,7 +81,9 @@ export default function Home() {
         {/* 3D product showcase (scroll-driven) */}
         <Scroll3DShowcase speed={0.02} />
 
-        <ScrollGlowHero />
+        {/* <ScrollGlowHero /> */}
+
+        <MallSection />
 
        
 
