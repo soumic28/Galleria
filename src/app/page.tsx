@@ -79,7 +79,7 @@ export default function Home() {
         <FadedScrollGallery speed={0.01} />
 
         {/* 3D product showcase (scroll-driven) */}
-        <Scroll3DShowcase speed={0.02} />
+        <Scroll3DShowcase speed={0.6} />
 
         {/* <ScrollGlowHero /> */}
 
@@ -328,7 +328,6 @@ export default function Home() {
                         name="Message"
                         rows={3}
                         placeholder=" "
-                        // eslint-disable-next-line prettier/prettier
                         className="focus:border-brand-gold w-full rounded-md border border-brand-gold/30 bg-transparent px-3 py-3 text-sm outline-none"
                       />
                       <label className="text-foreground/60 pointer-events-none absolute top-2 left-3 text-xs transition-all">
