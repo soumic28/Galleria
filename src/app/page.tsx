@@ -83,7 +83,10 @@ export default function Home() {
 
         {/* <ScrollGlowHero /> */}
 
-        <MallSection />
+        <div className="-mt-8 sm:-mt-[480px]">
+          <MallSection />
+        </div>
+
 
        
 
