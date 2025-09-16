@@ -12,7 +12,7 @@ export interface MallData {
 export const mallData: MallData[] = [
   {
     id: 1,
-    title: "MULTIPLEX LEVEL 2",
+    title: "",
     description: "Premium shopping zones with luxury brands and multiplex theaters",
     image: "/mall_pic_1.png",
     level: "Level 2",
@@ -21,7 +21,7 @@ export const mallData: MallData[] = [
   },
   {
     id: 2,
-    title: "MULTIPLEX LEVEL 1", 
+    title: "", 
     description: "Entertainment hub with food courts and cine lounge facilities",
     image: "/mall_pic_2.png",
     level: "Level 1", 
@@ -30,7 +30,7 @@ export const mallData: MallData[] = [
   },
   {
     id: 3,
-    title: "SERVICES & PROJECTION",
+    title: "",
     description: "Technical services and projection rooms for premium cinema experience",
     image: "/mall_pic_3.png",
     level: "Service Level",
@@ -39,7 +39,7 @@ export const mallData: MallData[] = [
   },
   {
     id: 4,
-    title: "ENTRY & ATRIUM",
+    title: "",
     description: "Grand entrance with central atrium connecting all floors",
     image: "/mall_pic_4.png",
     level: "Ground Floor",
