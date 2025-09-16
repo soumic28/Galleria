@@ -3,39 +3,31 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { animate, motion, useMotionValue } from "framer-motion";
 
 type Props = {
-  /** Optional smoothing factor (0.2–1). Higher = snappier. */
+  /** Rotation intensity multiplier (0.2–1). Higher = faster. */
   speed?: number;
 };
 
 export default function Scroll3DShowcase({ speed = 0.6 }: Props) {
   const hostRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
+  const rotateY = useMotionValue(0);
+  const didAnimate = useRef(false); // Prevent double animation
 
-  // Scroll progress within this section (0..1) - Fixed offsets for better scroll behavior
-  const { scrollYProgress } = useScroll({ 
-    target: hostRef, 
-    offset: ["start 0.3", "end 0.7"] 
-  });
-  const smooth = useSpring(scrollYProgress, {
-    stiffness: 100 + speed * 50,
-    damping: 30,
-    mass: 0.8,
-  });
-  const rotateY = useTransform(smooth, [0, 1], [0, 360]);
-
-  // Responsive radius for the ring depth
   const [radius, setRadius] = useState(360);
+
   useEffect(() => {
     const el = stageRef.current;
     if (!el) return;
+
     const update = () => {
       const w = el.clientWidth || 600;
       setRadius(Math.max(220, Math.min(520, Math.floor(w * 0.45))));
     };
     update();
+
     if (typeof ResizeObserver !== "undefined") {
       const ro = new ResizeObserver(update);
       ro.observe(el);
@@ -45,6 +37,23 @@ export default function Scroll3DShowcase({ speed = 0.6 }: Props) {
       return () => window.removeEventListener("resize", update);
     }
   }, []);
+
+  useEffect(() => {
+    if (didAnimate.current) return;
+    didAnimate.current = true;
+
+    rotateY.set(0);
+
+    const durationPerSpin = 18 / Math.max(0.2, speed);
+    const controls = animate(rotateY, 360, {
+      duration: durationPerSpin,
+      ease: "linear",
+      repeat: Infinity,
+      repeatType: "loop",
+    });
+
+    return () => controls.stop();
+  }, [rotateY, speed]);
 
   const faces = [
     { src: "/mall_pic_1.png", alt: "Showcase 1" },
@@ -57,9 +66,9 @@ export default function Scroll3DShowcase({ speed = 0.6 }: Props) {
     <section
       ref={hostRef}
       className="relative isolate h-[200vh] overflow-visible"
-      aria-label="Scroll 3D showcase"
+      aria-label="Auto rotating 3D showcase"
     >
-      {/* Sticky stage */}
+      {/* Sticky container */}
       <div className="pointer-events-none sticky top-0 z-10 mx-auto flex h-[100vh] max-w-6xl items-center justify-center">
         <div className="absolute inset-0 bg-background" />
         <div className="pointer-events-none absolute inset-x-0 top-6 text-center">
@@ -67,7 +76,7 @@ export default function Scroll3DShowcase({ speed = 0.6 }: Props) {
             Immersive 3D Preview
           </h2>
           <p className="text-foreground/70 mx-auto mt-2 max-w-lg font-sans text-sm sm:text-base">
-            Scroll to rotate through highlights.
+            The gallery rotates through highlights automatically.
           </p>
         </div>
 
@@ -77,8 +86,12 @@ export default function Scroll3DShowcase({ speed = 0.6 }: Props) {
           style={{ perspective: "1200px" }}
         >
           <motion.div
-            className="absolute inset-0 will-change-transform"
-            style={{ transformStyle: "preserve-3d", rotateX: 8, rotateY }}
+            className="absolute inset-0 will-change-transform fallback-rotation"
+            style={{
+              transformStyle: "preserve-3d",
+              rotateX: 8,
+              rotateY,
+            }}
           >
             {faces.map((f, i) => {
               const step = 360 / faces.length;
@@ -108,7 +121,7 @@ export default function Scroll3DShowcase({ speed = 0.6 }: Props) {
             })}
           </motion.div>
 
-          {/* soft base shadow */}
+          {/* Soft shadow underneath */}
           <div
             className="absolute left-1/2 top-[75%] h-24 w-[60%] -translate-x-1/2 rounded-full"
             style={{
@@ -123,13 +136,31 @@ export default function Scroll3DShowcase({ speed = 0.6 }: Props) {
 
       <style jsx>{`
         @media (max-width: 640px) {
-          section { height: 180vh; }
+          section {
+            height: 180vh;
+          }
         }
+
         @media (prefers-reduced-motion: reduce) {
-          section * { transition: none !important; animation: none !important; }
+          section * {
+            transition: none !important;
+            animation: none !important;
+          }
+        }
+
+        .fallback-rotation {
+          animation: rotate3d 30s linear infinite;
+        }
+
+        @keyframes rotate3d {
+          from {
+            transform: rotateY(0deg);
+          }
+          to {
+            transform: rotateY(360deg);
+          }
         }
       `}</style>
     </section>
   );
 }
-
