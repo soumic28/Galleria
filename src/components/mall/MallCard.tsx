@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
+import Image from 'next/image';
 import { MallData } from './data';
 
 interface MallCardProps {
@@ -20,12 +21,16 @@ const MallCard: React.FC<MallCardProps> = ({ mall, index, cardRef }) => {
       }}
     >
       <div className="relative w-full h-full">
-        <img
+        <Image
           src={mall.image}
           alt={mall.title}
-          className="w-full h-full object-cover"
+          fill
+          sizes="100vw"
+          priority={false}
+          unoptimized
+          className="object-cover"
         />
-        <div className="absolute inset-0 bg-black bg-opacity-50" />
+        <div className="absolute inset-0 bg-black/50" />
         
         {/* Level indicator */}
         {mall.level && (
