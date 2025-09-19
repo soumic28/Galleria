@@ -2,6 +2,7 @@
 // import ScrollPullGallery from "../components/ScrollPullGallery";
 import FadedScrollGallery from "../components/FadedScrollGallery";
 import Scroll3DShowcase from "../components/Scroll3DShowcase";
+import ScrollFocusShift from "@/components/ScrollFocusShift";
 import FlippingCard from "../components/FlippingCard";
 // import ScrollGlowHero from "@/components/ScrollGlowHero";
 import MallSection from "@/components/MallSection";
@@ -77,6 +78,9 @@ export default function Home() {
 
         {/* New faded scrolling gallery using 6 images */}
         <FadedScrollGallery speed={0.01} />
+
+        {/* Scroll focus shift: left -> right */}
+        <ScrollFocusShift heightVh={210} />
 
         {/* 3D product showcase (scroll-driven) */}
         <Scroll3DShowcase speed={0.6} />
