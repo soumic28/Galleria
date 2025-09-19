@@ -8,8 +8,10 @@ type Props = {
   images?: { src: string; alt?: string }[];
   /** 0..1 — smaller is slower smoothing */
   speed?: number;
-  /** Section height in viewport heights */
+  /** Section height in viewport heights (free mode) */
   heightVh?: number;
+  /** If true, consume scroll to step through items (center -> left -> right). */
+  stepped?: boolean;
 };
 
 // Simple section progress from 0..1 while the sticky viewport is scrolled through
@@ -44,6 +46,7 @@ export default function ScrollFocusShift({
   ],
   speed = 0.06,
   heightVh = 200,
+  stepped = false,
 }: Props) {
   const hostRef = useRef<HTMLDivElement>(null);
   const p = useSectionProgress(hostRef as React.RefObject<HTMLElement>);
@@ -79,7 +82,108 @@ export default function ScrollFocusShift({
     return 1;
   }
 
-  const f = mapProgressToFocus(animP);
+  // Stepped interaction: lock viewport and advance on wheel/touch
+  const [step, setStep] = useState(0); // 0 center, 1 left, 2 right
+  const targetF = step === 0 ? 0 : step === 1 ? -1 : 1;
+  const [animF, setAnimF] = useState(targetF);
+  useEffect(() => {
+    let raf = 0;
+    const s = Math.max(0.002, Math.min(1, speed)) * 0.5;
+    const tick = () => {
+      setAnimF((prev) => {
+        const next = prev + (targetF - prev) * s;
+        return Math.abs(next - prev) < 0.0005 ? targetF : next;
+      });
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [targetF, speed]);
+
+  // Whether section is occupying the viewport
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const onScroll = () => {
+      const el = hostRef.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const vh = window.innerHeight || 1;
+      setInView(r.top <= 0 && r.bottom >= vh);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  // Wheel stepping
+  const wheelRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!stepped) return;
+    const node = wheelRef.current;
+    if (!node) return;
+    const onWheel = (e: WheelEvent) => {
+      if (!inView) return; // allow normal scroll
+      const down = e.deltaY > 6;
+      const up = e.deltaY < -6;
+      if (down && step < 2) {
+        e.preventDefault();
+        setStep((s) => Math.min(2, s + 1));
+      } else if (up && step > 0) {
+        e.preventDefault();
+        setStep((s) => Math.max(0, s - 1));
+      } else {
+        // At edges, let scroll pass through
+      }
+    };
+    node.addEventListener("wheel", onWheel, { passive: false });
+    return () => node.removeEventListener("wheel", onWheel as any);
+  }, [stepped, inView, step]);
+
+  // Touch stepping
+  useEffect(() => {
+    if (!stepped) return;
+    const node = wheelRef.current;
+    if (!node) return;
+    let startY = 0;
+    let moved = false;
+    const onStart = (e: TouchEvent) => {
+      if (!inView) return;
+      startY = e.touches[0].clientY;
+      moved = false;
+    };
+    const onMove = (e: TouchEvent) => {
+      if (!inView) return;
+      const dy = e.touches[0].clientY - startY;
+      if (Math.abs(dy) > 12) moved = true;
+    };
+    const onEnd = (e: TouchEvent) => {
+      if (!inView) return;
+      const endY = (e.changedTouches[0] || e.touches[0]).clientY;
+      const dy = endY - startY;
+      if (!moved) return;
+      if (dy < -12 && step < 2) {
+        e.preventDefault();
+        setStep((s) => Math.min(2, s + 1));
+      } else if (dy > 12 && step > 0) {
+        e.preventDefault();
+        setStep((s) => Math.max(0, s - 1));
+      }
+    };
+    node.addEventListener("touchstart", onStart, { passive: true });
+    node.addEventListener("touchmove", onMove, { passive: true });
+    node.addEventListener("touchend", onEnd, { passive: false });
+    return () => {
+      node.removeEventListener("touchstart", onStart as any);
+      node.removeEventListener("touchmove", onMove as any);
+      node.removeEventListener("touchend", onEnd as any);
+    };
+  }, [stepped, inView, step]);
+
+  const f = stepped ? animF : mapProgressToFocus(animP);
 
   // Utility: cubic ease-out for subtle scale changes
   const easeOut = (t: number) => 1 - Math.pow(1 - Math.min(1, Math.max(0, t)), 3);
@@ -93,11 +197,11 @@ export default function ScrollFocusShift({
     <section
       ref={hostRef}
       className="relative isolate w-full overflow-visible"
-      style={{ height: `${heightVh}vh` }}
+      style={{ height: stepped ? "100vh" : `${heightVh}vh` }}
       aria-label="Scroll focus shift"
     >
       {/* Sticky viewport */}
-      <div className="sticky top-0 z-10 mx-auto flex h-[100vh] max-w-6xl items-center justify-center px-4 sm:px-6">
+      <div ref={wheelRef} className="sticky top-0 z-10 mx-auto flex h-[100vh] max-w-6xl items-center justify-center px-4 sm:px-6">
         {/* Background */}
         <div className="absolute inset-0 -z-10 bg-gradient-to-tr from-sky-500 to-blue-500" />
 
@@ -147,4 +251,3 @@ export default function ScrollFocusShift({
     </section>
   );
 }
-
