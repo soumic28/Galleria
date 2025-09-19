@@ -83,12 +83,13 @@ export default function ScrollFocusShift({
   }
 
   // Stepped interaction: lock viewport and advance on wheel/touch
-  const [step, setStep] = useState(0); // 0 center, 1 left, 2 right
-  const targetF = step === 0 ? 0 : step === 1 ? -1 : 1;
+  // Stepped sequence now: -1 neutral (all equal) -> 0 left -> 1 center -> 2 right
+  const [step, setStep] = useState(-1);
+  const targetF = step === 0 ? -1 : step === 1 ? 0 : step === 2 ? 1 : 0;
   const [animF, setAnimF] = useState(targetF);
   useEffect(() => {
     let raf = 0;
-    const s = Math.max(0.002, Math.min(1, speed)) * 0.5;
+    const s = Math.max(0.05, Math.min(1, speed));
     const tick = () => {
       setAnimF((prev) => {
         const next = prev + (targetF - prev) * s;
@@ -108,7 +109,9 @@ export default function ScrollFocusShift({
       if (!el) return;
       const r = el.getBoundingClientRect();
       const vh = window.innerHeight || 1;
-      setInView(r.top <= 0 && r.bottom >= vh);
+      const visible = Math.max(0, Math.min(vh, r.bottom) - Math.max(0, r.top));
+      const ratio = visible / vh;
+      setInView(ratio >= 0.6);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -121,22 +124,23 @@ export default function ScrollFocusShift({
 
   // Wheel stepping
   const wheelRef = useRef<HTMLDivElement>(null);
+  const wheelAccumRef = useRef(0);
   useEffect(() => {
     if (!stepped) return;
     const node = wheelRef.current;
     if (!node) return;
     const onWheel = (e: WheelEvent) => {
       if (!inView) return; // allow normal scroll
-      const down = e.deltaY > 6;
-      const up = e.deltaY < -6;
-      if (down && step < 2) {
+      wheelAccumRef.current += e.deltaY;
+      const threshold = 40;
+      if (wheelAccumRef.current > threshold && step < 2) {
         e.preventDefault();
+        wheelAccumRef.current = 0;
         setStep((s) => Math.min(2, s + 1));
-      } else if (up && step > 0) {
+      } else if (wheelAccumRef.current < -threshold && step > -1) {
         e.preventDefault();
-        setStep((s) => Math.max(0, s - 1));
-      } else {
-        // At edges, let scroll pass through
+        wheelAccumRef.current = 0;
+        setStep((s) => Math.max(-1, s - 1));
       }
     };
     node.addEventListener("wheel", onWheel, { passive: false });
@@ -168,9 +172,9 @@ export default function ScrollFocusShift({
       if (dy < -12 && step < 2) {
         e.preventDefault();
         setStep((s) => Math.min(2, s + 1));
-      } else if (dy > 12 && step > 0) {
+      } else if (dy > 12 && step > -1) {
         e.preventDefault();
-        setStep((s) => Math.max(0, s - 1));
+        setStep((s) => Math.max(-1, s - 1));
       }
     };
     node.addEventListener("touchstart", onStart, { passive: true });
@@ -184,6 +188,7 @@ export default function ScrollFocusShift({
   }, [stepped, inView, step]);
 
   const f = stepped ? animF : mapProgressToFocus(animP);
+  const isNeutral = stepped && step === -1;
 
   // Utility: cubic ease-out for subtle scale changes
   const easeOut = (t: number) => 1 - Math.pow(1 - Math.min(1, Math.max(0, t)), 3);
@@ -203,7 +208,7 @@ export default function ScrollFocusShift({
       {/* Sticky viewport */}
       <div ref={wheelRef} className="sticky top-0 z-10 mx-auto flex h-[100vh] max-w-6xl items-center justify-center px-4 sm:px-6">
         {/* Background */}
-        <div className="absolute inset-0 -z-10 bg-gradient-to-tr from-sky-500 to-blue-500" />
+        {/* <div className="absolute inset-0 -z-10 bg-gradient-to-tr from-sky-500 to-blue-500" /> */}
 
         {/* Optional title pinned at top */}
         <div className="absolute left-0 right-0 top-4 text-center">
@@ -217,11 +222,12 @@ export default function ScrollFocusShift({
           {[-1, 0, 1].map((idx, i) => {
             const item = images[i] || images[1];
             // Horizontal position: image index relative to focus value
-            const dist = Math.abs(idx - f); // distance from focus image
-            const x = (idx - f) * slotVW; // vw units
+            const localF = isNeutral ? 0 : f;
+            const dist = isNeutral ? 1 : Math.abs(idx - localF); // distance from focus image
+            const x = (idx - localF) * slotVW; // vw units
             const scale = baseScale + (1 - easeOut(Math.min(1, dist))) * focusBoost;
             const zIndex = 100 - Math.round(dist * 10);
-            const opacity = 0.65 + (1 - Math.min(1, dist)) * 0.35;
+            const opacity = isNeutral ? 0.85 : 0.65 + (1 - Math.min(1, dist)) * 0.35;
 
             return (
               <div
