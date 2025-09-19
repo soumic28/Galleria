@@ -8,7 +8,7 @@ interface ScrollIndicatorProps {
 
 const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({ currentCard, totalCards }) => {
   return (
-    <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+    <div className="hidden sm:block absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
       <div className="flex items-center space-x-4 text-white">
         <span className="text-sm">{String(currentCard + 1).padStart(2, '0')}</span>
         <div className="w-16 h-0.5 bg-gray-600 rounded-full">
