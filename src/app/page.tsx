@@ -50,28 +50,7 @@ export default function Home() {
         {/* Flipping Card */}
         <FlippingCard />
 
-        {/* <div className="border-brand-gold/30 bg-brand-white/50 mx-auto max-w-4xl rounded-xl border p-3">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-            <div className="space-y-1">
-              <p className="text-foreground/50 font-sans text-xs tracking-[0.2em] uppercase">
-                Opening
-              </p>
-              <p className="font-serif text-xl">Soon..</p>
-            </div>
-            <div className="space-y-1">
-              <p className="text-foreground/50 font-sans text-xs tracking-[0.2em] uppercase">
-                Location
-              </p>
-              <p className="font-serif text-xl">Soon..</p>
-            </div>
-            <div className="space-y-1">
-              <p className="text-foreground/50 font-sans text-xs tracking-[0.2em] uppercase">
-                Follow
-              </p>
-              <p className="font-serif text-xl">@thegalleriamall.wgl</p>
-            </div>
-          </div>
-        </div> */}
+
 
         {/* Pull-in gallery section (Westfield-like) */}
         {/* <ScrollPullGallery /> */}
@@ -92,7 +71,7 @@ export default function Home() {
         </div>
 
 
-       
+
 
         {/* Location Advantage */}
         <div className="mx-auto max-w-5xl text-left">
