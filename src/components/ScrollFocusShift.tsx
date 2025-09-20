@@ -15,7 +15,7 @@ type Props = {
 };
 
 // Simple section progress from 0..1 while the sticky viewport is scrolled through
-function useSectionProgress(ref: React.RefObject<HTMLElement>) {
+function useSectionProgress(ref: { current: HTMLElement | null }) {
   const [p, setP] = useState(0);
   useEffect(() => {
     const onScroll = () => {
@@ -49,7 +49,7 @@ export default function ScrollFocusShift({
   stepped = false,
 }: Props) {
   const hostRef = useRef<HTMLDivElement>(null);
-  const p = useSectionProgress(hostRef as React.RefObject<HTMLElement>);
+  const p = useSectionProgress(hostRef);
 
   // Smooth progress independent of scroll velocity
   const [animP, setAnimP] = useState(0);
@@ -129,7 +129,8 @@ export default function ScrollFocusShift({
     if (!stepped) return;
     const node = wheelRef.current;
     if (!node) return;
-    const onWheel = (e: WheelEvent) => {
+    const onWheel: EventListener = (evt) => {
+      const e = evt as WheelEvent;
       if (!inView) return; // allow normal scroll
       wheelAccumRef.current += e.deltaY;
       const threshold = 40;
@@ -144,7 +145,7 @@ export default function ScrollFocusShift({
       }
     };
     node.addEventListener("wheel", onWheel, { passive: false });
-    return () => node.removeEventListener("wheel", onWheel as any);
+    return () => node.removeEventListener("wheel", onWheel);
   }, [stepped, inView, step]);
 
   // Touch stepping
@@ -154,17 +155,20 @@ export default function ScrollFocusShift({
     if (!node) return;
     let startY = 0;
     let moved = false;
-    const onStart = (e: TouchEvent) => {
+    const onStart: EventListener = (evt) => {
+      const e = evt as TouchEvent;
       if (!inView) return;
       startY = e.touches[0].clientY;
       moved = false;
     };
-    const onMove = (e: TouchEvent) => {
+    const onMove: EventListener = (evt) => {
+      const e = evt as TouchEvent;
       if (!inView) return;
       const dy = e.touches[0].clientY - startY;
       if (Math.abs(dy) > 12) moved = true;
     };
-    const onEnd = (e: TouchEvent) => {
+    const onEnd: EventListener = (evt) => {
+      const e = evt as TouchEvent;
       if (!inView) return;
       const endY = (e.changedTouches[0] || e.touches[0]).clientY;
       const dy = endY - startY;
@@ -181,9 +185,9 @@ export default function ScrollFocusShift({
     node.addEventListener("touchmove", onMove, { passive: true });
     node.addEventListener("touchend", onEnd, { passive: false });
     return () => {
-      node.removeEventListener("touchstart", onStart as any);
-      node.removeEventListener("touchmove", onMove as any);
-      node.removeEventListener("touchend", onEnd as any);
+      node.removeEventListener("touchstart", onStart);
+      node.removeEventListener("touchmove", onMove);
+      node.removeEventListener("touchend", onEnd);
     };
   }, [stepped, inView, step]);
 

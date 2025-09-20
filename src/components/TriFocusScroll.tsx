@@ -13,7 +13,7 @@ type Props = {
   bg2?: string; // gradient end
 };
 
-function useSectionProgress(ref: React.RefObject<HTMLElement>) {
+function useSectionProgress(ref: { current: HTMLElement | null }) {
   const [p, setP] = useState(0);
   const [sp, setSp] = useState(0); // smoothed
   useEffect(() => {
@@ -43,7 +43,7 @@ function useSectionProgress(ref: React.RefObject<HTMLElement>) {
       window.removeEventListener("resize", onScroll);
       cancelAnimationFrame(raf);
     };
-  }, [ref]);
+  }, [ref, p]);
   return sp; // 0..1
 }
 
