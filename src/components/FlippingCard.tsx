@@ -16,7 +16,7 @@ export default function FlippingCard() {
   }, []);
 
   return (
-    <div className="mx-auto w-80 h-48 perspective-1000">
+    <div className="mx-auto md:w-140 md:h-68 w-80  h-48 perspective-1000">
       <div className={`relative w-full h-full transition-all duration-1000 transform-style-preserve-3d ${isFlipped ? 'rotate-y-180' : ''}`}>
         {/* Front Side - Mall Image */}
         <div className="absolute inset-0 w-full h-full backface-hidden">
