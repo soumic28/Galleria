@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable prettier/prettier */
 // import ScrollPullGallery from "../components/ScrollPullGallery";
 import FadedScrollGallery from "../components/FadedScrollGallery";
@@ -6,6 +7,7 @@ import ScrollFocusShift from "@/components/ScrollFocusShift";
 import FlippingCard from "../components/FlippingCard";
 // import ScrollGlowHero from "@/components/ScrollGlowHero";
 import MallSection from "@/components/MallSection";
+import HeroImageTrail from "@/components/HeroImageTrail";
 
 export default function Home() {
   return (
@@ -16,39 +18,48 @@ export default function Home() {
       <div className="bg-brand-gold/10 animate-float pointer-events-none absolute top-24 -left-24 h-40 w-40 rounded-full blur-2xl" />
       <div className="bg-brand-gold/10 animate-float pointer-events-none absolute -right-24 bottom-24 h-40 w-40 rounded-full blur-2xl" />
 
-      <section className="w-full max-w-6xl space-y-12 text-center">
-        <div className="flex items-center justify-center">
-          <span className="gradient-border inline-flex rounded-full">
-            <span className="bg-brand-gold relative inline-flex items-center gap-2 rounded-full px-4 py-1 text-xs font-semibold tracking-[0.25em] text-black uppercase">
-              Coming Soon
-              <i className="animate-shimmer pointer-events-none absolute inset-0 rounded-full opacity-30" />
+      <section id="hero-interactive-area" className="relative w-full max-w-6xl space-y-12 text-center">
+        <HeroImageTrail />
+        <div className="relative space-y-8">
+          <div className="flex items-center justify-center">
+            <span className="gradient-border inline-flex rounded-full">
+              <span className="bg-brand-gold relative inline-flex items-center gap-2 rounded-full px-4 py-1 text-xs font-semibold tracking-[0.25em] text-black uppercase">
+                Coming Soon
+                <i className="animate-shimmer pointer-events-none absolute inset-0 rounded-full opacity-30" />
+              </span>
             </span>
-          </span>
+          </div>
+
+          <h1 className="font-serif text-5xl tracking-tight sm:text-7xl bg-gradient-to-b from-brand-gold to-foreground bg-clip-text text-transparent animate-fade-in-up">The Galleria Mall</h1>
+          <div className="via-brand-gold mx-auto my-2 h-px w-24 bg-gradient-to-r from-transparent to-transparent" />
+          <p className="text-foreground/75 mx-auto max-w-3xl font-sans text-base sm:text-lg">
+            Warangal's biggest lifestyle and entertainment destination - opening soon.
+          </p>
+
+          <div className="flex items-center justify-center gap-3">
+            <a
+              href="#contact"
+              className="bg-cta text-brand-white focus-visible:ring-brand-gold inline-flex items-center justify-center rounded-md px-6 py-3 font-sans text-sm font-semibold transition-colors hover:opacity-90 focus-visible:ring-2 focus-visible:outline-none sm:text-base"
+            >
+              Notify Me
+            </a>
+            <a
+              href="#highlights"
+              className="border-brand-gold text-foreground/90 hover:bg-brand-gold/10 inline-flex items-center justify-center rounded-md border px-6 py-3 font-sans text-sm font-semibold sm:text-base"
+            >
+              Discover More
+            </a>
+          </div>
+
         </div>
-
-        <h1 className="font-serif text-5xl tracking-tight sm:text-7xl bg-gradient-to-b from-brand-gold to-foreground bg-clip-text text-transparent animate-fade-in-up">The Galleria Mall</h1>
-        <div className="via-brand-gold mx-auto my-2 h-px w-24 bg-gradient-to-r from-transparent to-transparent" />
-        <p className="text-foreground/75 mx-auto max-w-3xl font-sans text-base sm:text-lg">
-          Warangal’s biggest lifestyle and entertainment destination — opening soon.
-        </p>
-
-        <div className="flex items-center justify-center gap-3">
-          <a
-            href="#contact"
-            className="bg-cta text-brand-white focus-visible:ring-brand-gold inline-flex items-center justify-center rounded-md px-6 py-3 font-sans text-sm font-semibold transition-colors hover:opacity-90 focus-visible:ring-2 focus-visible:outline-none sm:text-base"
-          >
-            Notify Me
-          </a>
-          <a
-            href="#highlights"
-            className="border-brand-gold text-foreground/90 hover:bg-brand-gold/10 inline-flex items-center justify-center rounded-md border px-6 py-3 font-sans text-sm font-semibold sm:text-base"
-          >
-            Discover More
-          </a>
-        </div>
-
         {/* Flipping Card */}
-        <FlippingCard />
+        <div className="relative z-10">
+          <FlippingCard />
+        </div>
+
+      </section>
+
+      <div className="w-full max-w-6xl space-y-12 text-center mt-12">
 
 
 
@@ -63,6 +74,8 @@ export default function Home() {
 
         {/* 3D product showcase (scroll-driven) */}
         <Scroll3DShowcase speed={0.6} />
+
+
 
         {/* <ScrollGlowHero /> */}
 
@@ -103,7 +116,7 @@ export default function Home() {
               </div>
               <ul className="text-foreground list-disc space-y-2 pt-4 pl-5 font-sans text-sm">
                 <li>Strategically placed, close to 3 cities (~1.1M population)</li>
-                <li>High rental yield (10–12%) with strong demand for organized retail</li>
+                <li>High rental yield (10â€“12%) with strong demand for organized retail</li>
               </ul>
             </div>
           </div>
@@ -191,7 +204,7 @@ export default function Home() {
                   </svg>
                 </div>
                 <p className="font-sans text-sm text-foreground">
-                  Prime location across Warangal–Hanamkonda–Kazipet
+                  Prime location across Warangalâ€“Hanamkondaâ€“Kazipet
                 </p>
                 <p className="font-sans text-sm text-foreground">Strong brand mix potential</p>
               </div>
@@ -208,7 +221,7 @@ export default function Home() {
               <ul className="text-foreground list-disc space-y-2 pl-5 font-sans text-sm">
                 <li>5 cinema screens (biggest in Warangal)</li>
                 <li>15,000 sq. ft. cine lounge for a premium movie experience</li>
-                <li>Where food meets cinema — integrated dining & entertainment</li>
+                <li>Where food meets cinema â€” integrated dining & entertainment</li>
               </ul>
             </div>
           </div>
@@ -237,14 +250,14 @@ export default function Home() {
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <div className="space-y-2">
                   <p className="text-foreground/80 font-sans text-sm">
-                    <span className="font-semibold">Corporate Office:</span> 4th Floor, ABK Mall, Old Bus Depot, Ramnagar – 506001
+                    <span className="font-semibold">Corporate Office:</span> 4th Floor, ABK Mall, Old Bus Depot, Ramnagar â€“ 506001
                   </p>
                   <div className="flex flex-col gap-1 font-sans text-sm">
                     <a
                       href="tel:+918524060606"
                       className="text-foreground/90 hover:text-foreground underline"
                     >
-                      Contact: Arva Ramakanth Reddy – +91 85240 60606
+                      Contact: Arva Ramakanth Reddy â€“ +91 85240 60606
                     </a>
                     <a
                       href="mailto:galleriamallwarangal@gmail.com"
@@ -332,7 +345,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </main>
   );
 }

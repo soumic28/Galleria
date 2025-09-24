@@ -69,6 +69,7 @@ export default function FlippingCard() {
           </div>
         </div>
       </div>
+      {/* <HeroImageTrail /> */}
     </div>
   );
 }
