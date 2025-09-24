@@ -3,7 +3,6 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import HeroImageTrail from './HeroImageTrail';
 
 export default function FlippingCard() {
   const [isFlipped, setIsFlipped] = useState(false);

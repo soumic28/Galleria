@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable prettier/prettier */
 // import ScrollPullGallery from "../components/ScrollPullGallery";
 import FadedScrollGallery from "../components/FadedScrollGallery";
@@ -6,7 +7,6 @@ import ScrollFocusShift from "@/components/ScrollFocusShift";
 import FlippingCard from "../components/FlippingCard";
 // import ScrollGlowHero from "@/components/ScrollGlowHero";
 import MallSection from "@/components/MallSection";
-import ScrollGlowHero from "@/components/ScrollGlowHero";
 import HeroImageTrail from "@/components/HeroImageTrail";
 
 export default function Home() {
