@@ -6,10 +6,17 @@ import ScrollFocusShift from "@/components/ScrollFocusShift";
 import FlippingCard from "../components/FlippingCard";
 // import ScrollGlowHero from "@/components/ScrollGlowHero";
 import MallSection from "@/components/MallSection";
+import MouseTrailGallery from "@/components/MouseTrailGallery";
 
 export default function Home() {
   return (
-    <main className="relative isolate flex min-h-[calc(100vh-5rem)] items-center justify-center overflow-hidden p-8 sm:p-16">
+    <main 
+      id="hero-interactive-area"
+      className="relative isolate flex min-h-[calc(100vh-5rem)] items-center justify-center overflow-hidden p-8 sm:p-16"
+    >
+      {/* Mouse Trail Animation */}
+      <MouseTrailGallery />
+
       {/* Decorative gold gradient to echo luxury styling */}
       <div className="from-brand-gold/15 pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b to-transparent" />
       <div className="spotlight pointer-events-none absolute inset-0 opacity-25" />
@@ -50,8 +57,6 @@ export default function Home() {
         {/* Flipping Card */}
         <FlippingCard />
 
-
-
         {/* Pull-in gallery section (Westfield-like) */}
         {/* <ScrollPullGallery /> */}
 
@@ -69,9 +74,6 @@ export default function Home() {
         <div className="-mt-8 sm:-mt-[480px]">
           <MallSection />
         </div>
-
-
-
 
         {/* Location Advantage */}
         <div className="mx-auto max-w-5xl text-left">
