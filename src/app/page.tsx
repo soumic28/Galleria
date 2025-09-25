@@ -6,10 +6,17 @@ import ScrollFocusShift from "@/components/ScrollFocusShift";
 import FlippingCard from "../components/FlippingCard";
 // import ScrollGlowHero from "@/components/ScrollGlowHero";
 import MallSection from "@/components/MallSection";
+import MouseTrailGallery from "@/components/MouseTrailGallery";
 
 export default function Home() {
   return (
-    <main className="relative isolate flex min-h-[calc(100vh-5rem)] items-center justify-center overflow-hidden p-8 sm:p-16">
+    <main 
+      id="hero-interactive-area"
+      className="relative isolate flex min-h-[calc(100vh-5rem)] items-center justify-center overflow-hidden p-8 sm:p-16"
+    >
+      {/* Mouse Trail Animation */}
+      <MouseTrailGallery />
+
       {/* Decorative gold gradient to echo luxury styling */}
       <div className="from-brand-gold/15 pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b to-transparent" />
       <div className="spotlight pointer-events-none absolute inset-0 opacity-25" />
@@ -26,7 +33,7 @@ export default function Home() {
           </span>
         </div>
 
-        <h1 className="font-serif text-5xl tracking-tight sm:text-7xl bg-gradient-to-b from-brand-gold to-foreground bg-clip-text text-transparent animate-fade-in-up">The Galleria Mall</h1>
+        <h1 className="font-serif text-5xl tracking-tight sm:text-7xl bg-gradient-to-b from-brand-gold to-foreground bg-clip-text text-transparent animate-fade-in-up">PSR Infinity Mall</h1>
         <div className="via-brand-gold mx-auto my-2 h-px w-24 bg-gradient-to-r from-transparent to-transparent" />
         <p className="text-foreground/75 mx-auto max-w-3xl font-sans text-base sm:text-lg">
           Warangal’s biggest lifestyle and entertainment destination — opening soon.
@@ -50,8 +57,6 @@ export default function Home() {
         {/* Flipping Card */}
         <FlippingCard />
 
-
-
         {/* Pull-in gallery section (Westfield-like) */}
         {/* <ScrollPullGallery /> */}
 
@@ -69,9 +74,6 @@ export default function Home() {
         <div className="-mt-8 sm:-mt-[480px]">
           <MallSection />
         </div>
-
-
-
 
         {/* Location Advantage */}
         <div className="mx-auto max-w-5xl text-left">
@@ -247,21 +249,21 @@ export default function Home() {
                       Contact: Arva Ramakanth Reddy – +91 85240 60606
                     </a>
                     <a
-                      href="mailto:galleriamallwarangal@gmail.com"
+                      href="mailto:psrinfinitymall@gmail.com"
                       className="text-foreground/90 hover:text-foreground underline"
                     >
-                      Email: galleriamallwarangal@gmail.com
+                      Email: psrinfinitymall@gmail.com
                     </a>
                   </div>
                 </div>
                 <div className="flex flex-col gap-2">
                   <a
-                    href="https://www.thegalleriamall.in"
+                    href="https://www.psrinfinitymall.in"
                     target="_blank"
                     rel="noreferrer"
                     className="text-foreground/90 hover:text-foreground underline"
                   >
-                    Website: www.thegalleriamall.in
+                    Website: www.psrinfinitymall.in
                   </a>
                   <a
                     href="https://instagram.com/cpr.architects"
@@ -273,14 +275,14 @@ export default function Home() {
                   </a>
                   <div className="pt-2">
                     <a
-                      href="mailto:galleriamallwarangal@gmail.com"
+                      href="mailto:psrinfinitymall@gmail.com"
                       className="bg-cta text-brand-white inline-flex items-center justify-center rounded-md px-5 py-2 text-sm font-semibold hover:opacity-90"
                     >
                       Enquire Now
                     </a>
                   </div>
                   <form
-                    action="mailto:galleriamallwarangal@gmail.com"
+                    action="mailto:psrinfinitymall@gmail.com"
                     method="post"
                     encType="text/plain"
                     className="mt-4 grid grid-cols-1 gap-3"
