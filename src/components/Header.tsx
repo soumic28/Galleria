@@ -3,7 +3,7 @@ export default function Header() {
     <header className="border-brand-gold/20 bg-brand-white/70 supports-[backdrop-filter]:bg-brand-white/60 border-b backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 sm:h-20">
         <div className="flex items-baseline gap-2">
-          <span className="font-serif text-2xl tracking-tight">The Galleria</span>
+          <span className="font-serif text-2xl tracking-tight">PsrInfinity Mall</span>
           <span className="text-foreground/60 font-sans text-xs tracking-[0.2em] uppercase">
             Mall
           </span>
