@@ -117,7 +117,7 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
         }}
       >
         <h2 className="mx-auto max-w-4xl bg-gradient-to-b from-brand-gold to-foreground bg-clip-text font-serif text-4xl leading-tight tracking-tight text-transparent sm:text-6xl">
-        ABOUT GALLERIA
+        ABOUT PSRINFINITY
         </h2>
         
         {/* Statistics Grid */}

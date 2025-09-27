@@ -19,7 +19,7 @@ export default function Footer() {
             <a
               aria-label="Instagram"
               className="text-foreground/60 hover:text-foreground"
-              href="https://www.instagram.com/thegalleriamall.wgl?utm_source=qr&igsh=bTM4NXhpYjI3dDJp"
+              href="https://www.instagram.com/psrinfinity?igsh=MTF3cGJyc2hnbjQ1Yg%3D%3D&utm_source=qr"
             >
               <svg
                 width="20"
@@ -58,7 +58,7 @@ export default function Footer() {
             <a
               aria-label="X"
               className="text-foreground/60 hover:text-foreground"
-              href="https://x.com/thegalleriawgl?t=pk7gw1flap_jrn-iuUmy5w&s=09"
+              href="https://x.com/psrinfinity?s=21"
             >
               <svg
                 width="20"
