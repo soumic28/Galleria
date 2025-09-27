@@ -29,6 +29,7 @@ export default function MouseTrailGallery({
   const [isMobile, setIsMobile] = useState(false);
   const rafRef = useRef<number | null>(null);
   const timeoutRef = useRef<number | null>(null);
+  const inactivityRef = useRef<number | null>(null);
   const containerRectRef = useRef<DOMRect | null>(null);
   const imageIndexRef = useRef(0);
   const idRef = useRef(0);
@@ -74,6 +75,17 @@ export default function MouseTrailGallery({
       const pointerX = event.clientX - rect.left;
       const pointerY = event.clientY - rect.top;
       const pointerTime = event.timeStamp;
+
+      // We are active while the mouse is moving
+      if (!isActive) setIsActive(true);
+
+      // Reset inactivity timer so the trail fades when the mouse stops
+      if (inactivityRef.current) {
+        window.clearTimeout(inactivityRef.current);
+      }
+      inactivityRef.current = window.setTimeout(() => {
+        setIsActive(false);
+      }, 280);
 
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
@@ -132,6 +144,9 @@ export default function MouseTrailGallery({
       if (timeoutRef.current) {
         window.clearTimeout(timeoutRef.current);
       }
+      if (inactivityRef.current) {
+        window.clearTimeout(inactivityRef.current);
+      }
 
       timeoutRef.current = window.setTimeout(() => {
         setTrail([]);
@@ -158,8 +173,19 @@ export default function MouseTrailGallery({
       if (timeoutRef.current) {
         window.clearTimeout(timeoutRef.current);
       }
+      if (inactivityRef.current) {
+        window.clearTimeout(inactivityRef.current);
+      }
     };
   }, [containerId, maxItems, thresholdSq, isMobile]);
+
+  // When the mouse stops (isActive becomes false), fade out then clear trail
+  useEffect(() => {
+    if (isActive) return;
+    if (trail.length === 0) return;
+    const t = window.setTimeout(() => setTrail([]), 520);
+    return () => window.clearTimeout(t);
+  }, [isActive, trail.length]);
 
   // Disable animation on mobile entirely
   if (isMobile) {
