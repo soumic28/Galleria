@@ -64,7 +64,7 @@ export default function Home() {
         <FadedScrollGallery speed={0.01} />
 
         {/* Scroll focus shift: left -> right */}
-        <ScrollFocusShift stepped />
+        <ScrollFocusShift  />
 
         {/* 3D product showcase (scroll-driven) */}
         <Scroll3DShowcase speed={0.6} />

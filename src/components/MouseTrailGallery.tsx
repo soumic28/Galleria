@@ -26,6 +26,7 @@ export default function MouseTrailGallery({
 }: HeroImageTrailProps) {
   const [trail, setTrail] = useState<TrailItem[]>([]);
   const [isActive, setIsActive] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const rafRef = useRef<number | null>(null);
   const timeoutRef = useRef<number | null>(null);
   const containerRectRef = useRef<DOMRect | null>(null);
@@ -35,7 +36,20 @@ export default function MouseTrailGallery({
   const lastTimestampRef = useRef<number>(0);
   const thresholdSq = distanceThreshold * distanceThreshold;
 
+  // Detect mobile viewport (<= 640px)
   useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const mq = window.matchMedia("(max-width: 640px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener?.("change", update);
+    return () => mq.removeEventListener?.("change", update);
+  }, []);
+
+  useEffect(() => {
+    // Skip setting up mouse trail on mobile
+    if (isMobile) return;
+
     const container = document.getElementById(containerId);
     if (!container) {
       return;
@@ -145,7 +159,12 @@ export default function MouseTrailGallery({
         window.clearTimeout(timeoutRef.current);
       }
     };
-  }, [containerId, maxItems, thresholdSq]);
+  }, [containerId, maxItems, thresholdSq, isMobile]);
+
+  // Disable animation on mobile entirely
+  if (isMobile) {
+    return null;
+  }
 
   if (!isActive && trail.length === 0) {
     return null;
