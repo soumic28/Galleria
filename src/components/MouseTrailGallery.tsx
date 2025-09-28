@@ -177,7 +177,7 @@ export default function MouseTrailGallery({
         window.clearTimeout(inactivityRef.current);
       }
     };
-  }, [containerId, maxItems, thresholdSq, isMobile]);
+  }, [containerId, maxItems, thresholdSq, isMobile, isActive]);
 
   // When the mouse stops (isActive becomes false), fade out then clear trail
   useEffect(() => {
