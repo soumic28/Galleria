@@ -10,7 +10,7 @@ import MouseTrailGallery from "@/components/MouseTrailGallery";
 
 export default function Home() {
   return (
-    <main 
+    <main
       id="hero-interactive-area"
       className="relative isolate flex min-h-[calc(100vh-5rem)] items-center justify-center overflow-hidden p-4 sm:p-16"
     >
@@ -36,7 +36,11 @@ export default function Home() {
         <h1 className="font-serif text-5xl tracking-tight sm:text-7xl bg-gradient-to-b from-brand-gold to-foreground bg-clip-text text-transparent animate-fade-in-up">PSR Infinity Mall</h1>
         <div className="via-brand-gold mx-auto my-2 h-px w-24 bg-gradient-to-r from-transparent to-transparent" />
         <p className="text-foreground/75 mx-auto max-w-3xl font-sans text-base sm:text-lg">
-          Warangal’s biggest lifestyle and entertainment destination — opening soon.
+         Largest Mall
+          in
+          Telangana
+          Outside
+          Hyderabad — opening soon.
         </p>
 
         <div className="flex items-center justify-center gap-2 sm:gap-3">
@@ -64,7 +68,7 @@ export default function Home() {
         <FadedScrollGallery speed={0.01} />
 
         {/* Scroll focus shift: left -> right */}
-        <ScrollFocusShift  />
+        <ScrollFocusShift />
 
         {/* 3D product showcase (scroll-driven) */}
         <Scroll3DShowcase speed={0.6} />

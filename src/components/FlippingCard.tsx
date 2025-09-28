@@ -23,10 +23,10 @@ export default function FlippingCard() {
           <div className="gradient-border h-full opacity-0 animate-fade-in">
             <div className="inner rounded-xl overflow-hidden h-full relative">
               <Image
-                src="/images/new_pdf_1.png"
+                src="/images/psrmall_1.png"
                 alt="The Galleria Mall Exterior"
                 fill
-                className="object-cover -mt-3.5"
+                className="object-contain object-center"
                 sizes="(max-width: 768px) 100vw, 320px"
               />
               {/* Overlay for text readability */}
