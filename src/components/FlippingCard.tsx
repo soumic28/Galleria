@@ -26,7 +26,7 @@ export default function FlippingCard() {
                 src="/images/new_pdf_1.png"
                 alt="The Galleria Mall Exterior"
                 fill
-                className="object-cover -mt-3.5"
+                className="object-cover -mt-4.5"
                 sizes="(max-width: 768px) 100vw, 320px"
               />
               {/* Overlay for text readability */}
