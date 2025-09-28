@@ -21,12 +21,12 @@ export default function FlippingCard() {
         {/* Front Side - Mall Image */}
         <div className="absolute inset-0 w-full h-full backface-hidden">
           <div className="gradient-border h-full opacity-0 animate-fade-in">
-            <div className="inner rounded-xl overflow-hidden h-full relative">
+            <div className="inner rounded-xl overflow-hidden h-full relative bg-black">
               <Image
                 src="/images/psrmall_1.png"
                 alt="The Galleria Mall Exterior"
                 fill
-                className="object-contain object-center"
+                className="object-cover rounded-xl"
                 sizes="(max-width: 768px) 100vw, 320px"
               />
               {/* Overlay for text readability */}
