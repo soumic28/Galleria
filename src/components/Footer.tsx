@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export default function Footer() {
   return (
     <footer className="border-brand-gold/20 border-t">
