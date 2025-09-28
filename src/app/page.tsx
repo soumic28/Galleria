@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <main 
       id="hero-interactive-area"
-      className="relative isolate flex min-h-[calc(100vh-5rem)] items-center justify-center overflow-hidden p-8 sm:p-16"
+      className="relative isolate flex min-h-[calc(100vh-5rem)] items-center justify-center overflow-hidden p-4 sm:p-16"
     >
       {/* Mouse Trail Animation */}
       <MouseTrailGallery />
@@ -23,7 +23,7 @@ export default function Home() {
       <div className="bg-brand-gold/10 animate-float pointer-events-none absolute top-24 -left-24 h-40 w-40 rounded-full blur-2xl" />
       <div className="bg-brand-gold/10 animate-float pointer-events-none absolute -right-24 bottom-24 h-40 w-40 rounded-full blur-2xl" />
 
-      <section className="w-full max-w-6xl space-y-12 text-center">
+      <section className="w-full max-w-6xl space-y-8 sm:space-y-12 text-center">
         <div className="flex items-center justify-center">
           <span className="gradient-border inline-flex rounded-full">
             <span className="bg-brand-gold relative inline-flex items-center gap-2 rounded-full px-4 py-1 text-xs font-semibold tracking-[0.25em] text-black uppercase">
@@ -39,7 +39,7 @@ export default function Home() {
           Warangal’s biggest lifestyle and entertainment destination — opening soon.
         </p>
 
-        <div className="flex items-center justify-center gap-3">
+        <div className="flex items-center justify-center gap-2 sm:gap-3">
           <a
             href="#contact"
             className="bg-cta text-brand-white focus-visible:ring-brand-gold inline-flex items-center justify-center rounded-md px-6 py-3 font-sans text-sm font-semibold transition-colors hover:opacity-90 focus-visible:ring-2 focus-visible:outline-none sm:text-base"
@@ -78,7 +78,7 @@ export default function Home() {
         {/* Location Advantage */}
         <div className="mx-auto max-w-5xl text-left">
           <div className="gradient-border">
-            <div className="inner rounded-xl p-6">
+            <div className="inner rounded-xl p-4 sm:p-6">
               <h2 className="font-serif text-2xl">Location Advantage</h2>
               <div className="via-brand-gold my-3 h-px w-16 bg-gradient-to-r from-transparent to-transparent" />
               <div className="marquee">
@@ -219,7 +219,7 @@ export default function Home() {
         {/* Lifestyle & Leisure */}
         <div className="mx-auto max-w-4xl text-left">
           <div className="gradient-border">
-            <div className="inner rounded-xl p-6">
+            <div className="inner rounded-xl p-4 sm:p-6">
               <h2 className="font-serif text-2xl">Lifestyle & Leisure</h2>
               <div className="via-brand-gold my-3 h-px w-16 bg-gradient-to-r from-transparent to-transparent" />
               <ul className="text-foreground list-disc space-y-2 pl-5 font-sans text-sm">
@@ -233,10 +233,10 @@ export default function Home() {
         {/* Corporate & Contact */}
         <div id="contact" className="mx-auto max-w-4xl text-left">
           <div className="gradient-border">
-            <div className="inner rounded-xl p-6">
+            <div className="inner rounded-xl p-4 sm:p-6">
               <h2 className="font-serif text-2xl">Corporate & Contact</h2>
               <div className="via-brand-gold my-3 h-px w-16 bg-gradient-to-r from-transparent to-transparent" />
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2">
                 <div className="space-y-2">
                   <p className="text-foreground/80 font-sans text-sm">
                     <span className="font-semibold">Corporate Office:</span> 4th Floor, ABK Mall, Old Bus Depot, Ramnagar – 506001
@@ -285,7 +285,7 @@ export default function Home() {
                     action="mailto:psrinfinitymall@gmail.com"
                     method="post"
                     encType="text/plain"
-                    className="mt-4 grid grid-cols-1 gap-3"
+                    className="mt-3 sm:mt-4 grid grid-cols-1 gap-2.5 sm:gap-3"
                   >
                     <div className="float-label">
                       <input

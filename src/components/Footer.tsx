@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <footer className="border-brand-gold/20 border-t">
-      <div className="mx-auto max-w-7xl px-6 py-10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-6 sm:py-10">
         <div className="text-foreground/80 flex flex-col items-center gap-1 text-center text-sm">
           <span>For more info contact</span>
           <a

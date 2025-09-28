@@ -65,7 +65,7 @@ export default function Scroll3DShowcase({ speed = 0.6 }: Props) {
   return (
     <section
       ref={hostRef}
-      className="relative isolate h-[180vh]  overflow-visible"
+      className="relative isolate h-[140vh] sm:h-[170vh] overflow-visible"
       aria-label="Auto rotating 3D showcase"
     >
       {/* Sticky container */}
@@ -135,17 +135,8 @@ export default function Scroll3DShowcase({ speed = 0.6 }: Props) {
       </div>
 
       <style jsx>{`
-        @media (max-width: 640px) {
-          section {
-            height: 160vh;
-          }
-        }
-
-        @media (max-width: 480px) {
-          section {
-            height: 150vh;
-          }
-        }
+        @media (max-width: 640px) { section { height: 120vh; } }
+        @media (max-width: 480px) { section { height: 110vh; } }
 
         @media (prefers-reduced-motion: reduce) {
           section * {

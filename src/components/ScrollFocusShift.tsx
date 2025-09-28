@@ -45,7 +45,7 @@ export default function ScrollFocusShift({
     { src: "/mall_pic_3.png", alt: "Right" },
   ],
   speed = 0.06,
-  heightVh = 200,
+  heightVh = 160,
   stepped = false,
 }: Props) {
   const hostRef = useRef<HTMLDivElement>(null);
@@ -205,7 +205,7 @@ export default function ScrollFocusShift({
   return (
     <section
       ref={hostRef}
-      className="relative isolate w-full overflow-visible"
+      className="relative isolate w-full overflow-visible sfs-section"
       style={{ height: stepped ? "100vh" : `${heightVh}vh` }}
       aria-label="Scroll focus shift"
     >
@@ -258,6 +258,11 @@ export default function ScrollFocusShift({
           })}
         </div>
       </div>
+      <style jsx>{`
+        @media (max-width: 640px) {
+          .sfs-section { height: 120vh !important; }
+        }
+      `}</style>
     </section>
   );
 }

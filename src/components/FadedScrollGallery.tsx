@@ -102,7 +102,7 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
   return (
     <section
       ref={hostRef}
-      className="relative isolate mt-6 h-[160vh] overflow-hidden"
+      className="relative isolate mt-4 sm:mt-6 h-[140vh] sm:h-[160vh] overflow-hidden"
       style={{ "--p": animP } as CSSVars}
       aria-label="Faded scrolling gallery"
     >
@@ -181,7 +181,7 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
       </div>
 
       {/* Images */}
-      <div className="pointer-events-none absolute left-0 right-0 bottom-0 top-24 sm:top-28 gallery-stage">
+      <div className="pointer-events-none absolute left-0 right-0 bottom-0 top-16 sm:top-28 gallery-stage">
         {items.map((it, i) => {
           const baseStart = descEnd + 0.03; // start images after slower shrink
           const fadeStart = baseStart + i * 0.08;
@@ -232,14 +232,9 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
         }
         /* Mobile-only tuning: keep images more inside the viewport */
         @media (max-width: 640px) {
-          section { --reach-vw: 110vw; --reach-vh: 120vh; --img-scale: 1.2; }
-        }
-        @media (max-width: 640px) {
+          section { --reach-vw: 100vw; --reach-vh: 100vh; --img-scale: 1.1; height: 120vh; }
           /* On phones, disable the vertical mask entirely to prevent edge banding */
           .gallery-stage { -webkit-mask-image: none; mask-image: none; }
-        }
-        @media (max-width: 640px) {
-          section { height: 170vh; }
         }
         @media (prefers-reduced-motion: reduce) {
           section * { transition: none !important; animation: none !important; }
