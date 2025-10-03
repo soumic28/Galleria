@@ -39,6 +39,12 @@ body {
   color: var(--foreground);
 }
 
+/* Smooth scrolling and anchor offset for fixed header */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* matches header height (h-16 ≈ 4rem, sm:h-20 ≈ 5rem) */
+}
+
 /* Creative UI helpers */
 .glass {
   /* Subtle surface that adapts to theme */

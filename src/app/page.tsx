@@ -91,7 +91,7 @@ export default function Home() {
         <FeaturesShowcase />
 
         {/* Interactive Gallery */}
-        <div className="mx-auto max-w-6xl px-6 py-16">
+        <div id="gallery" className="mx-auto max-w-6xl px-6 py-16">
           <div className="text-center mb-12">
             <h2 className="font-serif text-3xl sm:text-4xl font-bold bg-gradient-to-b from-brand-gold to-foreground bg-clip-text text-transparent">
               Mall Gallery
