@@ -105,7 +105,7 @@ export default function Home() {
         </div>
 
         {/* Location Advantage */}
-        <div className="mx-auto max-w-5xl text-left">
+        {/* <div className="mx-auto max-w-5xl text-left">
           <div className="gradient-border">
             <div className="inner rounded-xl p-4 sm:p-6">
               <h2 className="font-serif text-2xl">Location Advantage</h2>
@@ -138,15 +138,15 @@ export default function Home() {
               </ul>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Mall Highlights */}
         <div id="highlights" className="mx-auto max-w-5xl text-left">
-          <h2 className="text-center font-serif text-2xl">Mall Highlights</h2>
+          {/* <h2 className="text-center font-serif text-2xl">Mall Highlights</h2> */}
           <div className="via-brand-gold mx-auto my-3 h-px w-16 bg-gradient-to-r from-transparent to-transparent" />
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             {/* Card 1 - Infrastructure */}
-            <div className="gradient-border">
+            {/* <div className="gradient-border">
               <div className="inner rounded-xl p-5">
                 <div className="bg-brand-gold/15 mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full">
                   <svg
@@ -169,9 +169,9 @@ export default function Home() {
                 <p className="font-sans text-sm text-foreground">300+ car parking capacity</p>
                 <p className="font-sans text-sm text-foreground">6 lifts + 3 basements</p>
               </div>
-            </div>
+            </div> */}
             {/* Card 2 - Specifications */}
-            <div className="gradient-border">
+            {/* <div className="gradient-border">
               <div className="inner rounded-xl p-5">
                 <div className="bg-brand-gold/15 mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full">
                   <svg
@@ -190,9 +190,9 @@ export default function Home() {
                 <p className="font-sans text-sm text-foreground">4,500 sq. ft. atrium</p>
                 <p className="font-sans text-sm text-foreground">15,000 sq. ft. cine lounge</p>
               </div>
-            </div>
+            </div> */}
             {/* Card 3 - Green Spaces */}
-            <div className="gradient-border">
+            {/* <div className="gradient-border">
               <div className="inner rounded-xl p-5">
                 <div className="bg-brand-gold/15 mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full">
                   <svg
@@ -210,9 +210,9 @@ export default function Home() {
                 <p className="font-sans text-sm text-foreground">20% landscaped area</p>
                 <p className="font-sans text-sm text-foreground">Fresh-air shopping experience</p>
               </div>
-            </div>
+            </div> */}
             {/* Card 4 - Location Advantage */}
-            <div className="gradient-border">
+            {/* <div className="gradient-border">
               <div className="inner rounded-xl p-5">
                 <div className="bg-brand-gold/15 mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full">
                   <svg
@@ -232,12 +232,12 @@ export default function Home() {
                 <p className="font-sans text-sm text-foreground">Strong brand mix potential</p>
                 <p className="font-sans text-sm text-foreground">High rental yield (10–12%)</p>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 
         {/* Entertainment */}
-        <div className="mx-auto max-w-4xl text-left">
+        {/* <div className="mx-auto max-w-4xl text-left">
           <div className="gradient-border">
             <div className="inner rounded-xl p-6">
               <h2 className="font-serif text-2xl">Entertainment & Cinema</h2>
@@ -264,10 +264,10 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Lifestyle & Leisure */}
-        <div className="mx-auto max-w-4xl text-left">
+        {/* <div className="mx-auto max-w-4xl text-left">
           <div className="gradient-border">
             <div className="inner rounded-xl p-4 sm:p-6">
               <h2 className="font-serif text-2xl">Lifestyle & Leisure</h2>
@@ -294,7 +294,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Corporate & Contact */}
         <div id="contact" className="mx-auto max-w-4xl text-left">
