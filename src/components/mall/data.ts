@@ -12,38 +12,74 @@ export interface MallData {
 export const mallData: MallData[] = [
   {
     id: 1,
-    title: "",
-    description: "Premium shopping zones with luxury brands and multiplex theaters",
-    image: "/mall_pic_1.png",
-    level: "Level 2",
-    zone: "Multiplex Zone",
-    features: ["Luxury Brands", "Premium Cinema", "VIP Services", "Atrium Views"]
+    title: "PSR Infinity Mall",
+    description: "Largest Mall in Telangana Outside Hyderabad - 2 Lakh Sq. Ft. Built-up Area",
+    image: "/pdf-images/page-01.png",
+    level: "9 Floors",
+    zone: "Premium Retail & Entertainment",
+    features: ["5-Screen Multiplex (1280+ Seating)", "15,000 Sq. Ft. Cine Lounge", "300+ Car Parking", "6 Lifts + 3 Basements"]
   },
   {
     id: 2,
-    title: "", 
-    description: "Entertainment hub with food courts and cine lounge facilities",
-    image: "/mall_pic_2.png",
-    level: "Level 1", 
-    zone: "Entertainment Hub",
-    features: ["Food Court 1", "Food Court 2", "Cine Lounge", "Entertainment Zone"]
+    title: "Entertainment Hub", 
+    description: "Premium cinema experience with integrated dining and entertainment",
+    image: "/pdf-images/page-02.png",
+    level: "Multiplex Level", 
+    zone: "Cinema & Dining",
+    features: ["5 Cinema Screens", "Biggest in Warangal", "Food Meets Cinema", "Premium Movie Experience"]
   },
   {
     id: 3,
-    title: "",
-    description: "Technical services and projection rooms for premium cinema experience",
-    image: "/mall_pic_3.png",
-    level: "Service Level",
-    zone: "Technical Zone", 
-    features: ["Projection Rooms", "Technical Services", "Equipment Area", "Staff Facilities"]
+    title: "Shopping Experience",
+    description: "Premium retail zones with luxury brands and lifestyle shopping",
+    image: "/pdf-images/page-03.png",
+    level: "Retail Floors",
+    zone: "Shopping & Lifestyle", 
+    features: ["Luxury Brands", "Lifestyle Shopping", "Premium Retail", "Brand Mix Potential"]
   },
   {
     id: 4,
-    title: "",
-    description: "Grand entrance with central atrium connecting all floors",
-    image: "/mall_pic_4.png",
+    title: "Grand Atrium",
+    description: "Central atrium with 4,500 sq. ft. connecting all floors with open spaces",
+    image: "/pdf-images/page-04.png",
     level: "Ground Floor",
-    zone: "Main Entrance",
-    features: ["Grand Entry", "Central Atrium", "Information Desk", "Floor Navigation"]
+    zone: "Main Entrance & Atrium",
+    features: ["4,500 Sq. Ft. Atrium", "50% Open Space", "20% Landscaped Area", "Grand Entry"]
+  },
+  {
+    id: 5,
+    title: "Location Advantage",
+    description: "Strategically placed across Warangal-Hanamkonda-Kazipet triangle",
+    image: "/pdf-images/page-05.png",
+    level: "Prime Location",
+    zone: "Accessibility Hub",
+    features: ["8 mins to Hanamkonda", "10 mins to Warangal", "25 mins to Kazipet", "1.1M Population Reach"]
+  },
+  {
+    id: 6,
+    title: "Architectural Design",
+    description: "Modern architectural design with premium finishes and contemporary aesthetics",
+    image: "/pdf-images/page-06.png",
+    level: "Design Excellence",
+    zone: "Architecture & Design",
+    features: ["Modern Architecture", "Premium Finishes", "Contemporary Design", "Aesthetic Appeal"]
+  },
+  {
+    id: 7,
+    title: "Retail Zones",
+    description: "Diverse retail zones catering to all shopping needs and preferences",
+    image: "/pdf-images/page-07.png",
+    level: "Multi-Level Retail",
+    zone: "Shopping Zones",
+    features: ["Fashion & Lifestyle", "Electronics & Gadgets", "Home & Decor", "Food & Beverages"]
+  },
+  {
+    id: 8,
+    title: "Parking & Accessibility",
+    description: "Comprehensive parking solutions and easy accessibility for all visitors",
+    image: "/pdf-images/page-08.png",
+    level: "Basement Levels",
+    zone: "Parking & Access",
+    features: ["300+ Car Parking", "Basement Parking", "Easy Access", "Visitor Convenience"]
   }
 ];

@@ -7,6 +7,9 @@ import FlippingCard from "../components/FlippingCard";
 // import ScrollGlowHero from "@/components/ScrollGlowHero";
 import MallSection from "@/components/MallSection";
 import MouseTrailGallery from "@/components/MouseTrailGallery";
+import InteractiveGallery from "@/components/InteractiveGallery";
+// import StatisticsSection from "@/components/StatisticsSection";
+import FeaturesShowcase from "@/components/FeaturesShowcase";
 
 export default function Home() {
   return (
@@ -36,11 +39,10 @@ export default function Home() {
         <h1 className="font-serif text-5xl tracking-tight sm:text-7xl bg-gradient-to-b from-brand-gold to-foreground bg-clip-text text-transparent animate-fade-in-up">PSR Infinity Mall</h1>
         <div className="via-brand-gold mx-auto my-2 h-px w-24 bg-gradient-to-r from-transparent to-transparent" />
         <p className="text-foreground/75 mx-auto max-w-3xl font-sans text-base sm:text-lg">
-         Largest Mall
-          in
-          Telangana
-          Outside
-          Hyderabad — opening soon.
+          Largest Mall in Telangana Outside Hyderabad — 2 Lakh Sq. Ft. Built-up Area
+        </p>
+        <p className="text-foreground/60 mx-auto max-w-2xl font-sans text-sm sm:text-base mt-2">
+          Premium retail, entertainment, and lifestyle destination opening soon
         </p>
 
         <div className="flex items-center justify-center gap-2 sm:gap-3">
@@ -59,7 +61,10 @@ export default function Home() {
         </div>
 
         {/* Flipping Card */}
-        <FlippingCard />
+        <div id="flipping-card-area" className="relative">
+          <MouseTrailGallery containerId="flipping-card-area" />
+          <FlippingCard />
+        </div>
 
         {/* Pull-in gallery section (Westfield-like) */}
         {/* <ScrollPullGallery /> */}
@@ -77,6 +82,26 @@ export default function Home() {
 
         <div className="-mt-8 sm:-mt-[480px]">
           <MallSection />
+        </div>
+
+        {/* Statistics Section */}
+        {/* <StatisticsSection /> */}
+
+        {/* Features Showcase */}
+        <FeaturesShowcase />
+
+        {/* Interactive Gallery */}
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <div className="text-center mb-12">
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold bg-gradient-to-b from-brand-gold to-foreground bg-clip-text text-transparent">
+              Mall Gallery
+            </h2>
+            <div className="via-brand-gold mx-auto my-4 h-px w-24 bg-gradient-to-r from-transparent to-transparent" />
+            <p className="text-foreground/70 max-w-2xl mx-auto">
+              Explore the stunning visuals and architectural beauty of PSR Infinity Mall
+            </p>
+          </div>
+          <InteractiveGallery />
         </div>
 
         {/* Location Advantage */}
@@ -120,7 +145,7 @@ export default function Home() {
           <h2 className="text-center font-serif text-2xl">Mall Highlights</h2>
           <div className="via-brand-gold mx-auto my-3 h-px w-16 bg-gradient-to-r from-transparent to-transparent" />
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-            {/* Card 1 */}
+            {/* Card 1 - Infrastructure */}
             <div className="gradient-border">
               <div className="inner rounded-xl p-5">
                 <div className="bg-brand-gold/15 mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full">
@@ -134,6 +159,7 @@ export default function Home() {
                     <path d="M4 21h16V3H4v18zm3-3h10" stroke="currentColor" strokeWidth="1.5" />
                   </svg>
                 </div>
+                <h3 className="font-sans text-sm font-semibold text-foreground mb-2">Infrastructure</h3>
                 <p className="font-sans text-sm text-foreground">
                   9 floors of premium retail & entertainment
                 </p>
@@ -144,7 +170,7 @@ export default function Home() {
                 <p className="font-sans text-sm text-foreground">6 lifts + 3 basements</p>
               </div>
             </div>
-            {/* Card 2 */}
+            {/* Card 2 - Specifications */}
             <div className="gradient-border">
               <div className="inner rounded-xl p-5">
                 <div className="bg-brand-gold/15 mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full">
@@ -158,13 +184,14 @@ export default function Home() {
                     <path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" strokeWidth="1.5" />
                   </svg>
                 </div>
+                <h3 className="font-sans text-sm font-semibold text-foreground mb-2">Specifications</h3>
                 <p className="font-sans text-sm text-foreground">2 lakh sq. ft. built-up area</p>
                 <p className="font-sans text-sm text-foreground">71,280 sq. ft. site area</p>
                 <p className="font-sans text-sm text-foreground">4,500 sq. ft. atrium</p>
                 <p className="font-sans text-sm text-foreground">15,000 sq. ft. cine lounge</p>
               </div>
             </div>
-            {/* Card 3 */}
+            {/* Card 3 - Green Spaces */}
             <div className="gradient-border">
               <div className="inner rounded-xl p-5">
                 <div className="bg-brand-gold/15 mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full">
@@ -178,11 +205,13 @@ export default function Home() {
                     <path d="M4 12c4-6 12-6 16 0" stroke="currentColor" strokeWidth="1.5" />
                   </svg>
                 </div>
+                <h3 className="font-sans text-sm font-semibold text-foreground mb-2">Green Spaces</h3>
                 <p className="font-sans text-sm text-foreground">50% open space</p>
                 <p className="font-sans text-sm text-foreground">20% landscaped area</p>
+                <p className="font-sans text-sm text-foreground">Fresh-air shopping experience</p>
               </div>
             </div>
-            {/* Card 4 */}
+            {/* Card 4 - Location Advantage */}
             <div className="gradient-border">
               <div className="inner rounded-xl p-5">
                 <div className="bg-brand-gold/15 mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full">
@@ -196,10 +225,12 @@ export default function Home() {
                     <path d="M3 6h8v12H3zM13 8h8v8h-8z" stroke="currentColor" strokeWidth="1.5" />
                   </svg>
                 </div>
+                <h3 className="font-sans text-sm font-semibold text-foreground mb-2">Location Advantage</h3>
                 <p className="font-sans text-sm text-foreground">
                   Prime location across Warangal–Hanamkonda–Kazipet
                 </p>
                 <p className="font-sans text-sm text-foreground">Strong brand mix potential</p>
+                <p className="font-sans text-sm text-foreground">High rental yield (10–12%)</p>
               </div>
             </div>
           </div>
@@ -209,13 +240,28 @@ export default function Home() {
         <div className="mx-auto max-w-4xl text-left">
           <div className="gradient-border">
             <div className="inner rounded-xl p-6">
-              <h2 className="font-serif text-2xl">Entertainment</h2>
+              <h2 className="font-serif text-2xl">Entertainment & Cinema</h2>
               <div className="via-brand-gold my-3 h-px w-16 bg-gradient-to-r from-transparent to-transparent" />
-              <ul className="text-foreground list-disc space-y-2 pl-5 font-sans text-sm">
-                <li>5 cinema screens (biggest in Warangal)</li>
-                <li>15,000 sq. ft. cine lounge for a premium movie experience</li>
-                <li>Where food meets cinema — integrated dining & entertainment</li>
-              </ul>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div>
+                  <h3 className="font-sans text-sm font-semibold text-foreground mb-2">Cinema Experience</h3>
+                  <ul className="text-foreground list-disc space-y-2 pl-5 font-sans text-sm">
+                    <li>5 cinema screens (biggest in Warangal)</li>
+                    <li>1280+ seating capacity</li>
+                    <li>15,000 sq. ft. cine lounge</li>
+                    <li>Premium movie experience</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-sans text-sm font-semibold text-foreground mb-2">Dining & Entertainment</h3>
+                  <ul className="text-foreground list-disc space-y-2 pl-5 font-sans text-sm">
+                    <li>Integrated dining & entertainment</li>
+                    <li>Food meets cinema concept</li>
+                    <li>Premium food court facilities</li>
+                    <li>Entertainment zones</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -226,10 +272,26 @@ export default function Home() {
             <div className="inner rounded-xl p-4 sm:p-6">
               <h2 className="font-serif text-2xl">Lifestyle & Leisure</h2>
               <div className="via-brand-gold my-3 h-px w-16 bg-gradient-to-r from-transparent to-transparent" />
-              <ul className="text-foreground list-disc space-y-2 pl-5 font-sans text-sm">
-                <li>Open fresh-air spaces for shopping & leisure</li>
-                <li>20% green landscaping</li>
-              </ul>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div>
+                  <h3 className="font-sans text-sm font-semibold text-foreground mb-2">Shopping Experience</h3>
+                  <ul className="text-foreground list-disc space-y-2 pl-5 font-sans text-sm">
+                    <li>Premium retail brands</li>
+                    <li>Luxury shopping zones</li>
+                    <li>Lifestyle & fashion outlets</li>
+                    <li>Strong brand mix potential</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-sans text-sm font-semibold text-foreground mb-2">Green Spaces</h3>
+                  <ul className="text-foreground list-disc space-y-2 pl-5 font-sans text-sm">
+                    <li>Open fresh-air spaces for shopping & leisure</li>
+                    <li>20% green landscaping</li>
+                    <li>50% open space design</li>
+                    <li>Natural ventilation & lighting</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
