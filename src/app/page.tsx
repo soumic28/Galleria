@@ -17,8 +17,8 @@ export default function Home() {
       id="hero-interactive-area"
       className="relative isolate flex min-h-[calc(100vh-5rem)] items-center justify-center overflow-hidden p-4 sm:p-16"
     >
-      {/* Mouse Trail Animation */}
-      <MouseTrailGallery />
+      {/* Mouse Trail Animation for Hero Section */}
+      <MouseTrailGallery containerId="hero-interactive-area" />
 
       {/* Decorative gold gradient to echo luxury styling */}
       <div className="from-brand-gold/15 pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b to-transparent" />
@@ -61,10 +61,10 @@ export default function Home() {
         </div>
 
         {/* Flipping Card */}
-        <div id="flipping-card-area" className="relative">
+        {/* <div id="flipping-card-area" className="relative">
           <MouseTrailGallery containerId="flipping-card-area" />
           <FlippingCard />
-        </div>
+        </div> */}
 
         {/* Pull-in gallery section (Westfield-like) */}
         {/* <ScrollPullGallery /> */}
