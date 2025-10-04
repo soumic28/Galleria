@@ -1,7 +1,52 @@
 /* eslint-disable prettier/prettier */
+"use client";
+
+import { useState, useEffect } from "react";
+
 export default function Footer() {
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
-    <footer className="border-brand-gold/20 border-t">
+    <footer className="border-brand-gold/20 border-t relative">
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="absolute -top-6 right-4 sm:right-8 bg-brand-gold hover:bg-yellow-500 text-black p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group"
+          aria-label="Scroll to top"
+        >
+          <svg
+            className="w-5 h-5 group-hover:-translate-y-1 transition-transform"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 15l7-7 7 7"
+            />
+          </svg>
+        </button>
+      )}
+
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-6 sm:py-10">
         <div className="text-foreground/80 flex flex-col items-center gap-1 text-center text-sm">
           <span>For more info contact</span>
