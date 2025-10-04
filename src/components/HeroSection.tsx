@@ -52,7 +52,7 @@ export default function HeroSection() {
           Premium retail, entertainment, and lifestyle destination opening soon
         </p>
 
-        <div className="flex items-center justify-center gap-2 sm:gap-3 pt-4">
+        {/* <div className="flex items-center justify-center gap-2 sm:gap-3 pt-4">
           <a
             href="#contact"
             className="bg-cta text-brand-white focus-visible:ring-brand-gold inline-flex items-center justify-center rounded-md px-6 py-3 font-sans text-sm font-semibold transition-all hover:opacity-90 hover:scale-105 focus-visible:ring-2 focus-visible:outline-none sm:text-base shadow-lg"
@@ -65,7 +65,7 @@ export default function HeroSection() {
           >
             Discover More
           </a>
-        </div>
+        </div> */}
       </div>
 
       {/* Scroll indicator */}
