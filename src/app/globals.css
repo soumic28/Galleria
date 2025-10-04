@@ -38,12 +38,36 @@ body {
   background: var(--background);
   color: var(--foreground);
   overflow: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Smooth scrolling and anchor offset for fixed header */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem; /* matches header height (h-16 ≈ 4rem, sm:h-20 ≈ 5rem) */
+}
+
+/* Enhanced smooth scrolling with custom easing */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Webkit scrollbar styling for smooth experience */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #d4af37, #f4d03f);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #f4d03f, #d4af37);
 }
 
 /* Creative UI helpers */

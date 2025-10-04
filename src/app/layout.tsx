@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       {/* Add Google Fonts link for Libertinus Serif Display in app/head.tsx */}
       <body className={`${arimo.variable} font-sans antialiased`}>
         <Header />
