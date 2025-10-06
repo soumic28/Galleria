@@ -12,7 +12,7 @@ const arimo = Arimo({
 });
 
 export const metadata: Metadata = {
-  title: "PsrInfinity Mall — Coming Soon",
+  title: "PsrInfinity Mall",
   description: "PsrInfinity in Hyderabad is coming soon. White, gold, and black CTA theme.",
 };
 
@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       {/* Add Google Fonts link for Libertinus Serif Display in app/head.tsx */}
       <body className={`${arimo.variable} font-sans antialiased`}>
         <Header />

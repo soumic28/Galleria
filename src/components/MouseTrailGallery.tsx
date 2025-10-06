@@ -4,7 +4,12 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
-const TRAIL_IMAGES = ["/mall_pic_1.png", "/mall_pic_2.png", "/mall_pic_3.png", "/mall_pic_4.png"];
+const TRAIL_IMAGES = [
+  "/mall_pic_1.png", 
+  "/mall_pic_2.png",
+  "/mall_pic_3.png",
+  "/mall_pic_4.png",
+];
 
 interface TrailItem {
   id: number;
