@@ -11,6 +11,7 @@ import InteractiveGallery from "@/components/InteractiveGallery";
 // import StatisticsSection from "@/components/StatisticsSection";
 import FeaturesShowcase from "@/components/FeaturesShowcase";
 import HeroSection from "@/components/HeroSection";
+import VideoSection from "@/components/VideoSection";
 
 export default function Home() {
   return (
@@ -18,6 +19,13 @@ export default function Home() {
     <div className="overflow-hidden">
       {/* Hero Section with Mall Background */}
       <HeroSection />
+
+      {/* Video Section - Fullscreen on scroll */}
+      <VideoSection 
+        videoSrc="/videos/freecompress-drone.mp4"
+        title="Experience PSR Infinity Mall"
+        description="Immerse yourself in the luxury and grandeur of modern retail architecture"
+      />
 
       {/* Main Content */}
       
