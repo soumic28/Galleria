@@ -16,19 +16,19 @@ import VideoSection from "@/components/VideoSection";
 export default function Home() {
   return (
     <>
-    <div className="overflow-hidden">
-      {/* Hero Section with Mall Background */}
-      <HeroSection />
+      <div className="overflow-hidden">
+        {/* Hero Section with Mall Background */}
+        <HeroSection />
 
-      {/* Video Section - Fullscreen on scroll */}
-      {/* <VideoSection 
+        {/* Video Section - Fullscreen on scroll */}
+        {/* <VideoSection 
         videoSrc="/images/psrmall_1.png"
         title="Experience PSR Infinity Mall"
         description="Immerse yourself in the luxury and grandeur of modern retail architecture"
       /> */}
 
-      {/* Main Content */}
-      
+        {/* Main Content */}
+
         {/* New faded scrolling gallery using 6 images */}
         <FadedScrollGallery speed={0.01} />
 
@@ -73,6 +73,22 @@ export default function Home() {
             <div className="inner rounded-xl p-4 sm:p-6">
               <h2 className="font-serif text-2xl">Corporate & Contact</h2>
               <div className="via-brand-gold my-3 h-px w-16 bg-gradient-to-r from-transparent to-transparent" />
+
+              {/* Digital Card Download Section */}
+              <div className="mb-6 p-4 bg-gradient-to-r from-brand-gold/10 to-transparent rounded-lg border border-brand-gold/20">
+                <h3 className="font-semibold text-lg mb-2 text-foreground">Download Our Digital Card</h3>
+                <p className="text-foreground/70 text-sm mb-3">
+                  Get the PSR Infinity Mall digital card with all our contact details and information.
+                </p>
+                <a
+                  href="/PSR INFINITY DC.pdf"
+                  download="PSR INFINITY DC.pdf"
+                  className="bg-brand-gold text-background inline-flex items-center justify-center rounded-md px-5 py-2 text-sm font-semibold hover:opacity-90 transition-opacity"
+                >
+                  📄 Download Digital Card
+                </a>
+              </div>
+
               <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2">
                 <div className="space-y-2">
                   <p className="text-foreground/80 font-sans text-sm">
@@ -103,13 +119,13 @@ export default function Home() {
                     Website: www.psrinfinitymall.com
                   </a>
                   {/* <a
-                    href="https://instagram.com/cpr.architects"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-foreground/90 hover:text-foreground underline"
-                  >
-                    Instagram (Architects): @cpr.architects
-                  </a> */}
+              href="https://instagram.com/cpr.architects"
+              target="_blank"
+              rel="noreferrer"
+              className="text-foreground/90 hover:text-foreground underline"
+            >
+              Instagram (Architects): @cpr.architects
+            </a> */}
                   <div className="pt-2">
                     <a
                       href="mailto:psrinfinitymall@gmail.com"
@@ -172,9 +188,9 @@ export default function Home() {
           </div>
         </div>
 
-    </div>
-      
-    
+      </div>
+
+
     </>
   );
 }
