@@ -17,16 +17,49 @@ type Props = {
 // Simple section progress from 0..1 while the sticky viewport is scrolled through
 function useSectionProgress(ref: { current: HTMLElement | null }) {
   const [p, setP] = useState(0);
+  const [isLocked, setIsLocked] = useState(false);
+  const lastScrollY = useRef(0);
+  
   useEffect(() => {
     const onScroll = () => {
       const el = ref.current;
       if (!el) return;
+      
       const rect = el.getBoundingClientRect();
-      const vh = window.innerHeight || 1;
-      const total = rect.height - vh;
-      const scrolled = Math.min(total, Math.max(0, -rect.top));
-      setP(total > 0 ? scrolled / total : 0);
+      const vh = window.innerHeight;
+      const currentScrollY = window.scrollY;
+      
+      // Store scroll position for when we lock
+      lastScrollY.current = currentScrollY;
+      
+      // Calculate how much of the section has been scrolled through
+      const sectionTop = rect.top;
+      const sectionHeight = rect.height;
+      
+      // More responsive progress calculation
+      const scrollableDistance = Math.max(vh, sectionHeight - vh);
+      
+      if (scrollableDistance <= 0) {
+        setP(0);
+        return;
+      }
+      
+      // Enhanced progress calculation
+      let progress = 0;
+      
+      if (sectionTop <= 0) {
+        // We're scrolling through the section
+        const scrolled = Math.abs(sectionTop);
+        progress = Math.min(1, scrolled / scrollableDistance);
+      } else if (sectionTop <= vh) {
+        // Section is entering viewport
+        progress = Math.max(0, (vh - sectionTop) / vh * 0.1);
+      }
+      
+      setP(progress);
+      setIsLocked(progress > 0.05 && progress < 0.95);
     };
+    
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll, { passive: true });
@@ -35,7 +68,8 @@ function useSectionProgress(ref: { current: HTMLElement | null }) {
       window.removeEventListener("resize", onScroll);
     };
   }, [ref]);
-  return p; // 0..1
+  
+  return { progress: p, shouldLock: isLocked };
 }
 
 export default function ScrollFocusShift({
@@ -49,36 +83,163 @@ export default function ScrollFocusShift({
   stepped = false,
 }: Props) {
   const hostRef = useRef<HTMLDivElement>(null);
-  const p = useSectionProgress(hostRef);
+  const { progress: p, shouldLock } = useSectionProgress(hostRef);
 
+  // Track animation states
+  const [animationComplete, setAnimationComplete] = useState(false);
+  const [isScrollLocked, setIsScrollLocked] = useState(false);
+  const [autoAnimationProgress, setAutoAnimationProgress] = useState(0);
+  const animationStartTime = useRef<number>(0);
+  
+  // Auto-advance animation when scroll is locked
+  useEffect(() => {
+    if (!isScrollLocked || animationComplete) return;
+    
+    const duration = 4000; // 4 second auto-animation
+    let raf: number;
+    
+    const tick = () => {
+      const elapsed = Date.now() - animationStartTime.current;
+      const progress = Math.min(1, elapsed / duration);
+      
+      setAutoAnimationProgress(progress);
+      
+      if (progress >= 1) {
+        // Animation complete - unlock everything
+        setAnimationComplete(true);
+        setAutoAnimationProgress(0);
+        document.body.style.overflow = '';
+      } else {
+        raf = requestAnimationFrame(tick);
+      }
+    };
+    
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [isScrollLocked, animationComplete]);
+  
+  // Use auto animation progress when locked, scroll progress when not
+  const effectiveProgress = isScrollLocked ? autoAnimationProgress : p;
+  
   // Smooth progress independent of scroll velocity
   const [animP, setAnimP] = useState(0);
   useEffect(() => {
     let raf = 0;
-    const s = Math.max(0.002, Math.min(1, speed));
+    const s = stepped ? 0.15 : Math.max(0.15, Math.min(0.4, speed * 8));
     const tick = () => {
       setAnimP((prev) => {
-        const next = prev + (p - prev) * s;
-        return Math.abs(next - prev) < 0.0005 ? p : next;
+        const diff = effectiveProgress - prev;
+        const next = prev + diff * s;
+        const isComplete = Math.abs(diff) < 0.005;
+        
+        if (isComplete) {
+          return effectiveProgress;
+        }
+        return next;
       });
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [p, speed]);
+  }, [effectiveProgress, speed, stepped]);
+
+  // Simple scroll prevention without position changes
+  useEffect(() => {
+    if (stepped) return;
+    
+    const shouldLockNow = shouldLock && !animationComplete && p > 0.02;
+    
+    if (shouldLockNow !== isScrollLocked) {
+      setIsScrollLocked(shouldLockNow);
+      
+      if (shouldLockNow) {
+        // Start animation timer
+        animationStartTime.current = Date.now();
+        
+        // Prevent scroll without changing position
+        document.body.style.overflow = 'hidden';
+      } else {
+        // Restore scroll ability
+        document.body.style.overflow = '';
+        
+        // Reset states
+        setAutoAnimationProgress(0);
+        animationStartTime.current = 0;
+      }
+    }
+    
+    return () => {
+      if (isScrollLocked) {
+        document.body.style.overflow = '';
+      }
+    };
+  }, [shouldLock, animationComplete, p, isScrollLocked, stepped]);
+  
+  // Emergency escape: Click anywhere to unlock (during development)
+  useEffect(() => {
+    const handleClick = () => {
+      if (isScrollLocked) {
+        setAnimationComplete(true);
+        setIsScrollLocked(false);
+        document.body.style.overflow = '';
+      }
+    };
+    
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isScrollLocked) {
+        setAnimationComplete(true);
+        setIsScrollLocked(false);
+        document.body.style.overflow = '';
+      }
+    };
+    
+    if (isScrollLocked) {
+      document.addEventListener('click', handleClick);
+      document.addEventListener('keydown', handleKeyPress);
+    }
+    
+    return () => {
+      document.removeEventListener('click', handleClick);
+      document.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [isScrollLocked]);
+
+  // Watch for animation completion and unlock scroll
+  useEffect(() => {
+    if (animationComplete && isScrollLocked) {
+      setIsScrollLocked(false);
+      document.body.style.overflow = '';
+    }
+  }, [animationComplete, isScrollLocked]);
 
   // Map overall progress (0..1) to a focus value f in [-1, 1]
   // Sequence: start centered -> slide focus to left -> pass through center -> slide to right
   function mapProgressToFocus(x: number) {
-    // hold center for a brief moment
-    if (x < 0.10) return 0;
-    // 0.10..0.45: 0 -> -1
-    if (x < 0.45) return -((x - 0.10) / (0.45 - 0.10));
-    // 0.45..0.55: -1 -> 0 (cross back through center)
-    if (x < 0.55) return -1 + ((x - 0.45) / (0.10));
-    // 0.55..0.90: 0 -> +1
-    if (x < 0.90) return (x - 0.55) / (0.90 - 0.55);
-    // settle on right
+    // Clamp input to 0-1
+    x = Math.max(0, Math.min(1, x));
+    
+    // Phase 1: Hold center briefly (0-0.1)
+    if (x <= 0.1) return 0;
+    
+    // Phase 2: Move to left focus (0.1-0.4)
+    if (x <= 0.4) {
+      const localProgress = (x - 0.1) / 0.3;
+      return -localProgress; // 0 to -1
+    }
+    
+    // Phase 3: Return to center (0.4-0.6)
+    if (x <= 0.6) {
+      const localProgress = (x - 0.4) / 0.2;
+      return -1 + localProgress; // -1 to 0
+    }
+    
+    // Phase 4: Move to right focus (0.6-0.9)
+    if (x <= 0.9) {
+      const localProgress = (x - 0.6) / 0.3;
+      return localProgress; // 0 to 1
+    }
+    
+    // Phase 5: Hold right focus (0.9-1.0)
     return 1;
   }
 
@@ -89,11 +250,11 @@ export default function ScrollFocusShift({
   const [animF, setAnimF] = useState(targetF);
   useEffect(() => {
     let raf = 0;
-    const s = Math.max(0.05, Math.min(1, speed));
+    const s = Math.max(0.12, Math.min(0.4, speed * 4)); // Improved stepped animation speed
     const tick = () => {
       setAnimF((prev) => {
         const next = prev + (targetF - prev) * s;
-        return Math.abs(next - prev) < 0.0005 ? targetF : next;
+        return Math.abs(next - prev) < 0.002 ? targetF : next;
       });
       raf = requestAnimationFrame(tick);
     };
@@ -194,13 +355,15 @@ export default function ScrollFocusShift({
   const f = stepped ? animF : mapProgressToFocus(animP);
   const isNeutral = stepped && step === -1;
 
-  // Utility: cubic ease-out for subtle scale changes
-  const easeOut = (t: number) => 1 - Math.pow(1 - Math.min(1, Math.max(0, t)), 3);
+  // Enhanced layout params for more dramatic effects
+  const slotVW = 45; // Increased spacing for more dramatic movement
+  const baseScale = 0.6; // Smaller base scale for more contrast
+  const focusBoost = 0.7; // Larger boost for focused image
+  const maxOpacity = 1.0;
+  const minOpacity = 0.3; // Lower minimum opacity for more contrast
 
-  // Layout params
-  const slotVW = 38; // how far apart the slots are (viewport width units)
-  const baseScale = 0.82; // scale for side images
-  const focusBoost = 0.45; // additional scale when focused
+  // Debug info (remove in production)
+  console.log('Animation values:', { p, animP, f, isNeutral, shouldLock });
 
   return (
     <section
@@ -212,47 +375,78 @@ export default function ScrollFocusShift({
       {/* Sticky viewport */}
       <div ref={wheelRef} className="sticky top-0 z-10 mx-auto flex h-[100vh] max-w-6xl items-center justify-center px-4 sm:px-6">
         {/* Background */}
-        {/* <div className="absolute inset-0 -z-10 bg-gradient-to-tr from-sky-500 to-blue-500" /> */}
+        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
 
         {/* Optional title pinned at top */}
-        <div className="absolute left-0 right-0 top-4 text-center">
-          <h3 className="mx-auto max-w-3xl bg-gradient-to-b from-brand-gold to-white/90 bg-clip-text font-serif text-2xl tracking-tight text-transparent sm:text-4xl">
+        <div className="absolute left-0 right-0 top-8 text-center">
+          <h3 className="mx-auto max-w-3xl bg-gradient-to-b from-yellow-400 to-amber-600 bg-clip-text font-serif text-3xl tracking-tight text-transparent sm:text-5xl font-bold">
             Spotlight Scroll
           </h3>
+          <div className="mt-2 text-white/60 text-sm">
+            Progress: {Math.round(p * 100)}% | Focus: {f.toFixed(2)} | Locked: {shouldLock ? 'Yes' : 'No'}
+          </div>
         </div>
 
         {/* Stage with three items */}
-        <div className="relative h-[64vmin] w-[92vmin] max-w-[980px] min-w-[280px]">
+        <div className="relative h-[70vh] w-[95vw] max-w-[1200px] min-w-[320px]">
           {[-1, 0, 1].map((idx, i) => {
-            const item = images[i] || images[1];
-            // Horizontal position: image index relative to focus value
+            // Ensure we have a valid image with proper fallback
+            const imageIndex = Math.min(i, images.length - 1);
+            const item = images[imageIndex] || { src: "/mall_pic_2.png", alt: "Gallery" };
+            
+            // Much more dramatic positioning and scaling
             const localF = isNeutral ? 0 : f;
-            const dist = isNeutral ? 1 : Math.abs(idx - localF); // distance from focus image
-            const x = (idx - localF) * slotVW; // vw units
-            const scale = baseScale + (1 - easeOut(Math.min(1, dist))) * focusBoost;
-            const zIndex = 100 - Math.round(dist * 10);
-            const opacity = isNeutral ? 0.85 : 0.65 + (1 - Math.min(1, dist)) * 0.35;
+            const dist = Math.abs(idx - localF);
+            const x = (idx - localF) * slotVW; // More spread out
+            
+            // Dramatic focus effects
+            const focusAmount = Math.max(0, 1 - dist);
+            const scale = baseScale + focusAmount * focusBoost;
+            const zIndex = 100 - Math.round(dist * 20);
+            
+            // High contrast opacity
+            const opacity = isNeutral 
+              ? 0.8 
+              : minOpacity + focusAmount * (maxOpacity - minOpacity);
+            
+            // Enhanced blur effect for non-focused images
+            const blurAmount = isNeutral ? 0 : (1 - focusAmount) * 8;
+            const brightness = isNeutral ? 1 : 0.7 + focusAmount * 0.3;
 
             return (
               <div
-                key={idx}
+                key={`${idx}-${i}`}
                 className="absolute left-1/2 top-1/2 will-change-transform"
                 style={{
-                  width: "clamp(180px, 26vmax, 480px)",
-                  transform: `translate(-50%, -50%) translateX(${x}vw) scale(${scale})`,
-                  transition: "transform 60ms linear, opacity 120ms linear",
+                  width: "clamp(200px, 35vmax, 600px)",
+                  height: "clamp(300px, 50vmax, 800px)",
+                  transform: `translate(-50%, -50%) translateX(${x}vw) scale(${scale}) rotateY(${(idx - localF) * 5}deg)`,
+                  transition: stepped 
+                    ? "all 400ms cubic-bezier(0.4, 0, 0.2, 1)"
+                    : "all 150ms cubic-bezier(0.25, 0.46, 0.45, 0.94)",
                   zIndex,
                   opacity,
-                  filter: `drop-shadow(0 18px 40px rgba(0,0,0,0.30)) drop-shadow(0 6px 12px rgba(0,0,0,0.20))`,
+                  filter: `
+                    drop-shadow(0 ${20 + focusAmount * 30}px ${60 + focusAmount * 40}px rgba(0,0,0,${0.4 + focusAmount * 0.2}))
+                    blur(${blurAmount}px)
+                    brightness(${brightness})
+                    saturate(${0.8 + focusAmount * 0.4})
+                  `,
                 }}
               >
                 <img
                   src={item.src}
-                  alt={item.alt || "Gallery"}
-                  className="block h-auto w-full select-none rounded-lg object-contain"
+                  alt={item.alt || `Gallery image ${i + 1}`}
+                  className="block h-full w-full select-none rounded-xl object-cover border-2 border-white/20"
                   draggable={false}
                   decoding="async"
+                  loading="lazy"
                 />
+                
+                {/* Focus indicator */}
+                {focusAmount > 0.8 && (
+                  <div className="absolute inset-0 rounded-xl border-4 border-yellow-400/60 animate-pulse" />
+                )}
               </div>
             );
           })}
