@@ -12,8 +12,8 @@ const arimo = Arimo({
 });
 
 export const metadata: Metadata = {
-  title: "PsrInfinity Mall",
-  description: "PsrInfinity in Hyderabad is coming soon. White, gold, and black CTA theme.",
+  title: "PSRInfinity Mall",
+  description: "PSRInfinity in Hyderabad is coming soon. White, gold, and black CTA theme.",
 };
 
 export default function RootLayout({
