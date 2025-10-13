@@ -29,14 +29,14 @@ const MallCard: React.FC<MallCardProps> = ({ mall, index, cardRef }) => {
           src={mall.image}
           alt={mall.title}
           fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
           priority={index === 0}
           loading={index === 0 ? 'eager' : 'lazy'}
-          quality={60}
+          quality={75}
           placeholder="blur"
           blurDataURL={BLUR_DATA_URL}
-          className="object-contain sm:object-cover"
-          style={{ objectPosition: 'center 35%' }}
+          className="object-contain"
+          style={{ objectPosition: 'center center' }}
         />
         <div className="absolute inset-0 bg-black/50" />
         
