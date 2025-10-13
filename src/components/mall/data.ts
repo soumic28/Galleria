@@ -46,40 +46,40 @@ export const mallData: MallData[] = [
     zone: "Main Entrance & Atrium",
     features: ["4,500 Sq. Ft. Atrium", "50% Open Space", "20% Landscaped Area", "Grand Entry"]
   },
-  {
-    id: 5,
-    title: "Location Advantage",
-    description: "Strategically placed across Warangal-Hanamkonda-Kazipet triangle",
-    image: "/pdf-images/page-05.png",
-    level: "Prime Location",
-    zone: "Accessibility Hub",
-    features: ["8 mins to Hanamkonda", "10 mins to Warangal", "25 mins to Kazipet", "1.1M Population Reach"]
-  },
-  {
-    id: 6,
-    title: "Architectural Design",
-    description: "Modern architectural design with premium finishes and contemporary aesthetics",
-    image: "/pdf-images/page-06.png",
-    level: "Design Excellence",
-    zone: "Architecture & Design",
-    features: ["Modern Architecture", "Premium Finishes", "Contemporary Design", "Aesthetic Appeal"]
-  },
-  {
-    id: 7,
-    title: "Retail Zones",
-    description: "Diverse retail zones catering to all shopping needs and preferences",
-    image: "/pdf-images/page-07.png",
-    level: "Multi-Level Retail",
-    zone: "Shopping Zones",
-    features: ["Fashion & Lifestyle", "Electronics & Gadgets", "Home & Decor", "Food & Beverages"]
-  },
-  {
-    id: 8,
-    title: "Parking & Accessibility",
-    description: "Comprehensive parking solutions and easy accessibility for all visitors",
-    image: "/pdf-images/page-08.png",
-    level: "Basement Levels",
-    zone: "Parking & Access",
-    features: ["300+ Car Parking", "Basement Parking", "Easy Access", "Visitor Convenience"]
-  }
+  // {
+  //   id: 5,
+  //   title: "Location Advantage",
+  //   description: "Strategically placed across Warangal-Hanamkonda-Kazipet triangle",
+  //   image: "/pdf-images/page-05.png",
+  //   level: "Prime Location",
+  //   zone: "Accessibility Hub",
+  //   features: ["8 mins to Hanamkonda", "10 mins to Warangal", "25 mins to Kazipet", "1.1M Population Reach"]
+  // },
+  // {
+  //   id: 6,
+  //   title: "Architectural Design",
+  //   description: "Modern architectural design with premium finishes and contemporary aesthetics",
+  //   image: "/pdf-images/page-06.png",
+  //   level: "Design Excellence",
+  //   zone: "Architecture & Design",
+  //   features: ["Modern Architecture", "Premium Finishes", "Contemporary Design", "Aesthetic Appeal"]
+  // },
+  // {
+  //   id: 7,
+  //   title: "Retail Zones",
+  //   description: "Diverse retail zones catering to all shopping needs and preferences",
+  //   image: "/pdf-images/page-07.png",
+  //   level: "Multi-Level Retail",
+  //   zone: "Shopping Zones",
+  //   features: ["Fashion & Lifestyle", "Electronics & Gadgets", "Home & Decor", "Food & Beverages"]
+  // },
+  // {
+  //   id: 8,
+  //   title: "Parking & Accessibility",
+  //   description: "Comprehensive parking solutions and easy accessibility for all visitors",
+  //   image: "/pdf-images/page-08.png",
+  //   level: "Basement Levels",
+  //   zone: "Parking & Access",
+  //   features: ["300+ Car Parking", "Basement Parking", "Easy Access", "Visitor Convenience"]
+  // }
 ];
