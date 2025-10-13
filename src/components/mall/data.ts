@@ -14,7 +14,7 @@ export const mallData: MallData[] = [
     id: 1,
     title: "PSR Infinity Mall",
     description: "Largest Mall in Telangana Outside Hyderabad - 2 Lakh Sq. Ft. Built-up Area",
-    image: "/pdf-images/page-01.png",
+    image: "/pdf-images/Multiplex.png",
     level: "9 Floors",
     zone: "Premium Retail & Entertainment",
     features: ["5-Screen Multiplex (1280+ Seating)", "15,000 Sq. Ft. Cine Lounge", "300+ Car Parking", "6 Lifts + 3 Basements"]
@@ -23,7 +23,7 @@ export const mallData: MallData[] = [
     id: 2,
     title: "Entertainment Hub", 
     description: "Premium cinema experience with integrated dining and entertainment",
-    image: "/pdf-images/page-02.png",
+    image: "/pdf-images/multiplex_2.png",
     level: "Multiplex Level", 
     zone: "Cinema & Dining",
     features: ["5 Cinema Screens", "Biggest in Warangal", "Food Meets Cinema", "Premium Movie Experience"]
@@ -32,7 +32,7 @@ export const mallData: MallData[] = [
     id: 3,
     title: "Shopping Experience",
     description: "Premium retail zones with luxury brands and lifestyle shopping",
-    image: "/pdf-images/page-03.png",
+    image: "/pdf-images/multiplex_3.png",
     level: "Retail Floors",
     zone: "Shopping & Lifestyle", 
     features: ["Luxury Brands", "Lifestyle Shopping", "Premium Retail", "Brand Mix Potential"]
@@ -41,7 +41,7 @@ export const mallData: MallData[] = [
     id: 4,
     title: "Grand Atrium",
     description: "Central atrium with 4,500 sq. ft. connecting all floors with open spaces",
-    image: "/pdf-images/page-04.png",
+    image: "/pdf-images/multiplex_4.png",
     level: "Ground Floor",
     zone: "Main Entrance & Atrium",
     features: ["4,500 Sq. Ft. Atrium", "50% Open Space", "20% Landscaped Area", "Grand Entry"]
