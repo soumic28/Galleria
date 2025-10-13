@@ -34,7 +34,7 @@ export default function Home() {
         <FadedScrollGallery speed={0.01} />
 
         {/* Scroll focus shift: left -> right */}
-        <ScrollFocusShift />
+        {/* <ScrollFocusShift /> */}
 
         {/* 3D product showcase (scroll-driven) */}
         <Scroll3DShowcase speed={0.6} />
@@ -44,7 +44,7 @@ export default function Home() {
         </div>
 
         {/* Features Showcase */}
-        <FeaturesShowcase />
+        {/* <FeaturesShowcase /> */}
 
         {/* Interactive Gallery */}
         <div id="gallery" className="mx-auto max-w-6xl px-6 py-16">

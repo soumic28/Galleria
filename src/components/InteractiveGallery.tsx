@@ -12,49 +12,49 @@ interface GalleryImage {
 
 const galleryImages: GalleryImage[] = [
   {
-    src: "/pdf-images/page-01.png",
+    src: "/images/gallery_1.png",
     alt: "PSR Infinity Mall Overview",
     title: "Mall Overview",
     description: "Comprehensive view of the 9-floor premium retail and entertainment destination",
   },
   {
-    src: "/pdf-images/page-02.png",
+    src: "/images/gallery_2.png",
     alt: "Entertainment Zone",
     title: "Entertainment Hub",
     description: "5-screen multiplex with 1280+ seating capacity and premium cine lounge",
   },
   {
-    src: "/pdf-images/page-03.png",
+    src: "/images/gallery_3.png",
     alt: "Shopping Experience",
     title: "Retail Zones",
     description: "Premium shopping experience with luxury brands and lifestyle outlets",
   },
   {
-    src: "/pdf-images/page-04.png",
+    src: "/images/gallery_4.png",
     alt: "Grand Atrium",
     title: "Central Atrium",
     description: "4,500 sq. ft. grand atrium connecting all floors with open spaces",
   },
   {
-    src: "/pdf-images/page-05.png",
+    src: "/images/gallery_5.png",
     alt: "Location Map",
     title: "Location Advantage",
     description: "Strategically located across Warangal-Hanamkonda-Kazipet triangle",
   },
   {
-    src: "/pdf-images/page-06.png",
+    src: "/images/gallery_6.png",
     alt: "Architectural Design",
     title: "Modern Architecture",
     description: "Contemporary design with premium finishes and aesthetic appeal",
   },
   {
-    src: "/pdf-images/page-07.png",
+    src: "/images/gallery_7.png",
     alt: "Retail Layout",
     title: "Shopping Layout",
     description: "Multi-level retail zones catering to diverse shopping needs",
   },
   {
-    src: "/pdf-images/page-08.png",
+    src: "/images/gallery_8.png",
     alt: "Parking Facilities",
     title: "Parking & Access",
     description: "300+ car parking capacity with easy accessibility",
