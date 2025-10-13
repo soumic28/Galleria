@@ -14,7 +14,7 @@ export default function Header() {
         <div className="flex items-baseline gap-2">
           <span className="inline-flex items-center gap-2 font-serif text-2xl tracking-tight">
             <Image
-              className="h-10 w-auto"
+              className="h-14 w-auto"
               src="/PSRInfinity-LOGO.png"
               alt="PsrInfinity Mall logo"
               width={40}
@@ -30,7 +30,8 @@ export default function Header() {
 
         {/* Mobile Hamburger Button */}
         <button
-          className="md:hidden text-foreground focus:outline-none"
+          className="md:hidden focus:outline-none"
+          style={{ color: '#3C127A' }}
           onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle mobile menu"
         >
@@ -66,25 +67,29 @@ function NavLinks() {
   return (
     <>
       <a
-        className="text-foreground/70 hover:text-foreground font-sans text-xs tracking-[0.2em] uppercase"
+        className="font-sans text-xs tracking-[0.2em] uppercase hover:opacity-70"
+        style={{ color: '#3C127A' }}
         href="#hero-interactive-area"
       >
         Home
       </a>
       <a
-        className="text-foreground/70 hover:text-foreground font-sans text-xs tracking-[0.2em] uppercase"
+        className="font-sans text-xs tracking-[0.2em] uppercase hover:opacity-70"
+        style={{ color: '#3C127A' }}
         href="#highlights"
       >
         Highlights
       </a>
       <a
-        className="text-foreground/70 hover:text-foreground font-sans text-xs tracking-[0.2em] uppercase"
+        className="font-sans text-xs tracking-[0.2em] uppercase hover:opacity-70"
+        style={{ color: '#3C127A' }}
         href="#gallery"
       >
         Gallery
       </a>
       <a
-        className="text-foreground/70 hover:text-foreground font-sans text-xs tracking-[0.2em] uppercase"
+        className="font-sans text-xs tracking-[0.2em] uppercase hover:opacity-70"
+        style={{ color: '#3C127A' }}
         href="#contact"
       >
         Contact
