@@ -21,11 +21,11 @@ export default function Home() {
       <HeroSection />
 
       {/* Video Section - Fullscreen on scroll */}
-      <VideoSection 
+      {/* <VideoSection 
         videoSrc="/images/psrmall_1.png"
         title="Experience PSR Infinity Mall"
         description="Immerse yourself in the luxury and grandeur of modern retail architecture"
-      />
+      /> */}
 
       {/* Main Content */}
       
@@ -76,7 +76,7 @@ export default function Home() {
               <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2">
                 <div className="space-y-2">
                   <p className="text-foreground/80 font-sans text-sm">
-                    <span className="font-semibold">Corporate Office:</span> 4th Floor, ABK Mall, Old Bus Depot, Ramnagar – 506001
+                    <span className="font-semibold">Corporate Office:</span> SIRI Multiplex Pvt.Ltd , 4th Floor, ABK Mall, Old Bus Depot, Ramnagar – 506001
                   </p>
                   <div className="flex flex-col gap-1 font-sans text-sm">
                     <a
@@ -100,16 +100,16 @@ export default function Home() {
                     rel="noreferrer"
                     className="text-foreground/90 hover:text-foreground underline"
                   >
-                    Website: www.psrinfinitymall.in
+                    Website: www.psrinfinitymall.com
                   </a>
-                  <a
+                  {/* <a
                     href="https://instagram.com/cpr.architects"
                     target="_blank"
                     rel="noreferrer"
                     className="text-foreground/90 hover:text-foreground underline"
                   >
                     Instagram (Architects): @cpr.architects
-                  </a>
+                  </a> */}
                   <div className="pt-2">
                     <a
                       href="mailto:psrinfinitymall@gmail.com"
