@@ -23,7 +23,7 @@ export default function Home() {
 
         {/* Video Section - Fullscreen on scroll */}
         {/* <VideoSection 
-        videoSrc="/images/psrmall_1.png"
+        videoSrc="https://drive.google.com/file/d/1KJ4vwJ5OjgSr7NUUBwvXmA58c4X1Ah6Q/view"
         title="Experience PSR Infinity Mall"
         description="Immerse yourself in the luxury and grandeur of modern retail architecture"
       /> */}
