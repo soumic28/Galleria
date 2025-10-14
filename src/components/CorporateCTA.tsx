@@ -231,7 +231,7 @@ const CorporateCTA = () => {
               <div className="inline-flex items-center gap-2 text-foreground/60 text-sm">
                 <span>Ready to partner with us?</span>
                 <a
-                  href="mailto:psrinfinitymall@gmail.com?subject=Partnership Inquiry"
+                  href="https://api.whatsapp.com/send/?phone=918524060606&text&type=phone_number&app_absent=0"
                   className="text-brand-gold hover:text-yellow-400 font-medium transition-colors"
                 >
                   Let&apos;s discuss →
