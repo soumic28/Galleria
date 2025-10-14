@@ -117,18 +117,18 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
           transition: "transform 80ms linear, opacity 120ms linear, filter 120ms linear",
         }}
       >
-        <h2 className="mx-auto max-w-4xl bg-gradient-to-b from-brand-gold to-foreground bg-clip-text font-serif text-4xl leading-tight tracking-tight text-transparent sm:text-6xl">
+        <h2 className="mx-auto max-w-3xl bg-gradient-to-b from-brand-gold to-foreground bg-clip-text font-serif text-2xl leading-tight tracking-tight text-transparent sm:text-4xl">
           WARANGAL'S FIRST & ONLY MALL
         </h2>
         
         {/* Description */}
-        <div className="mx-auto mt-6 max-w-3xl space-y-4">
-          <p className="text-lg text-white/90 leading-relaxed">
+        <div className="mx-auto mt-4 max-w-2xl space-y-3">
+          <p className="text-sm text-white/90 leading-relaxed sm:text-base">
             Introducing <span className="text-yellow-400 font-semibold">PSR Infinity</span> - Warangal's premier and exclusive shopping destination. 
             Spanning across <span className="text-yellow-400 font-semibold">2 Lakh sq ft</span> of built-up area, this magnificent 9-floor marvel 
             redefines retail, entertainment, and lifestyle experiences in the city.
           </p>
-          <p className="text-base text-white/80 leading-relaxed">
+          <p className="text-xs text-white/80 leading-relaxed sm:text-sm">
             With a massive <span className="text-yellow-400">4,500 sq ft atrium</span>, state-of-the-art multiplex with 5 screens, 
             and parking for 300+ cars, PSR Infinity stands as a landmark of modern architecture and convenience, 
             bringing world-class amenities to Warangal for the very first time.
