@@ -1,9 +1,8 @@
 /* eslint-disable prettier/prettier */
 "use client";
 import Image from "next/image";
-import { Metadata } from "next";
 import { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, useScroll, useTransform, useInView, Variants } from "framer-motion";
 
 // Note: Metadata should be moved to a separate file if using "use client"
 // export const metadata: Metadata = {
@@ -11,17 +10,17 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion";
 //   description: "Learn about PSR Infinity Mall's vision, mission, and commitment to excellence in retail and entertainment.",
 // };
 
-// Animation variants
-const fadeInUp = {
+// Animation variants with proper TypeScript types
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 60 },
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.8, ease: "easeOut" }
+    transition: { duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }
   }
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -32,30 +31,30 @@ const staggerContainer = {
   }
 };
 
-const scaleIn = {
+const scaleIn: Variants = {
   hidden: { scale: 0.8, opacity: 0 },
   visible: { 
     scale: 1, 
     opacity: 1,
-    transition: { duration: 0.6, ease: "easeOut" }
+    transition: { duration: 0.6, ease: [0.6, -0.05, 0.01, 0.99] }
   }
 };
 
-const slideInLeft = {
+const slideInLeft: Variants = {
   hidden: { x: -100, opacity: 0 },
   visible: { 
     x: 0, 
     opacity: 1,
-    transition: { duration: 0.8, ease: "easeOut" }
+    transition: { duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }
   }
 };
 
-const slideInRight = {
+const slideInRight: Variants = {
   hidden: { x: 100, opacity: 0 },
   visible: { 
     x: 0, 
     opacity: 1,
-    transition: { duration: 0.8, ease: "easeOut" }
+    transition: { duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }
   }
 };
 
