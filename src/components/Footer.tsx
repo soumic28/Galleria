@@ -59,7 +59,7 @@ export default function Footer() {
         </div>
         <div className="mt-4 flex flex-col items-center gap-4">
           <p className="text-foreground/60 text-sm">
-            © {new Date().getFullYear()} The Galleria Mall
+            © {new Date().getFullYear()} PSRInfinity Mall
           </p>
           <div className="flex items-center gap-4">
             <a
