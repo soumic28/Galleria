@@ -56,10 +56,10 @@ export default function Scroll3DShowcase({ speed = 0.6 }: Props) {
   }, [rotateY, speed]);
 
   const faces = [
-    { src: "/mall_pic_1.png", alt: "Showcase 1" },
-    { src: "/mall_pic_2.png", alt: "Showcase 2" },
-    { src: "/mall_pic_3.png", alt: "Showcase 3" },
-    { src: "/mall_pic_4.png", alt: "Showcase 4" },
+    { src: "/fp/fp_1.png", alt: "Showcase 1" },
+    { src: "/fp/fp_2.png", alt: "Showcase 2" },
+    { src: "/fp/fp_3.png", alt: "Showcase 3" },
+    { src: "/fp/fp_4.png", alt: "Showcase 4" },
   ];
 
   return (
