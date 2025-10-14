@@ -54,7 +54,7 @@ export default function Footer() {
             href="mailto:ramakanth.reddy@thegalleriamall.in"
             className="hover:text-foreground underline"
           >
-            ramakanth.reddy@thegalleriamall.in
+            ramakanth.reddy@psrinfinitymall.com
           </a>
         </div>
         <div className="mt-4 flex flex-col items-center gap-4">

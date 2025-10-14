@@ -22,12 +22,12 @@ const CorporateCTA = () => {
       {/* Corporate & Contact */}
       <div id="contact" className="relative mx-auto max-w-6xl text-left px-4 sm:px-6 py-20 lg:py-24">
         <div className="spotlight absolute inset-0 -top-20" />
-        
+
         <div className="gradient-border animate-fade-in-up">
           <div className="inner rounded-xl p-6 sm:p-8 lg:p-10 relative overflow-hidden">
             {/* Subtle inner glow */}
             <div className="absolute inset-0 bg-gradient-to-br from-brand-gold/5 via-transparent to-brand-gold/3 pointer-events-none" />
-            
+
             {/* Header Section */}
             <div className="relative z-10 text-center mb-12">
               <h2 className="font-serif text-3xl lg:text-4xl mb-4 bg-gradient-to-r from-brand-gold via-yellow-400 to-brand-gold bg-clip-text text-transparent animate-shimmer">
