@@ -90,6 +90,13 @@ function NavLinks() {
       <a
         className="font-sans text-xs tracking-[0.2em] uppercase hover:opacity-70"
         style={{ color: '#3C127A' }}
+        href="/about"
+      >
+        About Us
+      </a>
+      <a
+        className="font-sans text-xs tracking-[0.2em] uppercase hover:opacity-70"
+        style={{ color: '#3C127A' }}
         href="#contact"
       >
         Contact
