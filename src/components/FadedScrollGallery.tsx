@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable prettier/prettier */
 "use client";
@@ -60,8 +61,8 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
         const next = prev + (p - prev) * SPEED;
         return Math.abs(next - prev) < 0.0005 ? p : next;
       });
-      // Description progresses slower for a relaxed feel
-      const descSpeed = Math.max(0.001, Math.min(1, SPEED * 0.35));
+      // Description progresses much slower for better readability
+      const descSpeed = Math.max(0.001, Math.min(1, SPEED * 0.15)); // Reduced from 0.35 to 0.15
       setDescAnimP((prev) => {
         const next = prev + (p - prev) * descSpeed;
         return Math.abs(next - prev) < 0.0005 ? p : next;
@@ -73,25 +74,25 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
   }, [p, speed]);
 
   const items: Item[] = [
-    { src: "/cinema-1.png", alt: "Gallery 1", x: -1.1, y: -0.6, size: "clamp(180px, 36vw, 450px)", rotate: -2 },
-    { src: "/cinema-2.png", alt: "Gallery 2", x: 1.2, y: -0.4, size: "clamp(165px, 33vw, 420px)", rotate: 3 },
-    { src: "/cinema-3.png", alt: "Gallery 3", x: -0.9, y: 0.4, size: "clamp(180px, 36vw, 450px)", rotate: 2 },
-    { src: "/cinema-4.png", alt: "Gallery 4", x: 0.9, y: 0.6, size: "clamp(180px, 36vw, 450px)", rotate: -3 },
-    { src: "/cinema-5.png", alt: "Gallery 5", x: -0.2, y: -1.1, size: "clamp(165px, 33vw, 420px)", rotate: -1 },
-    { src: "/cinema-6.png", alt: "Gallery 6", x: 0.2, y: 1.1, size: "clamp(165px, 33vw, 420px)", rotate: 1 },
+    { src: "/images/gallery_5.png", alt: "Gallery 1", x: -1.1, y: -0.6, size: "clamp(180px, 36vw, 450px)", rotate: -2 },
+    { src: "/images/about.png", alt: "Gallery 2", x: 1.2, y: -0.4, size: "clamp(165px, 33vw, 420px)", rotate: 3 },
+    { src: "/images/gallery_7.png", alt: "Gallery 3", x: -0.9, y: 0.4, size: "clamp(180px, 36vw, 450px)", rotate: 2 },
+    { src: "/images/gallery_1.png", alt: "Gallery 4", x: 0.9, y: 0.6, size: "clamp(180px, 36vw, 450px)", rotate: -3 },
+    // { src: "/cinema-5.png", alt: "Gallery 5", x: -0.2, y: -1.1, size: "clamp(165px, 33vw, 420px)", rotate: -1 },
+    // { src: "/cinema-6.png", alt: "Gallery 6", x: 0.2, y: 1.1, size: "clamp(165px, 33vw, 420px)", rotate: 1 },
   ];
 
   type CSSVars = React.CSSProperties & Record<`--${string}` , string | number>;
-  // Heading/description: shrink over a longer window, with easing, then pin
+  // Heading/description: shrink over a much longer window for better readability
   const descStart = 0.05;
-  const descEnd = 0.40; // slower, completes later
+  const descEnd = 0.65; // Increased from 0.40 to 0.65 for slower progression
   const descLocal = Math.min(1, Math.max(0, (descAnimP - descStart) / (descEnd - descStart)));
-  const descEase = 1 - Math.pow(1 - descLocal, 3); // ease-out
+  const descEase = 1 - Math.pow(1 - descLocal, 2); // Changed from cubic to quadratic for gentler easing
   const descMinScale = 0.22; // very small final size
   const descScale = 1 - descEase * (1 - descMinScale);
   // Keep heading/description fully visible (no fading)
   const descOpacity = 1;
-  const descTranslateY = descEase * -16; // gentle upward shift
+  const descTranslateY = descEase * -12; // Reduced from -16 to -12 for gentler movement
   // No blur for a crisp, positive look
   const descBlur = 0;
 
@@ -117,67 +118,25 @@ export default function FadedScrollGallery({ speed = 0.030 }: Props) {
         }}
       >
         <h2 className="mx-auto max-w-4xl bg-gradient-to-b from-brand-gold to-foreground bg-clip-text font-serif text-4xl leading-tight tracking-tight text-transparent sm:text-6xl">
-        ABOUT PSRINFINITY
+          WARANGAL'S FIRST & ONLY MALL
         </h2>
         
-        {/* Statistics Grid */}
-        <div className="mx-auto mt-8 max-w-5xl grid grid-cols-3 gap-8 text-center">
-          {/* Row 1 */}
-          <div className="space-y-1">
-            <div className="text-3xl font-bold text-white">71280</div>
-            <div className="text-sm text-yellow-400">SQ FT SITE AREA</div>
-          </div>
-          <div className="space-y-1">
-            <div className="text-3xl font-bold text-white">2 LAKH</div>
-            <div className="text-sm text-yellow-400">SQ FT BUA</div>
-          </div>
-          <div className="space-y-1">
-            <div className="text-3xl font-bold text-white">9</div>
-            <div className="text-sm text-yellow-400">FLOORS</div>
-          </div>
-          
-          {/* Row 2 */}
-          <div className="space-y-1">
-            <div className="text-3xl font-bold text-white">4500</div>
-            <div className="text-sm text-yellow-400">SQ FT ATRIUM</div>
-          </div>
-          <div className="space-y-1">
-            <div className="text-3xl font-bold text-white">50%</div>
-            <div className="text-sm text-yellow-400">OPEN SPACE</div>
-          </div>
-          <div className="space-y-1">
-            <div className="text-3xl font-bold text-white">15000</div>
-            <div className="text-sm text-yellow-400">SQ FT CINI SPACE</div>
-          </div>
-          
-          {/* Row 3 */}
-          <div className="space-y-1">
-            <div className="text-3xl font-bold text-white">20%</div>
-            <div className="text-sm text-yellow-400">LANDSCAPING</div>
-          </div>
-          <div className="space-y-1">
-            <div className="text-3xl font-bold text-white">300+</div>
-            <div className="text-sm text-yellow-400">CARS PARKING</div>
-          </div>
-          <div className="space-y-1">
-            <div className="text-3xl font-bold text-white">3</div>
-            <div className="text-sm text-yellow-400">BASEMENTS</div>
-          </div>
-          
-          {/* Row 4 */}
-          <div className="space-y-1">
-            <div className="text-3xl font-bold text-white">5</div>
-            <div className="text-sm text-yellow-400">SCREENS</div>
-          </div>
-          <div className="space-y-1">
-            <div className="text-3xl font-bold text-white">6</div>
-            <div className="text-sm text-yellow-400">LIFTS</div>
-          </div>
-          <div className="space-y-1">
-            <div className="text-3xl font-bold text-white">UNLTD</div>
-            <div className="text-sm text-yellow-400">JOY</div>
-          </div>
+        {/* Description */}
+        <div className="mx-auto mt-6 max-w-3xl space-y-4">
+          <p className="text-lg text-white/90 leading-relaxed">
+            Introducing <span className="text-yellow-400 font-semibold">PSR Infinity</span> - Warangal's premier and exclusive shopping destination. 
+            Spanning across <span className="text-yellow-400 font-semibold">2 Lakh sq ft</span> of built-up area, this magnificent 9-floor marvel 
+            redefines retail, entertainment, and lifestyle experiences in the city.
+          </p>
+          <p className="text-base text-white/80 leading-relaxed">
+            With a massive <span className="text-yellow-400">4,500 sq ft atrium</span>, state-of-the-art multiplex with 5 screens, 
+            and parking for 300+ cars, PSR Infinity stands as a landmark of modern architecture and convenience, 
+            bringing world-class amenities to Warangal for the very first time.
+          </p>
         </div>
+        
+        {/* Statistics Grid */}
+       
       </div>
 
       {/* Images */}
