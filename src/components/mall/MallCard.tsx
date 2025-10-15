@@ -17,12 +17,7 @@ const MallCard: React.FC<MallCardProps> = ({ mall, index, cardRef }) => {
   return (
     <div
       ref={cardRef}
-      className="absolute inset-0 flex items-center justify-center"
-      style={{
-        opacity: 1,
-        transform: `translateZ(${index * -100}px)`,
-        zIndex: 1000 - index
-      }}
+      className="relative w-full h-full flex items-center justify-center"
     >
       <div className="relative w-full h-full">
         <Image
@@ -35,7 +30,7 @@ const MallCard: React.FC<MallCardProps> = ({ mall, index, cardRef }) => {
           quality={75}
           placeholder="blur"
           blurDataURL={BLUR_DATA_URL}
-          className="object-contain"
+          className="object-cover"
           style={{ objectPosition: 'center center' }}
         />
         <div className="absolute inset-0 bg-black/50" />
