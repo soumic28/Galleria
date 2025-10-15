@@ -13,6 +13,8 @@ import InteractiveGallery from "@/components/InteractiveGallery";
 // import StatisticsSection from "@/components/StatisticsSection";
 import HeroSection from "@/components/HeroSection";
 import CorporateCTA from "@/components/CorporateCTA";
+import VideoSection from "@/components/VideoSection";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
 
 // Animation variants
 const fadeInUp: Variants = {
@@ -83,10 +85,15 @@ export default function Home() {
 
         {/* Video Section - Fullscreen on scroll */}
         {/* <VideoSection 
-        videoSrc="https://drive.google.com/file/d/1KJ4vwJ5OjgSr7NUUBwvXmA58c4X1Ah6Q/view"
+        videoSrc="/videos/freecompress-drone.mp4"
         title="Experience PSR Infinity Mall"
         description="Immerse yourself in the luxury and grandeur of modern retail architecture"
       /> */}
+      <YouTubeEmbed 
+  videoId="GNzuUMlN3bQ" 
+  title="PSRInfinity Mall Overview " 
+  description="Your description" 
+/>
 
         {/* Main Content */}
 
@@ -97,7 +104,7 @@ export default function Home() {
           viewport={{ once: true, amount: 0.2 }}
           variants={fadeInUp}
         >
-          <FadedScrollGallery speed={0.01} />
+          {/* <FadedScrollGallery speed={0.01} /> */}
         </motion.div>
 
         {/* Scroll focus shift: left -> right */}

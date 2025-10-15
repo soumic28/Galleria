@@ -57,7 +57,7 @@ export default function HeroSection() {
         {/* Sophisticated Feature Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-5xl mx-auto">
           {/* Main Feature Card */}
-          <div className="group backdrop-blur-lg bg-gradient-to-br from-white/10 to-white/5 border border-brand-gold/40 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl hover:shadow-brand-gold/30 transition-all duration-500 hover:scale-[1.02] hover:border-brand-gold/60">
+          {/* <div className="group backdrop-blur-lg bg-gradient-to-br from-white/10 to-white/5 border border-brand-gold/40 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl hover:shadow-brand-gold/30 transition-all duration-500 hover:scale-[1.02] hover:border-brand-gold/60">
             <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
               <div>
                 <h3 className="text-brand-gold font-semibold text-sm sm:text-base lg:text-lg mb-1">Telangana's Largest</h3>
@@ -67,10 +67,10 @@ export default function HeroSection() {
             <p className="text-white/85 text-xs sm:text-sm lg:text-base leading-relaxed">
               Spanning <span className="font-bold text-brand-gold">2 Lakh Square Feet</span> of meticulously designed retail space, establishing the region's most expansive shopping and lifestyle destination beyond Hyderabad.
             </p>
-          </div>
+          </div> */}
 
           {/* Experience Card */}
-          <div className="group backdrop-blur-lg bg-gradient-to-br from-slate-100/10 to-slate-200/5 border border-slate-300/40 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl hover:shadow-slate-300/30 transition-all duration-500 hover:scale-[1.02] hover:border-slate-300/60">
+          {/* <div className="group backdrop-blur-lg bg-gradient-to-br from-slate-100/10 to-slate-200/5 border border-slate-300/40 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl hover:shadow-slate-300/30 transition-all duration-500 hover:scale-[1.02] hover:border-slate-300/60">
             <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
               <div>
                 <h3 className="text-slate-200 font-semibold text-sm sm:text-base lg:text-lg mb-1">Curated Luxury</h3>
@@ -80,7 +80,7 @@ export default function HeroSection() {
             <p className="text-white/85 text-xs sm:text-sm lg:text-base leading-relaxed">
               An orchestrated blend of <span className="font-semibold text-slate-200">world-class retail, gourmet dining, entertainment venues</span> and luxury lifestyle brands - all unified under one architectural masterpiece.
             </p>
-          </div>
+          </div> */}
         </div>
 
         {/* Refined Features Grid */}
