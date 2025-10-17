@@ -137,7 +137,7 @@ export default function VideoSection({
     <section 
       ref={sectionRef}
       className={`relative h-screen overflow-hidden transition-all duration-1000 ease-out ${
-        isFullscreen ? 'scale-105' : 'scale-100'
+        isFullscreen ? 'scale-102' : 'scale-100'
       }`}
     >
       {/* Video Background */}
@@ -146,18 +146,22 @@ export default function VideoSection({
           <video
             ref={videoRef}
             className={`h-full w-full object-cover transition-all duration-1000 ease-out ${
-              isFullscreen ? 'scale-110' : 'scale-100'
+              isFullscreen ? 'scale-105' : 'scale-100'
             }`}
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="auto"
             crossOrigin="anonymous"
             onError={handleVideoError}
             onLoadStart={() => console.log('Video loading started')}
             onCanPlay={() => console.log('Video can start playing')}
+            style={{
+              filter: 'contrast(1.1) saturate(1.1) brightness(1.05)'
+            }}
           >
             <source src={directVideoSrc} type="video/mp4" />
+            <source src={directVideoSrc} type="video/webm" />
             Your browser does not support the video tag.
           </video>
         ) : (
@@ -171,8 +175,8 @@ export default function VideoSection({
           </div>
         )}
         
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/30" />
+        {/* Reduced overlay for better video visibility */}
+        <div className="absolute inset-0 bg-black/20" />
       </div>
 
       {/* Content Overlay */}

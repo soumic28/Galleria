@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 /* eslint-disable prettier/prettier */
 "use client";
 import { useState } from "react";
@@ -8,7 +9,7 @@ export default function Header() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="border-brand-gold/20 bg-brand-white/70 supports-[backdrop-filter]:bg-brand-white/60 border-b backdrop-blur">
+    <header className="border-purple-200/30 bg-gradient-to-r from-gray-50/95 to-purple-50/95 supports-[backdrop-filter]:from-gray-50/90 supports-[backdrop-filter]:to-purple-50/90 border-b backdrop-blur shadow-sm">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 sm:h-20">
         {/* Logo */}
         <div className="flex items-baseline gap-2">
@@ -69,7 +70,7 @@ function NavLinks() {
       <a
         className="font-sans text-xs tracking-[0.2em] uppercase hover:opacity-70"
         style={{ color: '#3C127A' }}
-        href="#hero-interactive-area"
+        href="/"
       >
         Home
       </a>

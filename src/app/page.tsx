@@ -13,12 +13,14 @@ import InteractiveGallery from "@/components/InteractiveGallery";
 // import StatisticsSection from "@/components/StatisticsSection";
 import HeroSection from "@/components/HeroSection";
 import CorporateCTA from "@/components/CorporateCTA";
+import VideoSection from "@/components/VideoSection";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
 
 // Animation variants
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 60 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: { duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }
   }
@@ -37,8 +39,8 @@ const staggerContainer: Variants = {
 
 const scaleIn: Variants = {
   hidden: { scale: 0.8, opacity: 0 },
-  visible: { 
-    scale: 1, 
+  visible: {
+    scale: 1,
     opacity: 1,
     transition: { duration: 0.6, ease: [0.6, -0.05, 0.01, 0.99] }
   }
@@ -48,13 +50,13 @@ const scaleIn: Variants = {
 
 export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  
+
   // Mouse tracking for interactive effects
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
-    
+
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
@@ -83,10 +85,15 @@ export default function Home() {
 
         {/* Video Section - Fullscreen on scroll */}
         {/* <VideoSection 
-        videoSrc="https://drive.google.com/file/d/1KJ4vwJ5OjgSr7NUUBwvXmA58c4X1Ah6Q/view"
+        videoSrc="/videos/freecompress-drone.mp4"
         title="Experience PSR Infinity Mall"
         description="Immerse yourself in the luxury and grandeur of modern retail architecture"
       /> */}
+        <YouTubeEmbed
+          videoId="GNzuUMlN3bQ"
+          title="PSRInfinity Mall Overview "
+          description="Your description"
+        />
 
         {/* Main Content */}
 
@@ -97,7 +104,7 @@ export default function Home() {
           viewport={{ once: true, amount: 0.2 }}
           variants={fadeInUp}
         >
-          <FadedScrollGallery speed={0.01} />
+          {/* <FadedScrollGallery speed={0.01} /> */}
         </motion.div>
 
         {/* Scroll focus shift: left -> right */}
@@ -113,7 +120,7 @@ export default function Home() {
           <Scroll3DShowcase speed={0.6} />
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="-mt-8 sm:-mt-[480px]"
           initial="hidden"
           whileInView="visible"
@@ -127,33 +134,33 @@ export default function Home() {
         {/* <FeaturesShowcase /> */}
 
         {/* Interactive Gallery */}
-        <motion.div 
-          id="gallery" 
+        <motion.div
+          id="gallery"
           className="mx-auto max-w-6xl px-6 py-16"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={staggerContainer}
         >
-          <motion.div 
+          <motion.div
             className="text-center mb-12"
             variants={fadeInUp}
           >
-            <motion.h2 
+            <motion.h2
               className="font-serif text-3xl sm:text-4xl font-bold bg-gradient-to-b from-brand-gold to-foreground bg-clip-text text-transparent"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
               Mall Gallery
             </motion.h2>
-            <motion.div 
+            <motion.div
               className="via-brand-gold mx-auto my-4 h-px w-24 bg-gradient-to-r from-transparent to-transparent"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               transition={{ duration: 1, delay: 0.5 }}
               viewport={{ once: true }}
             />
-            <motion.p 
+            <motion.p
               className="text-foreground/70 max-w-2xl mx-auto"
               variants={fadeInUp}
             >
@@ -166,22 +173,22 @@ export default function Home() {
         </motion.div>
 
         {/* Mall Highlights */}
-        <motion.div 
-          id="highlights" 
+        <motion.div
+          id="highlights"
           className="mx-auto max-w-5xl text-left px-4 sm:px-6 py-16"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
           variants={staggerContainer}
         >
-          <motion.div 
+          <motion.div
             className="via-brand-gold mx-auto my-3 h-px w-16 bg-gradient-to-r from-transparent to-transparent"
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             transition={{ duration: 1 }}
             viewport={{ once: true }}
           />
-          <motion.div 
+          <motion.div
             className="grid grid-cols-1 gap-5 sm:grid-cols-2"
             variants={staggerContainer}
           >
@@ -216,7 +223,7 @@ export default function Home() {
                 key={index}
                 className="group cursor-pointer"
                 variants={fadeInUp}
-                whileHover={{ 
+                whileHover={{
                   scale: 1.03,
                   boxShadow: "0 20px 40px rgba(212, 175, 55, 0.1)"
                 }}
@@ -224,7 +231,7 @@ export default function Home() {
                 transition={{ duration: 0.3 }}
               >
                 <div className="bg-muted/30 rounded-lg p-6 border border-border/50 h-full">
-                  <motion.div 
+                  <motion.div
                     className="text-4xl mb-4"
                     whileHover={{ scale: 1.2, rotate: 10 }}
                     transition={{ duration: 0.3 }}
@@ -272,7 +279,7 @@ export default function Home() {
           whileTap={{ scale: 0.9 }}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           animate={{ y: [0, -5, 0] }}
-          transition={{ 
+          transition={{
             y: { duration: 2, repeat: Infinity, ease: "easeInOut" },
             scale: { duration: 0.2 },
             boxShadow: { duration: 0.2 }
