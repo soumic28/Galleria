@@ -84,7 +84,7 @@ export default function HeroSection() {
         </div>
 
         {/* Refined Features Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 max-w-4xl mx-auto">
+        {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 max-w-4xl mx-auto">
           {[
             { title: "Premium Retail", subtitle: "International Brands", gradient: "from-rose-400/20 to-pink-400/20", border: "border-rose-400/30" },
             { title: "Fine Dining", subtitle: "Culinary Excellence", gradient: "from-amber-400/20 to-orange-400/20", border: "border-amber-400/30" },
@@ -101,7 +101,7 @@ export default function HeroSection() {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
 
       {/* Scroll indicator */}
