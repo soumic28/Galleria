@@ -18,11 +18,18 @@ const galleryImages: GalleryImage[] = [
     description: "Comprehensive view of the 9-floor premium retail and entertainment destination",
   },
   {
-    src: "/images/gallery_2.png",
-    alt: "Entertainment Zone",
-    title: "Entertainment Hub",
-    description: "5-screen multiplex with 1280+ seating capacity and premium cine lounge",
+    src: "/images/gallery_6.png",
+    alt: "Architectural Design",
+    title: "Modern Architecture",
+    description: "Contemporary design with premium finishes and aesthetic appeal",
   },
+  {
+    src: "/images/gallery_7.png",
+    alt: "Retail Layout",
+    title: "Shopping Layout",
+    description: "Multi-level retail zones catering to diverse shopping needs",
+  },
+
   {
     src: "/images/gallery_3.png",
     alt: "Shopping Experience",
@@ -36,25 +43,19 @@ const galleryImages: GalleryImage[] = [
     description: "4,500 sq. ft. grand atrium connecting all floors with open spaces",
   },
   {
-    src: "/images/gallery_5.png",
+    src: "/images/gallery_2.png",
+    alt: "Entertainment Zone",
+    title: "Entertainment Hub",
+    description: "5-screen multiplex with 1280+ seating capacity and premium cine lounge",
+  },
+  {
+    src: "/images/gallery_newp.png",
     alt: "Location Map",
     title: "Location Advantage",
     description: "Strategically located across Warangal-Hanamkonda-Kazipet triangle",
   },
   {
-    src: "/images/gallery_6.png",
-    alt: "Architectural Design",
-    title: "Modern Architecture",
-    description: "Contemporary design with premium finishes and aesthetic appeal",
-  },
-  {
-    src: "/images/gallery_7.png",
-    alt: "Retail Layout",
-    title: "Shopping Layout",
-    description: "Multi-level retail zones catering to diverse shopping needs",
-  },
-  {
-    src: "/images/gallery_8.png",
+    src: "/images/new_pic.png",
     alt: "Parking Facilities",
     title: "Parking & Access",
     description: "300+ car parking capacity with easy accessibility",
