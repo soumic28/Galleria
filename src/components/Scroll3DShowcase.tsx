@@ -65,7 +65,7 @@ export default function Scroll3DShowcase({ speed = 0.6 }: Props) {
   return (
     <section
       ref={hostRef}
-      className="relative isolate h-[140vh] sm:h-[170vh] overflow-visible"
+      className="relative isolate  overflow-visible"
       aria-label="Auto rotating 3D showcase"
     >
       {/* Sticky container */}

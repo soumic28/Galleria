@@ -110,24 +110,26 @@ export default function Home() {
         {/* Scroll focus shift: left -> right */}
         {/* <ScrollFocusShift /> */}
 
+        {/* Mall Section */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={fadeInUp}
+          className="my-24"
+        >
+          <MallSection />
+        </motion.div>
+
         {/* 3D product showcase (scroll-driven) */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
           variants={scaleIn}
+          className=""
         >
           <Scroll3DShowcase speed={0.6} />
-        </motion.div>
-
-        <motion.div
-          className="-mt-8 sm:-mt-[480px]"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={fadeInUp}
-        >
-          <MallSection />
         </motion.div>
 
         {/* Features Showcase */}
